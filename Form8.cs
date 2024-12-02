@@ -20,7 +20,7 @@ namespace DB_Proj_00
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
-            Form1 form1 = new Form1();
+            Login form1 = new Login();
             form1.ShowDialog();
         }
 

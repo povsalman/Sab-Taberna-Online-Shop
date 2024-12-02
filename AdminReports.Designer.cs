@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms.DataVisualization.Charting;
 namespace DB_Proj_00
 {
-    partial class Form23
+    partial class AdminReports
     {
         private System.ComponentModel.IContainer components = null;
 

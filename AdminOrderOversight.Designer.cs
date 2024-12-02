@@ -1,6 +1,6 @@
 ﻿namespace DB_Proj_00
 {
-    partial class Form21
+    partial class AdminOrderOversight
     {
         private System.ComponentModel.IContainer components = null;
 

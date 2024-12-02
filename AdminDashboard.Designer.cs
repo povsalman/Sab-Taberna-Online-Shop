@@ -1,6 +1,6 @@
 ﻿namespace DB_Proj_00
 {
-    partial class Form9
+    partial class AdminDashboard
     {
         private System.ComponentModel.IContainer components = null;
 

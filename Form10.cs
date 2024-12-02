@@ -26,7 +26,7 @@ namespace DB_Proj_00
         private void button9_Click(object sender, EventArgs e)
         {
             this.Close();
-            Form1 loginForm = new Form1();
+            Login loginForm = new Login();
             loginForm.Show();
         }
 

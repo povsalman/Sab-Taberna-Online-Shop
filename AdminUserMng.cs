@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace DB_Proj_00
 {
-    public partial class Form19 : Form
+    public partial class AdminUserMng : Form
     {
-        public Form19()
+        public AdminUserMng()
         {
             InitializeComponent();
         }
@@ -27,7 +27,7 @@ namespace DB_Proj_00
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Form9 adminDashboard = new Form9(); 
+            AdminDashboard adminDashboard = new AdminDashboard(); 
             adminDashboard.Show();
             this.Close();
         }

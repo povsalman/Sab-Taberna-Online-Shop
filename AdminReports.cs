@@ -4,9 +4,9 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace DB_Proj_00
 {
-    public partial class Form23 : Form
+    public partial class AdminReports : Form
     {
-        public Form23()
+        public AdminReports()
         {
             InitializeComponent();
         }
@@ -51,7 +51,7 @@ namespace DB_Proj_00
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Form9 adminDashboard = new Form9();
+            AdminDashboard adminDashboard = new AdminDashboard();
             adminDashboard.Show();
             this.Close();
         }

@@ -1,6 +1,6 @@
 ﻿namespace DB_Proj_00
 {
-    partial class Form2
+    partial class SignUpRole
     {
         /// <summary>
         /// Required designer variable.

@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace DB_Proj_00
 {
-    public partial class Form9 : Form
+    public partial class AdminDashboard : Form
     {
-        public Form9()
+        public AdminDashboard()
         {
             InitializeComponent();
         }
@@ -13,7 +13,7 @@ namespace DB_Proj_00
         private void button1_Click(object sender, EventArgs e)
         {
             // Navigate to User and Seller Management (Form19)
-            Form19 userSellerManagement = new Form19();
+            AdminUserMng userSellerManagement = new AdminUserMng();
             userSellerManagement.Show();
             this.Hide();
         }
@@ -21,7 +21,7 @@ namespace DB_Proj_00
         private void button2_Click(object sender, EventArgs e)
         {
             // Navigate to Product and Category Management (Form20)
-            Form20 productCategoryManagement = new Form20();
+            AdminProductMng productCategoryManagement = new AdminProductMng();
             productCategoryManagement.Show();
             this.Hide();
         }
@@ -35,7 +35,7 @@ namespace DB_Proj_00
         new Order(3, "Arshiq", "Seller C", "Delivered", 320.20m, DateTime.Now.AddDays(-3))
     };
 
-            Form21 orderOversightForm = new Form21(orders);
+            AdminOrderOversight orderOversightForm = new AdminOrderOversight(orders);
             orderOversightForm.Show();
             this.Hide();
         }
@@ -43,7 +43,7 @@ namespace DB_Proj_00
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Form23 reportsForm = new Form23();
+            AdminReports reportsForm = new AdminReports();
             reportsForm.Show();
             this.Hide();
         }
@@ -59,7 +59,7 @@ namespace DB_Proj_00
         {
             // Logout and return to Login (Form1)
             this.Close();
-            Form1 loginForm = new Form1();
+            Login loginForm = new Login();
             loginForm.Show();
         }
     }

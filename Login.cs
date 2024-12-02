@@ -1,8 +1,8 @@
 namespace DB_Proj_00
 {
-    public partial class Form1 : Form
+    public partial class Login : Form
     {
-        public Form1()
+        public Login()
         {
             InitializeComponent();
         }
@@ -20,7 +20,7 @@ namespace DB_Proj_00
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             
-            Form2 form2 = new Form2();
+            SignUpRole form2 = new SignUpRole();
 
             
             form2.Show();
@@ -56,7 +56,7 @@ namespace DB_Proj_00
                     break;
 
                 case "Admin":
-                    Form9 adminDashboard = new Form9(); 
+                    AdminDashboard adminDashboard = new AdminDashboard(); 
                     adminDashboard.Show();
                     break;
 

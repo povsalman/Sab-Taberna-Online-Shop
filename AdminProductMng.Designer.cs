@@ -1,6 +1,6 @@
 ﻿namespace DB_Proj_00
 {
-    partial class Form20
+    partial class AdminProductMng
     {
         private System.ComponentModel.IContainer components = null;
         private DataGridView dgvProducts;

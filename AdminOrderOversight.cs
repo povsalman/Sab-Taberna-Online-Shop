@@ -4,11 +4,11 @@ using System.Windows.Forms;
 
 namespace DB_Proj_00
 {
-    public partial class Form21 : Form
+    public partial class AdminOrderOversight : Form
     {
         private List<Order> orders; 
 
-        public Form21(List<Order> orderList)
+        public AdminOrderOversight(List<Order> orderList)
         {
             InitializeComponent();
             orders = orderList; 
@@ -79,7 +79,7 @@ namespace DB_Proj_00
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Form9 adminDashboard = new Form9(); 
+            AdminDashboard adminDashboard = new AdminDashboard(); 
             adminDashboard.Show(); 
             this.Close(); 
         }

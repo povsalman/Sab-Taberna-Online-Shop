@@ -24,7 +24,7 @@ namespace DB_Proj_00
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
+            Login form1 = new Login();
 
             form1.Show();
 
@@ -33,7 +33,7 @@ namespace DB_Proj_00
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
+            SignUpRole form2 = new SignUpRole();
 
             form2.Show();
 

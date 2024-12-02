@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DB_Proj_00
 {
-    public partial class Form2 : Form
+    public partial class SignUpRole : Form
     {
-        public Form2()
+        public SignUpRole()
         {
             InitializeComponent();
         }
@@ -45,7 +45,7 @@ namespace DB_Proj_00
                     break;
 
                 case "Admin":
-                    Form5 adminForm = new Form5();
+                    AdminSignUp adminForm = new AdminSignUp();
                     adminForm.Show();
                     break;
 
