@@ -10,6 +10,8 @@ namespace DB_Proj_00
         {
             ApplicationConfiguration.Initialize();
             Application.Run(new Login());
+
+
         }
     }
 }
