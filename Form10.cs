@@ -7,8 +7,8 @@ namespace DB_Proj_00
     public partial class Form10 : Form
     {
         // Shared data between forms
-        private List<Product> shoppingCart; 
-        private Dictionary<Product, List<Review>> productReviews; 
+        private List<Product> shoppingCart;
+        private Dictionary<Product, List<Review>> productReviews;
         public Form10()
         {
             InitializeComponent();
@@ -20,7 +20,7 @@ namespace DB_Proj_00
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -47,14 +47,24 @@ namespace DB_Proj_00
         {
             Form13 reviewForm = new Form13();
             reviewForm.Show();
-            this.Hide(); 
+            this.Hide();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             Form15 reviewForm = new Form15();
             reviewForm.Show();
-            this.Hide(); 
+            this.Hide();
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -56,8 +56,8 @@ namespace DB_Proj_00
                     break;
 
                 case "Admin":
-                    AdminDashboard adminDashboard = new AdminDashboard(); 
-                    adminDashboard.Show();
+                    AdminNewDashboard adminNewDashboard = new AdminNewDashboard();
+                    adminNewDashboard.Show();
                     break;
 
                 case "Logistics Provider":
