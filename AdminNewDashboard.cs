@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +13,127 @@ namespace DB_Proj_00
 {
     public partial class AdminNewDashboard : Form
     {
+        private string adminUsername; // Store logged-in admin username.
+        private string connectionString = "Data Source=SALMAN\\SQLEXPRESS;Initial Catalog=SABTaberna;Integrated Security=True;Encrypt=False"; // Replace with your database connection string.
+
+
         public AdminNewDashboard()
         {
             InitializeComponent();
+            LoadAdminData();
+        
         }
+
+        public AdminNewDashboard(string username)
+        {
+            InitializeComponent();
+            adminUsername = username;
+            LoadAdminData();
+        }
+
+        private void LoadAdminData()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT Username, Role, ShopName FROM ADMIN WHERE Username = @username";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@username", adminUsername);
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            label3.Text = reader["Username"].ToString(); // Username
+                            label5.Text = reader["Role"].ToString();     // Role
+                            label7.Text = reader["ShopName"].ToString(); // Shop Name
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading admin data: " + ex.Message);
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e) // Save Profile Changes
+        {
+            string newUsername = txtUsername.Text.Trim();
+            string newAddress = txtAddress.Text.Trim();
+
+            if (string.IsNullOrEmpty(newUsername) || string.IsNullOrEmpty(newAddress))
+            {
+                MessageBox.Show("Please fill all fields.");
+                return;
+            }
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "UPDATE ADMIN SET Username = @newUsername, Address = @newAddress WHERE Username = @oldUsername";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@newUsername", newUsername);
+                        cmd.Parameters.AddWithValue("@newAddress", newAddress);
+                        cmd.Parameters.AddWithValue("@oldUsername", adminUsername);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Profile updated successfully!");
+                adminUsername = newUsername; // Update the stored username.
+                LoadAdminData(); // Refresh the displayed data.
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating profile: " + ex.Message);
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e) // Change Password
+        {
+            string newPassword = txtNewPass.Text.Trim();
+            string confirmPassword = txtNewConfirmPass.Text.Trim();
+
+            if (string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(confirmPassword))
+            {
+                MessageBox.Show("Please fill all fields.");
+                return;
+            }
+
+            if (newPassword != confirmPassword)
+            {
+                MessageBox.Show("Passwords do not match.");
+                return;
+            }
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "UPDATE ADMIN SET Password = @newPassword WHERE Username = @username";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@newPassword", newPassword);
+                        cmd.Parameters.AddWithValue("@username", adminUsername);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Password changed successfully!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error changing password: " + ex.Message);
+            }
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -70,6 +188,13 @@ namespace DB_Proj_00
         {
             AdminReviews reviewsForm = new AdminReviews();
             reviewsForm.Show();
+            this.Hide();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Login loginPage = new Login();
+            loginPage.Show();
             this.Hide();
         }
     }

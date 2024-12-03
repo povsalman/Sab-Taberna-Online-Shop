@@ -42,20 +42,19 @@
             tabPage2 = new TabPage();
             label15 = new Label();
             button7 = new Button();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            txtNewConfirmPass = new TextBox();
+            txtNewPass = new TextBox();
             label10 = new Label();
             label9 = new Label();
             tabPage3 = new TabPage();
             button8 = new Button();
-            textBox5 = new TextBox();
-            textBox4 = new TextBox();
-            textBox6 = new TextBox();
-            label14 = new Label();
+            txtAddress = new TextBox();
+            txtUsername = new TextBox();
             label13 = new Label();
             label12 = new Label();
             label11 = new Label();
             panel2 = new Panel();
+            button10 = new Button();
             button6 = new Button();
             button9 = new Button();
             button5 = new Button();
@@ -66,7 +65,6 @@
             panel1 = new Panel();
             label16 = new Label();
             pictureBox1 = new PictureBox();
-            button10 = new Button();
             panel3.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -195,8 +193,8 @@
             // 
             tabPage2.Controls.Add(label15);
             tabPage2.Controls.Add(button7);
-            tabPage2.Controls.Add(textBox2);
-            tabPage2.Controls.Add(textBox3);
+            tabPage2.Controls.Add(txtNewConfirmPass);
+            tabPage2.Controls.Add(txtNewPass);
             tabPage2.Controls.Add(label10);
             tabPage2.Controls.Add(label9);
             tabPage2.Location = new Point(4, 29);
@@ -227,19 +225,19 @@
             button7.Text = "Save";
             button7.UseVisualStyleBackColor = false;
             // 
-            // textBox2
+            // txtNewConfirmPass
             // 
-            textBox2.Location = new Point(366, 225);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(177, 27);
-            textBox2.TabIndex = 3;
+            txtNewConfirmPass.Location = new Point(366, 225);
+            txtNewConfirmPass.Name = "txtNewConfirmPass";
+            txtNewConfirmPass.Size = new Size(177, 27);
+            txtNewConfirmPass.TabIndex = 3;
             // 
-            // textBox3
+            // txtNewPass
             // 
-            textBox3.Location = new Point(366, 165);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(177, 27);
-            textBox3.TabIndex = 2;
+            txtNewPass.Location = new Point(366, 165);
+            txtNewPass.Name = "txtNewPass";
+            txtNewPass.Size = new Size(177, 27);
+            txtNewPass.TabIndex = 2;
             // 
             // label10
             // 
@@ -264,10 +262,8 @@
             // tabPage3
             // 
             tabPage3.Controls.Add(button8);
-            tabPage3.Controls.Add(textBox5);
-            tabPage3.Controls.Add(textBox4);
-            tabPage3.Controls.Add(textBox6);
-            tabPage3.Controls.Add(label14);
+            tabPage3.Controls.Add(txtAddress);
+            tabPage3.Controls.Add(txtUsername);
             tabPage3.Controls.Add(label13);
             tabPage3.Controls.Add(label12);
             tabPage3.Controls.Add(label11);
@@ -288,36 +284,19 @@
             button8.Text = "Save";
             button8.UseVisualStyleBackColor = false;
             // 
-            // textBox5
+            // txtAddress
             // 
-            textBox5.Location = new Point(371, 256);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(168, 27);
-            textBox5.TabIndex = 6;
+            txtAddress.Location = new Point(371, 196);
+            txtAddress.Name = "txtAddress";
+            txtAddress.Size = new Size(168, 27);
+            txtAddress.TabIndex = 5;
             // 
-            // textBox4
+            // txtUsername
             // 
-            textBox4.Location = new Point(371, 196);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(168, 27);
-            textBox4.TabIndex = 5;
-            // 
-            // textBox6
-            // 
-            textBox6.Location = new Point(371, 136);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(168, 27);
-            textBox6.TabIndex = 4;
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Arial", 9F, FontStyle.Bold);
-            label14.Location = new Point(247, 261);
-            label14.Name = "label14";
-            label14.Size = new Size(93, 18);
-            label14.TabIndex = 3;
-            label14.Text = "Shop Name:";
+            txtUsername.Location = new Point(371, 136);
+            txtUsername.Name = "txtUsername";
+            txtUsername.Size = new Size(168, 27);
+            txtUsername.TabIndex = 4;
             // 
             // label13
             // 
@@ -366,6 +345,19 @@
             panel2.Size = new Size(142, 529);
             panel2.TabIndex = 4;
             // 
+            // button10
+            // 
+            button10.BackColor = Color.Goldenrod;
+            button10.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button10.ForeColor = Color.White;
+            button10.Location = new Point(-2, 393);
+            button10.Name = "button10";
+            button10.Size = new Size(142, 29);
+            button10.TabIndex = 8;
+            button10.Text = "Reviews";
+            button10.UseVisualStyleBackColor = false;
+            button10.Click += button10_Click;
+            // 
             // button6
             // 
             button6.BackColor = Color.Goldenrod;
@@ -389,6 +381,7 @@
             button9.TabIndex = 6;
             button9.Text = "Log Out";
             button9.UseVisualStyleBackColor = false;
+            button9.Click += button9_Click;
             // 
             // button5
             // 
@@ -487,19 +480,6 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // button10
-            // 
-            button10.BackColor = Color.Goldenrod;
-            button10.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button10.ForeColor = Color.White;
-            button10.Location = new Point(-2, 393);
-            button10.Name = "button10";
-            button10.Size = new Size(142, 29);
-            button10.TabIndex = 8;
-            button10.Text = "Reviews";
-            button10.UseVisualStyleBackColor = false;
-            button10.Click += button10_Click;
-            // 
             // AdminNewDashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -541,16 +521,14 @@
         private TabPage tabPage2;
         private Label label15;
         private Button button7;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox txtNewConfirmPass;
+        private TextBox txtNewPass;
         private Label label10;
         private Label label9;
         private TabPage tabPage3;
         private Button button8;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox6;
-        private Label label14;
+        private TextBox txtAddress;
+        private TextBox txtUsername;
         private Label label13;
         private Label label12;
         private Label label11;

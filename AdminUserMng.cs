@@ -56,125 +56,88 @@ namespace DB_Proj_00
                 return;
             }
 
+            // Parse UserID
+            if (!int.TryParse(txtUserID.Text, out int userId))
+            {
+                MessageBox.Show("Invalid UserID format.");
+                return;
+            }
+
+            // Update ISUSER Table
             string userUpdateQuery = @"
-        UPDATE ISUSER 
-        SET UserID = @UserID";
+                UPDATE ISUSER
+                SET UserName = COALESCE(@UserName, UserName),
+                    Password = COALESCE(@Password, Password),
+                    Gender = COALESCE(@Gender, Gender),
+                    Contact = COALESCE(@Contact, Contact)
+                WHERE UserID = @UserID";
 
             List<SqlParameter> userParameters = new List<SqlParameter>
-    {
-        new SqlParameter("@UserID", txtUserID.Text)
-    };
-
-            // Conditionally update UserName
-            if (!string.IsNullOrWhiteSpace(txtUsername.Text))
             {
-                userUpdateQuery += ", UserName = @UserName";
-                userParameters.Add(new SqlParameter("@UserName", txtUsername.Text));
-            }
+                new SqlParameter("@UserID", userId),
+                new SqlParameter("@UserName", string.IsNullOrWhiteSpace(txtUsername.Text) ? DBNull.Value : (object)txtUsername.Text),
+                new SqlParameter("@Password", string.IsNullOrWhiteSpace(txtPassword.Text) ? DBNull.Value : (object)txtPassword.Text),
+                new SqlParameter("@Gender", string.IsNullOrWhiteSpace(comboGender.Text) ? DBNull.Value : (object)comboGender.Text),
+                new SqlParameter("@Contact", string.IsNullOrWhiteSpace(txtContact.Text) ? DBNull.Value : (object)txtContact.Text),
+            };
 
-            // Conditionally update Password
-            if (!string.IsNullOrWhiteSpace(txtPassword.Text))
-            {
-                userUpdateQuery += ", Password = @Password";
-                userParameters.Add(new SqlParameter("@Password", txtPassword.Text));
-            }
+            ExecuteQuery(userUpdateQuery, userParameters.ToArray());
 
-            // Conditionally update Gender
-            if (!string.IsNullOrWhiteSpace(comboGender.Text))
-            {
-                userUpdateQuery += ", Gender = @Gender";
-                userParameters.Add(new SqlParameter("@Gender", comboGender.Text));
-            }
-
-            // Conditionally update Contact
-            if (!string.IsNullOrWhiteSpace(txtContact.Text))
-            {
-                userUpdateQuery += ", Contact = @Contact";
-                userParameters.Add(new SqlParameter("@Contact", txtContact.Text));
-            }
-
-            // First, check if UserID exists in the SELLER table
+            // Check if UserID exists in SELLER or CUSTOMER tables
             string queryCheckSeller = "SELECT COUNT(*) FROM SELLER WHERE UserID = @UserID";
-            SqlParameter[] checkSellerParameters = new SqlParameter[]
-            {
-        new SqlParameter("@UserID", txtUserID.Text)
-            };
-
-            int sellerExists = ExecuteScalar(queryCheckSeller, checkSellerParameters);
-
-            // Then, check if UserID exists in the CUSTOMER table
             string queryCheckCustomer = "SELECT COUNT(*) FROM CUSTOMER WHERE UserID = @UserID";
-            SqlParameter[] checkCustomerParameters = new SqlParameter[]
-            {
-        new SqlParameter("@UserID", txtUserID.Text)
-            };
 
-            int customerExists = ExecuteScalar(queryCheckCustomer, checkCustomerParameters);
+            int sellerExists = ExecuteScalar(queryCheckSeller, new SqlParameter[] { new SqlParameter("@UserID", userId) });
+            int customerExists = ExecuteScalar(queryCheckCustomer, new SqlParameter[] { new SqlParameter("@UserID", userId) });
 
-            // If the UserID is found in SELLER table
+            // Update SELLER Table
             if (sellerExists > 0)
             {
                 string sellerUpdateQuery = @"
-            UPDATE SELLER
-            SET AccountStatus = @AccountStatus"; // Only AccountStatus is always updated for SELLER
+                    UPDATE SELLER
+                    SET StoreName = COALESCE(@StoreName, StoreName),
+                        VerificationStatus = COALESCE(@VerificationStatus, VerificationStatus),
+                        AccountStatus = @AccountStatus
+                    WHERE UserID = @UserID";
 
                 List<SqlParameter> sellerParameters = new List<SqlParameter>
-        {
-            new SqlParameter("@AccountStatus", comboAccountStatus.Text),
-            new SqlParameter("@SellerID", txtUserID.Text)
-        };
-
-                // Conditionally update StoreName
-                if (!string.IsNullOrWhiteSpace(txtName.Text))
                 {
-                    sellerUpdateQuery += ", StoreName = @StoreName";
-                    sellerParameters.Add(new SqlParameter("@StoreName", txtName.Text));
-                }
+                    new SqlParameter("@UserID", userId),
+                    new SqlParameter("@StoreName", string.IsNullOrWhiteSpace(txtName.Text) ? DBNull.Value : (object)txtName.Text),
+                    new SqlParameter("@VerificationStatus", string.IsNullOrWhiteSpace(comboVerification.Text) ? DBNull.Value : (object)comboVerification.Text),
+                    new SqlParameter("@AccountStatus", comboAccountStatus.Text)
+                };
 
-                // Conditionally update VerificationStatus
-                if (!string.IsNullOrWhiteSpace(comboVerification.Text))
-                {
-                    sellerUpdateQuery += ", VerificationStatus = @VerificationStatus";
-                    sellerParameters.Add(new SqlParameter("@VerificationStatus", comboVerification.Text));
-                }
-
-                // Execute update on ISUSER table
-                ExecuteQuery(userUpdateQuery, userParameters.ToArray()); // Convert List to array
-                                                                         // Execute update on SELLER table
-                ExecuteQuery(sellerUpdateQuery, sellerParameters.ToArray()); // Convert List to array
+                ExecuteQuery(sellerUpdateQuery, sellerParameters.ToArray());
             }
-            // If the UserID is found in CUSTOMER table
+
+            // Update CUSTOMER Table
             else if (customerExists > 0)
             {
                 string customerUpdateQuery = @"
-            UPDATE CUSTOMER
-            SET AccountStatus = @AccountStatus"; // AccountStatus is always updated for CUSTOMER
+                    UPDATE CUSTOMER
+                    SET Name = COALESCE(@Name, Name),
+                        AccountStatus = @AccountStatus
+                    WHERE UserID = @UserID";
 
                 List<SqlParameter> customerParameters = new List<SqlParameter>
-        {
-            new SqlParameter("@AccountStatus", comboAccountStatus.Text),
-            new SqlParameter("@CustomerID", txtUserID.Text)
-        };
-
-                // Conditionally update Name
-                if (!string.IsNullOrWhiteSpace(txtName.Text))
                 {
-                    customerUpdateQuery += ", Name = @Name";
-                    customerParameters.Add(new SqlParameter("@Name", txtName.Text));
-                }
+                    new SqlParameter("@UserID", userId),
+                    new SqlParameter("@Name", string.IsNullOrWhiteSpace(txtName.Text) ? DBNull.Value : (object)txtName.Text),
+                    new SqlParameter("@AccountStatus", comboAccountStatus.Text)
+                };
 
-                // Execute update on ISUSER table
-                ExecuteQuery(userUpdateQuery, userParameters.ToArray()); // Convert List to array
-                                                                         // Execute update on CUSTOMER table
-                ExecuteQuery(customerUpdateQuery, customerParameters.ToArray()); // Convert List to array
+                ExecuteQuery(customerUpdateQuery, customerParameters.ToArray());
             }
             else
             {
                 MessageBox.Show("User ID not found in either SELLER or CUSTOMER table.");
+                return;
             }
 
             MessageBox.Show("User information updated successfully.");
         }
+
 
 
         // Will show only customers in the table
@@ -186,11 +149,11 @@ namespace DB_Proj_00
             SELECT 
                 ISUSER.UserID,
                 ISUSER.UserName,
+                ISUSER.Password,
                 ISUSER.Gender,
                 ISUSER.Contact,
                 ISUSER.Age,
                 ISUSER.RegistrationDate,
-                CUSTOMER.CustomerID,
                 CUSTOMER.Name,
                 CUSTOMER.PaymentPreferences,
                 CUSTOMER.AccountStatus
@@ -216,11 +179,11 @@ namespace DB_Proj_00
             SELECT 
                 ISUSER.UserID,
                 ISUSER.UserName,
+                ISUSER.Password,
                 ISUSER.Gender,
                 ISUSER.Contact,
                 ISUSER.Age,
                 ISUSER.RegistrationDate,
-                SELLER.SellerID,
                 SELLER.StoreName,
                 SELLER.StoreAddress,
                 SELLER.VerificationStatus,
