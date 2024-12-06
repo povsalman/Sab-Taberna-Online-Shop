@@ -17,54 +17,26 @@ namespace DB_Proj_00
         private string connectionString = "Data Source=SALMAN\\SQLEXPRESS;Initial Catalog=SABTaberna;Integrated Security=True;Encrypt=False"; // Replace with your database connection string.
 
 
+
         public AdminNewDashboard()
         {
             InitializeComponent();
-            LoadAdminData();
-        
-        }
-
-        public AdminNewDashboard(string username)
-        {
-            InitializeComponent();
-            adminUsername = username;
             LoadAdminData();
         }
 
         private void LoadAdminData()
         {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    string query = "SELECT Username, Role, ShopName FROM ADMIN WHERE Username = @username";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@username", adminUsername);
-                        SqlDataReader reader = cmd.ExecuteReader();
-
-                        if (reader.Read())
-                        {
-                            label3.Text = reader["Username"].ToString(); // Username
-                            label5.Text = reader["Role"].ToString();     // Role
-                            label7.Text = reader["ShopName"].ToString(); // Shop Name
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading admin data: " + ex.Message);
-            }
+            // Use AdminSessionManager to set label values
+            lblUsername.Text = AdminSessionManager.UserName; // Display logged-in admin's username
+            lblRole.Text = AdminSessionManager.FullName;     // Display logged-in admin's role
         }
 
-        private void button8_Click(object sender, EventArgs e) // Save Profile Changes
+        private void btnSaveProfile_Click(object sender, EventArgs e)
         {
             string newUsername = txtUsername.Text.Trim();
-            string newAddress = txtAddress.Text.Trim();
+            string newContact = txtContact.Text.Trim();
 
-            if (string.IsNullOrEmpty(newUsername) || string.IsNullOrEmpty(newAddress))
+            if (string.IsNullOrEmpty(newUsername) || string.IsNullOrEmpty(newContact))
             {
                 MessageBox.Show("Please fill all fields.");
                 return;
@@ -75,19 +47,26 @@ namespace DB_Proj_00
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "UPDATE ADMIN SET Username = @newUsername, Address = @newAddress WHERE Username = @oldUsername";
+                    string query = @"
+                    UPDATE ISUSER
+                    SET UserName = @newUsername, Contact = @newContact
+                    WHERE UserID = @userID";
+
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@newUsername", newUsername);
-                        cmd.Parameters.AddWithValue("@newAddress", newAddress);
-                        cmd.Parameters.AddWithValue("@oldUsername", adminUsername);
+                        cmd.Parameters.AddWithValue("@newContact", newContact);
+                        cmd.Parameters.AddWithValue("@userID", AdminSessionManager.UserID);
+
                         cmd.ExecuteNonQuery();
                     }
                 }
 
+                // Update session with new username
+                AdminSessionManager.UserName = newUsername;
+
                 MessageBox.Show("Profile updated successfully!");
-                adminUsername = newUsername; // Update the stored username.
-                LoadAdminData(); // Refresh the displayed data.
+                LoadAdminData(); // Refresh displayed data
             }
             catch (Exception ex)
             {
@@ -95,7 +74,8 @@ namespace DB_Proj_00
             }
         }
 
-        private void button7_Click(object sender, EventArgs e) // Change Password
+        // dashboard change password
+        private void btnSavePassword_Click(object sender, EventArgs e)
         {
             string newPassword = txtNewPass.Text.Trim();
             string confirmPassword = txtNewConfirmPass.Text.Trim();
@@ -117,14 +97,22 @@ namespace DB_Proj_00
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "UPDATE ADMIN SET Password = @newPassword WHERE Username = @username";
+                    string query = @"
+                    UPDATE ISUSER
+                    SET Password = @newPassword
+                    WHERE UserID = @userID";
+
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@newPassword", newPassword);
-                        cmd.Parameters.AddWithValue("@username", adminUsername);
+                        cmd.Parameters.AddWithValue("@userID", AdminSessionManager.UserID);
+
                         cmd.ExecuteNonQuery();
                     }
                 }
+
+                // Optionally update the session
+                AdminSessionManager.Password = newPassword;
 
                 MessageBox.Show("Password changed successfully!");
             }
@@ -135,13 +123,13 @@ namespace DB_Proj_00
         }
 
 
+
         private void button1_Click(object sender, EventArgs e)
         {
-            AdminNewDashboard adminNewDashboard = new AdminNewDashboard();
-            adminNewDashboard.Show();
+            this.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnUserSeller_Click(object sender, EventArgs e)
         {
             // Navigate to User and Seller Management (Form19)
             AdminUserMng userSellerManagement = new AdminUserMng();
@@ -149,7 +137,7 @@ namespace DB_Proj_00
             this.Hide();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnProductCategory_Click(object sender, EventArgs e)
         {
             // Navigate to Product and Category Management (Form20)
             AdminProductMng productCategoryManagement = new AdminProductMng();
@@ -157,7 +145,7 @@ namespace DB_Proj_00
             this.Hide();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btnOrderOversight_Click(object sender, EventArgs e)
         {
             var orders = new List<Order>
             {
@@ -171,31 +159,44 @@ namespace DB_Proj_00
             this.Hide();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void btnPlatform_Click(object sender, EventArgs e)
         {
             // Navigate to Platform Settings (Placeholder for now)
             MessageBox.Show("Platform Settings Section is under development!", "Platform Settings");
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void btnReports_Click(object sender, EventArgs e)
         {
             AdminReports reportsForm = new AdminReports();
             reportsForm.Show();
             this.Hide();
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void btnReviews_Click(object sender, EventArgs e)
         {
             AdminReviews reviewsForm = new AdminReviews();
             reviewsForm.Show();
             this.Hide();
         }
 
-        private void button9_Click(object sender, EventArgs e)
+        private void btnLogout_Click(object sender, EventArgs e)
         {
+            // Log out and clear session
+            AdminSessionManager.ClearSession();
             Login loginPage = new Login();
             loginPage.Show();
             this.Hide();
         }
+
+        private void lblUsername_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblRole_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

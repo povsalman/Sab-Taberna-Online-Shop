@@ -72,13 +72,13 @@
             // comboRole
             // 
             comboRole.FormattingEnabled = true;
-            comboRole.Items.AddRange(new object[] { "Customer", "Seller", "Admin", "Logistics Provider" });
+            comboRole.Items.AddRange(new object[] { "Customer", "Seller", "Admin", "Logistics" });
             comboRole.Location = new Point(300, 250);
             comboRole.Name = "comboRole";
             comboRole.Size = new Size(200, 28);
             comboRole.TabIndex = 5;
             toolTip1.SetToolTip(comboRole, "Select your role from the dropdown.");
-            comboRole.SelectedIndexChanged += comboRole_SelectedIndexChanged;
+            //comboRole.SelectedIndexChanged += comboRole_SelectedIndexChanged;
             // 
             // txtUsername
             // 
@@ -87,7 +87,7 @@
             txtUsername.Size = new Size(200, 27);
             txtUsername.TabIndex = 1;
             toolTip1.SetToolTip(txtUsername, "Enter your username (e.g., johndoe123).");
-            txtUsername.TextChanged += txtUsername_TextChanged;
+            //txtUsername.TextChanged += txtUsername_TextChanged;
             // 
             // txtPassword
             // 
@@ -97,7 +97,7 @@
             txtPassword.Size = new Size(200, 27);
             txtPassword.TabIndex = 3;
             toolTip1.SetToolTip(txtPassword, "Enter your secure password.");
-            txtPassword.TextChanged += txtPassword_TextChanged;
+            //txtPassword.TextChanged += txtPassword_TextChanged;
             // 
             // label4
             // 
@@ -109,7 +109,7 @@
             label4.TabIndex = 8;
             label4.Text = "Login";
             label4.TextAlign = ContentAlignment.MiddleCenter;
-            label4.Click += label4_Click;
+            //label4.Click += label4_Click;
             // 
             // btnLogin
             // 

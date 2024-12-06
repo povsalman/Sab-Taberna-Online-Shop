@@ -55,7 +55,6 @@
             label1.Size = new Size(78, 20);
             label1.TabIndex = 1;
             label1.Text = "Review ID:";
-
             // 
             // txtReviewID
             // 
@@ -99,7 +98,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Arial", 16F, FontStyle.Bold);
-            label3.Location = new Point(254, 9);
+            label3.Location = new Point(301, 9);
             label3.Name = "label3";
             label3.Size = new Size(384, 32);
             label3.TabIndex = 7;

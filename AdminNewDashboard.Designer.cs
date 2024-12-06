@@ -32,6 +32,9 @@
             label1 = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            label18 = new Label();
+            lblRole = new Label();
+            lblUsername = new Label();
             label8 = new Label();
             label7 = new Label();
             label6 = new Label();
@@ -41,26 +44,26 @@
             label2 = new Label();
             tabPage2 = new TabPage();
             label15 = new Label();
-            button7 = new Button();
+            btnSavePassword = new Button();
             txtNewConfirmPass = new TextBox();
             txtNewPass = new TextBox();
             label10 = new Label();
             label9 = new Label();
             tabPage3 = new TabPage();
-            button8 = new Button();
-            txtAddress = new TextBox();
+            btnSaveProfile = new Button();
+            txtContact = new TextBox();
             txtUsername = new TextBox();
             label13 = new Label();
             label12 = new Label();
             label11 = new Label();
             panel2 = new Panel();
-            button10 = new Button();
-            button6 = new Button();
-            button9 = new Button();
-            button5 = new Button();
-            button4 = new Button();
-            button3 = new Button();
-            button2 = new Button();
+            btnReviews = new Button();
+            btnReports = new Button();
+            btnLogout = new Button();
+            btnPlatform = new Button();
+            btnOrderOversight = new Button();
+            btnProductCategory = new Button();
+            btnUserSeller = new Button();
             button1 = new Button();
             panel1 = new Panel();
             label16 = new Label();
@@ -110,6 +113,9 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(label18);
+            tabPage1.Controls.Add(lblRole);
+            tabPage1.Controls.Add(lblUsername);
             tabPage1.Controls.Add(label8);
             tabPage1.Controls.Add(label7);
             tabPage1.Controls.Add(label6);
@@ -124,6 +130,35 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Prof. Info.";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(270, 266);
+            label18.Name = "label18";
+            label18.Size = new Size(130, 20);
+            label18.TabIndex = 9;
+            label18.Text = "SAB Taberna Shop";
+            // 
+            // lblRole
+            // 
+            lblRole.AutoSize = true;
+            lblRole.Location = new Point(270, 202);
+            lblRole.Name = "lblRole";
+            lblRole.Size = new Size(65, 20);
+            lblRole.TabIndex = 8;
+            lblRole.Text = "XYZRole";
+            lblRole.Click += lblRole_Click;
+            // 
+            // lblUsername
+            // 
+            lblUsername.AutoSize = true;
+            lblUsername.Location = new Point(270, 146);
+            lblUsername.Name = "lblUsername";
+            lblUsername.Size = new Size(35, 20);
+            lblUsername.TabIndex = 7;
+            lblUsername.Text = "XYZ";
+            lblUsername.Click += lblUsername_Click;
             // 
             // label8
             // 
@@ -192,7 +227,7 @@
             // tabPage2
             // 
             tabPage2.Controls.Add(label15);
-            tabPage2.Controls.Add(button7);
+            tabPage2.Controls.Add(btnSavePassword);
             tabPage2.Controls.Add(txtNewConfirmPass);
             tabPage2.Controls.Add(txtNewPass);
             tabPage2.Controls.Add(label10);
@@ -215,15 +250,16 @@
             label15.TabIndex = 5;
             label15.Text = "Password Change";
             // 
-            // button7
+            // btnSavePassword
             // 
-            button7.BackColor = Color.WhiteSmoke;
-            button7.Location = new Point(331, 320);
-            button7.Name = "button7";
-            button7.Size = new Size(94, 29);
-            button7.TabIndex = 4;
-            button7.Text = "Save";
-            button7.UseVisualStyleBackColor = false;
+            btnSavePassword.BackColor = Color.WhiteSmoke;
+            btnSavePassword.Location = new Point(331, 320);
+            btnSavePassword.Name = "btnSavePassword";
+            btnSavePassword.Size = new Size(94, 29);
+            btnSavePassword.TabIndex = 4;
+            btnSavePassword.Text = "Save";
+            btnSavePassword.UseVisualStyleBackColor = false;
+            btnSavePassword.Click += btnSavePassword_Click;
             // 
             // txtNewConfirmPass
             // 
@@ -261,8 +297,8 @@
             // 
             // tabPage3
             // 
-            tabPage3.Controls.Add(button8);
-            tabPage3.Controls.Add(txtAddress);
+            tabPage3.Controls.Add(btnSaveProfile);
+            tabPage3.Controls.Add(txtContact);
             tabPage3.Controls.Add(txtUsername);
             tabPage3.Controls.Add(label13);
             tabPage3.Controls.Add(label12);
@@ -274,22 +310,23 @@
             tabPage3.Text = "Edit Prof.";
             tabPage3.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // btnSaveProfile
             // 
-            button8.BackColor = Color.WhiteSmoke;
-            button8.Location = new Point(359, 325);
-            button8.Name = "button8";
-            button8.Size = new Size(94, 29);
-            button8.TabIndex = 7;
-            button8.Text = "Save";
-            button8.UseVisualStyleBackColor = false;
+            btnSaveProfile.BackColor = Color.WhiteSmoke;
+            btnSaveProfile.Location = new Point(359, 325);
+            btnSaveProfile.Name = "btnSaveProfile";
+            btnSaveProfile.Size = new Size(94, 29);
+            btnSaveProfile.TabIndex = 7;
+            btnSaveProfile.Text = "Save";
+            btnSaveProfile.UseVisualStyleBackColor = false;
+            btnSaveProfile.Click += btnSaveProfile_Click;
             // 
-            // txtAddress
+            // txtContact
             // 
-            txtAddress.Location = new Point(371, 196);
-            txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(168, 27);
-            txtAddress.TabIndex = 5;
+            txtContact.Location = new Point(371, 196);
+            txtContact.Name = "txtContact";
+            txtContact.Size = new Size(168, 27);
+            txtContact.TabIndex = 5;
             // 
             // txtUsername
             // 
@@ -304,9 +341,9 @@
             label13.Font = new Font("Arial", 9F, FontStyle.Bold);
             label13.Location = new Point(247, 201);
             label13.Name = "label13";
-            label13.Size = new Size(70, 18);
+            label13.Size = new Size(67, 18);
             label13.TabIndex = 2;
-            label13.Text = "Address:";
+            label13.Text = "Contact:";
             // 
             // label12
             // 
@@ -331,13 +368,13 @@
             // panel2
             // 
             panel2.BackColor = Color.BurlyWood;
-            panel2.Controls.Add(button10);
-            panel2.Controls.Add(button6);
-            panel2.Controls.Add(button9);
-            panel2.Controls.Add(button5);
-            panel2.Controls.Add(button4);
-            panel2.Controls.Add(button3);
-            panel2.Controls.Add(button2);
+            panel2.Controls.Add(btnReviews);
+            panel2.Controls.Add(btnReports);
+            panel2.Controls.Add(btnLogout);
+            panel2.Controls.Add(btnPlatform);
+            panel2.Controls.Add(btnOrderOversight);
+            panel2.Controls.Add(btnProductCategory);
+            panel2.Controls.Add(btnUserSeller);
             panel2.Controls.Add(button1);
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 90);
@@ -345,95 +382,95 @@
             panel2.Size = new Size(142, 529);
             panel2.TabIndex = 4;
             // 
-            // button10
+            // btnReviews
             // 
-            button10.BackColor = Color.Goldenrod;
-            button10.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button10.ForeColor = Color.White;
-            button10.Location = new Point(-2, 393);
-            button10.Name = "button10";
-            button10.Size = new Size(142, 29);
-            button10.TabIndex = 8;
-            button10.Text = "Reviews";
-            button10.UseVisualStyleBackColor = false;
-            button10.Click += button10_Click;
+            btnReviews.BackColor = Color.Goldenrod;
+            btnReviews.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnReviews.ForeColor = Color.White;
+            btnReviews.Location = new Point(-2, 393);
+            btnReviews.Name = "btnReviews";
+            btnReviews.Size = new Size(142, 29);
+            btnReviews.TabIndex = 8;
+            btnReviews.Text = "Reviews";
+            btnReviews.UseVisualStyleBackColor = false;
+            btnReviews.Click += btnReviews_Click;
             // 
-            // button6
+            // btnReports
             // 
-            button6.BackColor = Color.Goldenrod;
-            button6.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button6.ForeColor = Color.White;
-            button6.Location = new Point(0, 328);
-            button6.Name = "button6";
-            button6.Size = new Size(142, 29);
-            button6.TabIndex = 7;
-            button6.Text = "Reports";
-            button6.UseVisualStyleBackColor = false;
-            button6.Click += button6_Click;
+            btnReports.BackColor = Color.Goldenrod;
+            btnReports.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnReports.ForeColor = Color.White;
+            btnReports.Location = new Point(0, 328);
+            btnReports.Name = "btnReports";
+            btnReports.Size = new Size(142, 29);
+            btnReports.TabIndex = 7;
+            btnReports.Text = "Reports";
+            btnReports.UseVisualStyleBackColor = false;
+            btnReports.Click += btnReports_Click;
             // 
-            // button9
+            // btnLogout
             // 
-            button9.BackColor = Color.DarkRed;
-            button9.ForeColor = Color.White;
-            button9.Location = new Point(-2, 488);
-            button9.Name = "button9";
-            button9.Size = new Size(142, 29);
-            button9.TabIndex = 6;
-            button9.Text = "Log Out";
-            button9.UseVisualStyleBackColor = false;
-            button9.Click += button9_Click;
+            btnLogout.BackColor = Color.DarkRed;
+            btnLogout.ForeColor = Color.White;
+            btnLogout.Location = new Point(-2, 488);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(142, 29);
+            btnLogout.TabIndex = 6;
+            btnLogout.Text = "Log Out";
+            btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
             // 
-            // button5
+            // btnPlatform
             // 
-            button5.BackColor = Color.Goldenrod;
-            button5.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button5.ForeColor = Color.White;
-            button5.Location = new Point(0, 270);
-            button5.Name = "button5";
-            button5.Size = new Size(142, 29);
-            button5.TabIndex = 4;
-            button5.Text = "Platform Settings";
-            button5.UseVisualStyleBackColor = false;
-            button5.Click += button5_Click;
+            btnPlatform.BackColor = Color.Goldenrod;
+            btnPlatform.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPlatform.ForeColor = Color.White;
+            btnPlatform.Location = new Point(0, 270);
+            btnPlatform.Name = "btnPlatform";
+            btnPlatform.Size = new Size(142, 29);
+            btnPlatform.TabIndex = 4;
+            btnPlatform.Text = "Platform Settings";
+            btnPlatform.UseVisualStyleBackColor = false;
+            btnPlatform.Click += btnPlatform_Click;
             // 
-            // button4
+            // btnOrderOversight
             // 
-            button4.BackColor = Color.Goldenrod;
-            button4.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button4.ForeColor = Color.White;
-            button4.Location = new Point(0, 210);
-            button4.Name = "button4";
-            button4.Size = new Size(142, 29);
-            button4.TabIndex = 3;
-            button4.Text = "Order Oversight";
-            button4.UseVisualStyleBackColor = false;
-            button4.Click += button4_Click;
+            btnOrderOversight.BackColor = Color.Goldenrod;
+            btnOrderOversight.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnOrderOversight.ForeColor = Color.White;
+            btnOrderOversight.Location = new Point(0, 210);
+            btnOrderOversight.Name = "btnOrderOversight";
+            btnOrderOversight.Size = new Size(142, 29);
+            btnOrderOversight.TabIndex = 3;
+            btnOrderOversight.Text = "Order Oversight";
+            btnOrderOversight.UseVisualStyleBackColor = false;
+            btnOrderOversight.Click += btnOrderOversight_Click;
             // 
-            // button3
+            // btnProductCategory
             // 
-            button3.BackColor = Color.Goldenrod;
-            button3.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.ForeColor = Color.White;
-            button3.Location = new Point(0, 150);
-            button3.Name = "button3";
-            button3.Size = new Size(142, 29);
-            button3.TabIndex = 2;
-            button3.Text = "Product-Category";
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            btnProductCategory.BackColor = Color.Goldenrod;
+            btnProductCategory.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnProductCategory.ForeColor = Color.White;
+            btnProductCategory.Location = new Point(0, 150);
+            btnProductCategory.Name = "btnProductCategory";
+            btnProductCategory.Size = new Size(142, 29);
+            btnProductCategory.TabIndex = 2;
+            btnProductCategory.Text = "Product-Category";
+            btnProductCategory.UseVisualStyleBackColor = false;
+            btnProductCategory.Click += btnProductCategory_Click;
             // 
-            // button2
+            // btnUserSeller
             // 
-            button2.BackColor = Color.Goldenrod;
-            button2.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(0, 90);
-            button2.Name = "button2";
-            button2.Size = new Size(142, 29);
-            button2.TabIndex = 1;
-            button2.Text = "User-Seller";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            btnUserSeller.BackColor = Color.Goldenrod;
+            btnUserSeller.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnUserSeller.ForeColor = Color.White;
+            btnUserSeller.Location = new Point(0, 90);
+            btnUserSeller.Name = "btnUserSeller";
+            btnUserSeller.Size = new Size(142, 29);
+            btnUserSeller.TabIndex = 1;
+            btnUserSeller.Text = "User-Seller";
+            btnUserSeller.UseVisualStyleBackColor = false;
+            btnUserSeller.Click += btnUserSeller_Click;
             // 
             // button1
             // 
@@ -520,30 +557,33 @@
         private Label label2;
         private TabPage tabPage2;
         private Label label15;
-        private Button button7;
+        private Button btnSavePassword;
         private TextBox txtNewConfirmPass;
         private TextBox txtNewPass;
         private Label label10;
         private Label label9;
         private TabPage tabPage3;
-        private Button button8;
-        private TextBox txtAddress;
+        private Button btnSaveProfile;
+        private TextBox txtContact;
         private TextBox txtUsername;
         private Label label13;
         private Label label12;
         private Label label11;
         private Panel panel2;
-        private Button button9;
-        private Button button5;
-        private Button button4;
-        private Button button3;
-        private Button button2;
+        private Button btnLogout;
+        private Button btnPlatform;
+        private Button btnOrderOversight;
+        private Button btnProductCategory;
+        private Button btnUserSeller;
         private Button button1;
         private Panel panel1;
         private PictureBox pictureBox1;
-        private Button button6;
+        private Button btnReports;
         private Label label4;
         private Label label16;
-        private Button button10;
+        private Button btnReviews;
+        private Label label18;
+        private Label lblRole;
+        private Label lblUsername;
     }
 }
