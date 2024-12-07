@@ -117,6 +117,8 @@
             // labelFilter
             // 
             labelFilter.AutoSize = true;
+            labelFilter.BackColor = Color.Orange;
+            labelFilter.ForeColor = SystemColors.ActiveCaptionText;
             labelFilter.Location = new Point(462, 565);
             labelFilter.Name = "labelFilter";
             labelFilter.Size = new Size(45, 20);
@@ -136,6 +138,7 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 16F, FontStyle.Bold);
             label3.Location = new Point(394, 20);
             label3.Name = "label3";
@@ -147,6 +150,8 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Orange;
+            label1.ForeColor = SystemColors.ActiveCaptionText;
             label1.Location = new Point(44, 565);
             label1.Name = "label1";
             label1.Size = new Size(69, 20);
@@ -155,6 +160,8 @@
             // 
             // AdminOrderOversight
             // 
+            BackgroundImage = Properties.Resources.Tabby;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1022, 616);
             Controls.Add(label1);
             Controls.Add(label3);

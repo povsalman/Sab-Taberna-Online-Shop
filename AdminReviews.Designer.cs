@@ -45,7 +45,7 @@
             dataGridViewReviews.BackgroundColor = SystemColors.GradientActiveCaption;
             dataGridViewReviews.BorderStyle = BorderStyle.Fixed3D;
             dataGridViewReviews.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewReviews.Location = new Point(42, 48);
+            dataGridViewReviews.Location = new Point(42, 58);
             dataGridViewReviews.Name = "dataGridViewReviews";
             dataGridViewReviews.RowHeadersWidth = 51;
             dataGridViewReviews.Size = new Size(927, 448);
@@ -101,8 +101,9 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 16F, FontStyle.Bold);
-            label3.Location = new Point(301, 9);
+            label3.Location = new Point(313, 19);
             label3.Name = "label3";
             label3.Size = new Size(384, 32);
             label3.TabIndex = 7;
@@ -113,6 +114,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.Tabby;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1008, 606);
             Controls.Add(label3);
             Controls.Add(btnUnflagProduct);

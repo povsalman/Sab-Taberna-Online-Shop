@@ -109,6 +109,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Location = new Point(20, 444);
             label1.Name = "label1";
             label1.Size = new Size(78, 20);
@@ -132,6 +133,7 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
             label2.Location = new Point(20, 497);
             label2.Name = "label2";
             label2.Size = new Size(73, 20);
@@ -148,6 +150,7 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
             label3.Location = new Point(20, 389);
             label3.Name = "label3";
             label3.Size = new Size(60, 20);
@@ -164,6 +167,7 @@
             // label4
             // 
             label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
             label4.Location = new Point(384, 439);
             label4.Name = "label4";
             label4.Size = new Size(63, 20);
@@ -173,6 +177,7 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
             label5.Location = new Point(720, 390);
             label5.Name = "label5";
             label5.Size = new Size(87, 20);
@@ -182,6 +187,7 @@
             // label6
             // 
             label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
             label6.Location = new Point(358, 498);
             label6.Name = "label6";
             label6.Size = new Size(107, 20);
@@ -191,6 +197,7 @@
             // label7
             // 
             label7.AutoSize = true;
+            label7.BackColor = Color.Transparent;
             label7.Location = new Point(717, 439);
             label7.Name = "label7";
             label7.Size = new Size(60, 20);
@@ -234,6 +241,7 @@
             // label8
             // 
             label8.AutoSize = true;
+            label8.BackColor = Color.Transparent;
             label8.Location = new Point(384, 389);
             label8.Name = "label8";
             label8.Size = new Size(52, 20);
@@ -242,6 +250,8 @@
             // 
             // AdminUserMng
             // 
+            BackgroundImage = Properties.Resources.Tabby_Photoroom;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(998, 603);
             Controls.Add(txtName);
             Controls.Add(label8);
@@ -266,6 +276,7 @@
             Controls.Add(btnApprove);
             Controls.Add(btnReject);
             Controls.Add(btnBack);
+            DoubleBuffered = true;
             Name = "AdminUserMng";
             Text = "Admin - User and Seller Management";
             ((System.ComponentModel.ISupportInitialize)Acc).EndInit();
