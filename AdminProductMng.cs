@@ -66,6 +66,7 @@ namespace DB_Proj_00
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Category and related records removed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     RefreshCategoryList();
+                    RefreshProductList();
                 }
                 catch (Exception ex)
                 {
@@ -136,19 +137,6 @@ namespace DB_Proj_00
                     MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-
-
-
-
-        private void btnApproveListing_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Product listing approved successfully!", "Moderation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void btnRejectListing_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Product listing rejected successfully!", "Moderation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void btnBack_Click(object sender, EventArgs e)

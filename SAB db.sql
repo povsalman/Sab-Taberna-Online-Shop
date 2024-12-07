@@ -320,7 +320,6 @@ VALUES
 
 
 
-
 -- Table: CATEGORY
 INSERT INTO CATEGORY (CategoryName, Description)
 VALUES 
@@ -351,21 +350,29 @@ VALUES
 (3, 3, 1, 200.00);
 
 
--- Insert records into CART table
-INSERT INTO CART (CustomerID, DateCreated, DateModified, CartStatus)
+---- Insert records into CART table
+--INSERT INTO CART (CustomerID, DateCreated, DateModified, CartStatus)
+--VALUES
+--(1, '2024-01-01', '2024-01-02', 'Active'),
+--(2, '2024-02-01', '2024-02-03', 'Active'),
+--(3, '2024-03-01', NULL, 'Active');
+
+
+---- Insert records into CART_ITEM table
+--INSERT INTO CART_ITEM (CartID, ProductID, Quantity)
+--VALUES
+--(1, 1, 2), -- Customer 1 has 2 Laptops in their cart
+--(2, 2, 3), -- Customer 2 has 3 T-shirts in their cart
+--(3, 3, 1); -- Customer 3 has 1 Smartwatch in their cart
+
+-- NEW BILAL
+
+-- Insert records into the CART table
+INSERT INTO CART (UserID, ProductID, Quantity)
 VALUES
-(1, '2024-01-01', '2024-01-02', 'Active'),
-(2, '2024-02-01', '2024-02-03', 'Active'),
-(3, '2024-03-01', NULL, 'Active');
-
-
--- Insert records into CART_ITEM table
-INSERT INTO CART_ITEM (CartID, ProductID, Quantity)
-VALUES
-(1, 1, 2), -- Customer 1 has 2 Laptops in their cart
-(2, 2, 3), -- Customer 2 has 3 T-shirts in their cart
-(3, 3, 1); -- Customer 3 has 1 Smartwatch in their cart
-
+(1, 1, 2), -- User 1 has 2 items of Product ID 1
+(2, 2, 3), -- User 2 has 3 items of Product ID 2
+(3, 3, 1); -- User 3 has 1 item of Product ID 3
 
 
 -- Table: PAYMENT
