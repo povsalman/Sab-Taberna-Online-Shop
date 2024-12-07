@@ -19,7 +19,7 @@ namespace DB_Proj_00
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SignUpRole form2 = new SignUpRole();
+            Form2 form2 = new Form2();
 
             form2.Show();
 

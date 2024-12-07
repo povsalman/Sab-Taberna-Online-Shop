@@ -71,7 +71,7 @@
             btnBack.Size = new Size(100, 30);
             btnBack.TabIndex = 4;
             btnBack.Text = "Back";
-            btnBack.Click += btnBack_Click;
+            //btnBack.Click += btnBack_Click;
             
 
 
