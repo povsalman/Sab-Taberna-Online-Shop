@@ -39,6 +39,10 @@
             // 
             // Acc
             // 
+            Acc.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Acc.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Acc.BackgroundColor = SystemColors.GradientActiveCaption;
+            Acc.BorderStyle = BorderStyle.Fixed3D;
             Acc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             Acc.Location = new Point(20, 20);
             Acc.Name = "Acc";

@@ -23,123 +23,166 @@
             Status = new DataGridViewTextBoxColumn();
             TotalAmount = new DataGridViewTextBoxColumn();
             DatePlaced = new DataGridViewTextBoxColumn();
-            btnResolveConflict = new Button();
             txtSearch = new TextBox();
             btnSearch = new Button();
             cmbFilterStatus = new ComboBox();
             labelFilter = new Label();
             btnBack = new Button();
+            label3 = new Label();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOrders).BeginInit();
             SuspendLayout();
-            
+            // 
+            // dataGridViewOrders
+            // 
+            dataGridViewOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewOrders.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewOrders.BackgroundColor = SystemColors.GradientActiveCaption;
             dataGridViewOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewOrders.Columns.AddRange(new DataGridViewColumn[] { OrderId, CustomerName, SellerName, Status, TotalAmount, DatePlaced });
-            dataGridViewOrders.Location = new Point(12, 70);
+            dataGridViewOrders.Location = new Point(22, 68);
             dataGridViewOrders.Name = "dataGridViewOrders";
             dataGridViewOrders.RowHeadersWidth = 51;
-            dataGridViewOrders.RowTemplate.Height = 29;
-            dataGridViewOrders.Size = new Size(760, 300);
+            dataGridViewOrders.Size = new Size(967, 455);
             dataGridViewOrders.TabIndex = 0;
-            
+            // 
+            // OrderId
+            // 
             OrderId.HeaderText = "Order ID";
-            OrderId.MinimumWidth = 6;
+            OrderId.MinimumWidth = 30;
             OrderId.Name = "OrderId";
-            OrderId.Width = 80;
-           
+            OrderId.Width = 95;
+            // 
+            // CustomerName
+            // 
             CustomerName.HeaderText = "Customer";
             CustomerName.MinimumWidth = 6;
             CustomerName.Name = "CustomerName";
-            CustomerName.Width = 150;
-             
+            CustomerName.Width = 101;
+            // 
+            // SellerName
+            // 
             SellerName.HeaderText = "Seller";
             SellerName.MinimumWidth = 6;
             SellerName.Name = "SellerName";
-            SellerName.Width = 150;
-            
+            SellerName.Width = 75;
+            // 
+            // Status
+            // 
             Status.HeaderText = "Status";
             Status.MinimumWidth = 6;
             Status.Name = "Status";
-            Status.Width = 120;
-            
+            Status.Width = 78;
+            // 
+            // TotalAmount
+            // 
             TotalAmount.HeaderText = "Total Amount";
             TotalAmount.MinimumWidth = 6;
             TotalAmount.Name = "TotalAmount";
-            
+            TotalAmount.Width = 128;
+            // 
+            // DatePlaced
+            // 
             DatePlaced.HeaderText = "Date Placed";
             DatePlaced.MinimumWidth = 6;
             DatePlaced.Name = "DatePlaced";
-            DatePlaced.Width = 150;
-            
-            btnResolveConflict.Location = new Point(12, 380);
-            btnResolveConflict.Name = "btnResolveConflict";
-            btnResolveConflict.Size = new Size(150, 30);
-            btnResolveConflict.TabIndex = 1;
-            btnResolveConflict.Text = "Resolve Conflict";
-            btnResolveConflict.UseVisualStyleBackColor = true;
-            btnResolveConflict.Click += btnResolveConflict_Click;
-            
-            txtSearch.Location = new Point(12, 20);
+            DatePlaced.Width = 118;
+            // 
+            // txtSearch
+            // 
+            txtSearch.Location = new Point(137, 562);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(150, 31);
+            txtSearch.Size = new Size(150, 27);
             txtSearch.TabIndex = 2;
-             
-            btnSearch.Location = new Point(180, 20);
+            // 
+            // btnSearch
+            // 
+            btnSearch.Location = new Point(305, 562);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(75, 27);
             btnSearch.TabIndex = 3;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
             btnSearch.Click += btnSearch_Click;
-            
+            // 
+            // cmbFilterStatus
+            // 
             cmbFilterStatus.FormattingEnabled = true;
-            cmbFilterStatus.Items.AddRange(new object[] { "Processing", "Shipped", "Delivered" });
-            cmbFilterStatus.Location = new Point(300, 20);
+            cmbFilterStatus.Items.AddRange(new object[] { "None", "Pending", "Shipped", "Delivered" });
+            cmbFilterStatus.Location = new Point(524, 561);
             cmbFilterStatus.Name = "cmbFilterStatus";
-            cmbFilterStatus.Size = new Size(150, 33);
+            cmbFilterStatus.Size = new Size(150, 28);
             cmbFilterStatus.TabIndex = 4;
-           
+            // 
+            // labelFilter
+            // 
             labelFilter.AutoSize = true;
-            labelFilter.Location = new Point(300, 0);
+            labelFilter.Location = new Point(462, 565);
             labelFilter.Name = "labelFilter";
-            labelFilter.Size = new Size(54, 25);
+            labelFilter.Size = new Size(45, 20);
             labelFilter.TabIndex = 5;
             labelFilter.Text = "Filter:";
-            
-            btnBack.Location = new Point(254, 389);
+            // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(898, 560);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(100, 30);
             btnBack.TabIndex = 6;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
-            btnBack.Click += btnBack_Click;
-          
-            ClientSize = new Size(833, 450);
+            btnBack.Click += btnBack_Click_1;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Arial", 16F, FontStyle.Bold);
+            label3.Location = new Point(394, 20);
+            label3.Name = "label3";
+            label3.Size = new Size(225, 32);
+            label3.TabIndex = 8;
+            label3.Text = "Order Oversight";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(44, 565);
+            label1.Name = "label1";
+            label1.Size = new Size(69, 20);
+            label1.TabIndex = 9;
+            label1.Text = "Order ID:";
+            // 
+            // AdminOrderOversight
+            // 
+            ClientSize = new Size(1022, 616);
+            Controls.Add(label1);
+            Controls.Add(label3);
             Controls.Add(labelFilter);
             Controls.Add(cmbFilterStatus);
             Controls.Add(btnSearch);
             Controls.Add(txtSearch);
-            Controls.Add(btnResolveConflict);
             Controls.Add(dataGridViewOrders);
             Controls.Add(btnBack);
-            Name = "Form21";
+            Name = "AdminOrderOversight";
             Text = "Order Oversight";
-            Load += Form21_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewOrders).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         private System.Windows.Forms.DataGridView dataGridViewOrders;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SellerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DatePlaced;
-        private System.Windows.Forms.Button btnResolveConflict;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox cmbFilterStatus;
         private System.Windows.Forms.Label labelFilter;
+        private DataGridViewTextBoxColumn OrderId;
+        private DataGridViewTextBoxColumn CustomerName;
+        private DataGridViewTextBoxColumn SellerName;
+        private DataGridViewTextBoxColumn Status;
+        private DataGridViewTextBoxColumn TotalAmount;
+        private DataGridViewTextBoxColumn DatePlaced;
+        private Label label3;
+        private Label label1;
     }
 }

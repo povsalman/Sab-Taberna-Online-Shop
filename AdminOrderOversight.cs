@@ -1,89 +1,87 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 namespace DB_Proj_00
 {
     public partial class AdminOrderOversight : Form
     {
-        private List<Order> orders; 
-
-        public AdminOrderOversight(List<Order> orderList)
+        public AdminOrderOversight()
         {
             InitializeComponent();
-            orders = orderList; 
+            LoadOrders();
         }
 
-        private void Form21_Load(object sender, EventArgs e)
+        private void LoadOrders(string filterStatus = null, int? orderId = null)
         {
-            PopulateOrderGrid();
-        }
-
-        private void PopulateOrderGrid()
-        {
-            dataGridViewOrders.Rows.Clear(); 
-
-            foreach (var order in orders)
+            try
             {
-                dataGridViewOrders.Rows.Add(
-                    order.OrderId,
-                    order.CustomerName,
-                    order.SellerName,
-                    order.Status,
-                    order.TotalAmount,
-                    order.DatePlaced
-                );
+                using (var connection = DBHandler.GetConnection())
+                {
+                    connection.Open();
+                    string query = @"
+                        SELECT 
+                            o.OrderID,
+                            c.Name AS CustomerName,
+                            s.StoreName AS SellerName,
+                            o.ShippingStatus AS Status,
+                            o.TotalAmount,
+                            o.OrderDate AS DatePlaced
+                        FROM ISORDER o
+                        INNER JOIN CUSTOMER c ON o.CustomerID = c.CustomerID
+                        INNER JOIN ORDER_ITEM oi ON o.OrderID = oi.OrderID
+                        INNER JOIN ISPRODUCT p ON oi.ProductID = p.ProductID
+                        INNER JOIN SELLER s ON p.SellerID = s.SellerID
+                        WHERE (@FilterStatus IS NULL OR o.ShippingStatus = @FilterStatus)
+                          AND (@OrderId IS NULL OR o.OrderID = @OrderId)
+                        GROUP BY 
+                            o.OrderID, c.Name, s.StoreName, o.ShippingStatus, o.TotalAmount, o.OrderDate";
+
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        // Pass NULL for 'None' filter to show all records
+                        command.Parameters.AddWithValue("@FilterStatus", string.IsNullOrEmpty(filterStatus) || filterStatus == "None" ? (object)DBNull.Value : filterStatus);
+                        command.Parameters.AddWithValue("@OrderId", orderId.HasValue ? (object)orderId.Value : DBNull.Value);
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            DataTable orderTable = new DataTable();
+                            adapter.Fill(orderTable);
+                            dataGridViewOrders.DataSource = orderTable;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading orders: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string keyword = txtSearch.Text.ToLower();
             string filterStatus = cmbFilterStatus.SelectedItem?.ToString();
+            string orderIdText = txtSearch.Text.Trim();
+            int? orderId = null;
 
-            var filteredOrders = orders.FindAll(order =>
-                (string.IsNullOrEmpty(keyword) || order.CustomerName.ToLower().Contains(keyword)) &&
-                (string.IsNullOrEmpty(filterStatus) || order.Status == filterStatus)
-            );
-
-            dataGridViewOrders.Rows.Clear();
-
-            foreach (var order in filteredOrders)
+            if (!string.IsNullOrEmpty(orderIdText) && int.TryParse(orderIdText, out int parsedOrderId))
             {
-                dataGridViewOrders.Rows.Add(
-                    order.OrderId,
-                    order.CustomerName,
-                    order.SellerName,
-                    order.Status,
-                    order.TotalAmount,
-                    order.DatePlaced
-                );
+                orderId = parsedOrderId;
             }
+
+            // Reload data grid based on search criteria
+            LoadOrders(filterStatus, orderId);
         }
 
-        private void btnResolveConflict_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewOrders.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Please select an order to resolve.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            var selectedOrderId = (int)dataGridViewOrders.SelectedRows[0].Cells["OrderId"].Value;
-            var selectedOrder = orders.Find(order => order.OrderId == selectedOrderId);
-
-            if (selectedOrder != null)
-            {
-                MessageBox.Show($"Conflict resolution initiated for Order ID: {selectedOrder.OrderId}.", "Conflict Resolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-        private void btnBack_Click(object sender, EventArgs e)
+        private void btnBack_Click_1(object sender, EventArgs e)
         {
             AdminNewDashboard adminNewDashboard = new AdminNewDashboard();
             adminNewDashboard.Show();
-            this.Close(); 
+            this.Close();
         }
-
     }
 
     public class Order

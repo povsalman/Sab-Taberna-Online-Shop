@@ -144,22 +144,17 @@ namespace DB_Proj_00
 
         private void btnOrderOversight_Click(object sender, EventArgs e)
         {
-            var orders = new List<Order>
-            {
-                new Order(1, "Bilal", "Seller A", "Processing", 100.50m, DateTime.Now.AddDays(-2)),
-                new Order(2, "Salman", "Seller B", "Shipped", 250.75m, DateTime.Now.AddDays(-1)),
-                new Order(3, "Arshiq", "Seller C", "Delivered", 320.20m, DateTime.Now.AddDays(-3))
-            };
-
-            AdminOrderOversight orderOversightForm = new AdminOrderOversight(orders);
+            AdminOrderOversight orderOversightForm = new AdminOrderOversight();
             orderOversightForm.Show();
             this.Hide();
         }
 
         private void btnPlatform_Click(object sender, EventArgs e)
         {
-            // Navigate to Platform Settings (Placeholder for now)
-            MessageBox.Show("Platform Settings Section is under development!", "Platform Settings");
+            // Navigate to Platform Settings
+            AdminPlatform platform = new AdminPlatform();
+            platform.Show();
+            this.Hide();
         }
 
         private void btnReports_Click(object sender, EventArgs e)

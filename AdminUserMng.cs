@@ -7,7 +7,6 @@ namespace DB_Proj_00
 {
     public partial class AdminUserMng : Form
     {
-        //private string connectionString = "Data Source=SALMAN\\SQLEXPRESS;Initial Catalog=SABTaberna;Integrated Security=True;Encrypt=False"; // Replace with your actual database connection string
 
         public AdminUserMng()
         {

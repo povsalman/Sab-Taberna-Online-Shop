@@ -240,6 +240,18 @@ CREATE TABLE ISRETURN (
 );
 
 
+-- Table: PLATFORM_SETTINGS
+CREATE TABLE PLATFORM_SETTINGS (
+    SettingID INT IDENTITY(1,1) PRIMARY KEY, -- Unique identifier for each setting
+    ShopName NVARCHAR(255) NOT NULL,        -- Name of the shop/platform
+    ShopEmail NVARCHAR(255) NOT NULL,       -- Email address for customer support
+    ShopContactHelpline NVARCHAR(20) NOT NULL, -- Contact helpline number
+    TotalBranches INT NOT NULL CHECK (TotalBranches >= 0), -- Total number of branches, non-negative
+    LastUpdated DATETIME DEFAULT GETDATE(), -- Timestamp for the last update
+    UpdatedBy INT NOT NULL, -- User ID of the admin who last updated the settings
+    FOREIGN KEY (UpdatedBy) REFERENCES ISUSER(UserID) -- Linking the admin updating the settings
+);
+
 
 ------
 -- ALTER CODE
@@ -425,6 +437,14 @@ VALUES
 (3, '2023-03-30', 'Defective item', 200);
 
 
+
+-- Insert initial data into PLATFORM_SETTINGS
+INSERT INTO PLATFORM_SETTINGS (ShopName, ShopEmail, ShopContactHelpline, TotalBranches, UpdatedBy)
+VALUES
+('SABTaberna', 'support@sabtaberna.com', '+123456789', 10, 4);
+
+
+
 ---------
 
 
@@ -448,6 +468,7 @@ SELECT * FROM LOGISTICS_PROVIDER;
 SELECT * FROM WISHLIST;
 SELECT * FROM WISHLIST_ITEM;
 SELECT * FROM ISRETURN;
+SELECT * FROM PLATFORM_SETTINGS
 
 
 --DROP TABLE IF EXISTS WISHLIST_ITEM;

@@ -40,6 +40,10 @@
             // 
             // dataGridViewReviews
             // 
+            dataGridViewReviews.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewReviews.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewReviews.BackgroundColor = SystemColors.GradientActiveCaption;
+            dataGridViewReviews.BorderStyle = BorderStyle.Fixed3D;
             dataGridViewReviews.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewReviews.Location = new Point(42, 48);
             dataGridViewReviews.Name = "dataGridViewReviews";
@@ -76,7 +80,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(861, 548);
+            button1.Location = new Point(875, 548);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 4;
@@ -109,7 +113,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(995, 606);
+            ClientSize = new Size(1008, 606);
             Controls.Add(label3);
             Controls.Add(btnUnflagProduct);
             Controls.Add(button1);
