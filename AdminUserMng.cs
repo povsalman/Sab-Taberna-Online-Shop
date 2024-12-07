@@ -7,7 +7,7 @@ namespace DB_Proj_00
 {
     public partial class AdminUserMng : Form
     {
-        private string connectionString = "Data Source=SALMAN\\SQLEXPRESS;Initial Catalog=SABTaberna;Integrated Security=True;Encrypt=False"; // Replace with your actual database connection string
+        //private string connectionString = "Data Source=SALMAN\\SQLEXPRESS;Initial Catalog=SABTaberna;Integrated Security=True;Encrypt=False"; // Replace with your actual database connection string
 
         public AdminUserMng()
         {
@@ -206,7 +206,7 @@ namespace DB_Proj_00
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (var conn = DBHandler.GetConnection())
                 {
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -229,7 +229,7 @@ namespace DB_Proj_00
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString)) // Ensure your connection string is defined
+                using (var conn = DBHandler.GetConnection()) // Ensure your connection string is defined
                 {
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -256,7 +256,7 @@ namespace DB_Proj_00
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (var conn = DBHandler.GetConnection())
                 {
                     conn.Open();
                     using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))

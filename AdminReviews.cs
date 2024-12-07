@@ -15,15 +15,9 @@ namespace DB_Proj_00
     public partial class AdminReviews : Form
     {
 
-        SqlConnection con;
-        string ConnectionString = "Data Source=SALMAN\\SQLEXPRESS;Initial Catalog=SABTaberna;Integrated Security=True;Encrypt=False";
-
         public AdminReviews()
         {
             InitializeComponent();
-
-            con = new SqlConnection(ConnectionString);
-
             LoadReviews();
 
         }
@@ -32,7 +26,7 @@ namespace DB_Proj_00
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(ConnectionString))
+                using (var con = DBHandler.GetConnection())
                 {
                     string query = @"
                 SELECT
@@ -94,7 +88,7 @@ namespace DB_Proj_00
 
             try
             {
-                using (SqlConnection con = new SqlConnection(ConnectionString))
+                using (var con = DBHandler.GetConnection())
                 {
                     con.Open();
 
@@ -169,7 +163,7 @@ namespace DB_Proj_00
 
             try
             {
-                using (SqlConnection con = new SqlConnection(ConnectionString))
+                using (var con = DBHandler.GetConnection())
                 {
                     con.Open();
 

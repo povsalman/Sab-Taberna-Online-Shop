@@ -115,11 +115,9 @@ namespace DB_Proj_00
 
             SqlParameter[] parameters = { new SqlParameter("@UserID", userId) };
 
-            string connectionString = "Data Source=SALMAN\\SQLEXPRESS;Initial Catalog=SABTaberna;Integrated Security=True;Encrypt=False";
-
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (var connection = DBHandler.GetConnection())
                 {
                     connection.Open();
 

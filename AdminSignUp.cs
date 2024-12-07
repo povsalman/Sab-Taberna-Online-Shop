@@ -35,8 +35,8 @@ namespace DB_Proj_00
             }
 
             // Insert into the ISUSER and ADMIN tables
-            string connectionString = "Data Source=SALMAN\\SQLEXPRESS;Initial Catalog=SABTaberna;Integrated Security=True;Encrypt=False";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+
+            using (var connection = DBHandler.GetConnection())
             {
                 try
                 {

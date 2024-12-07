@@ -14,9 +14,6 @@ namespace DB_Proj_00
     public partial class AdminNewDashboard : Form
     {
         private string adminUsername; // Store logged-in admin username.
-        private string connectionString = "Data Source=SALMAN\\SQLEXPRESS;Initial Catalog=SABTaberna;Integrated Security=True;Encrypt=False"; // Replace with your database connection string.
-
-
 
         public AdminNewDashboard()
         {
@@ -44,7 +41,7 @@ namespace DB_Proj_00
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (var conn = DBHandler.GetConnection())
                 {
                     conn.Open();
                     string query = @"
@@ -94,7 +91,7 @@ namespace DB_Proj_00
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (var conn = DBHandler.GetConnection())
                 {
                     conn.Open();
                     string query = @"
