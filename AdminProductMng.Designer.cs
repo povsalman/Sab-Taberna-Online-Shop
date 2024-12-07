@@ -6,8 +6,6 @@
         private DataGridView dgvProducts;
         private Button btnCategoryAdd;
         private Button btnCategoryRemove;
-        private Button btnApproveListing;
-        private Button btnRejectListing;
         private Button btnBack;
 
         protected override void Dispose(bool disposing)
@@ -22,13 +20,8 @@
         private void InitializeComponent()
         {
             dgvProducts = new DataGridView();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             btnCategoryAdd = new Button();
             btnCategoryRemove = new Button();
-            btnApproveListing = new Button();
-            btnRejectListing = new Button();
             btnBack = new Button();
             dataGridView1 = new DataGridView();
             btnCategoryUpdate = new Button();
@@ -41,40 +34,29 @@
             label2 = new Label();
             label4 = new Label();
             label5 = new Label();
+            btnRejectProduct = new Button();
+            btnApproveProduct = new Button();
+            label6 = new Label();
+            txtProductID = new TextBox();
+            btnShowApproved = new Button();
+            btnShowRejected = new Button();
+            txtRemoveProduct = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // dgvProducts
             // 
+            dgvProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvProducts.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvProducts.BackgroundColor = SystemColors.GradientActiveCaption;
+            dgvProducts.BorderStyle = BorderStyle.Fixed3D;
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProducts.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3 });
             dgvProducts.Location = new Point(29, 333);
             dgvProducts.Name = "dgvProducts";
             dgvProducts.RowHeadersWidth = 62;
             dgvProducts.Size = new Size(986, 282);
             dgvProducts.TabIndex = 0;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.HeaderText = "Product Name";
-            dataGridViewTextBoxColumn1.MinimumWidth = 8;
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            dataGridViewTextBoxColumn2.HeaderText = "Category";
-            dataGridViewTextBoxColumn2.MinimumWidth = 8;
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            dataGridViewTextBoxColumn2.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewTextBoxColumn3.HeaderText = "Status";
-            dataGridViewTextBoxColumn3.MinimumWidth = 8;
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            dataGridViewTextBoxColumn3.Width = 150;
             // 
             // btnCategoryAdd
             // 
@@ -94,24 +76,6 @@
             btnCategoryRemove.Text = "Remove Category";
             btnCategoryRemove.Click += btnCategoryRemove_Click;
             // 
-            // btnApproveListing
-            // 
-            btnApproveListing.Location = new Point(566, 634);
-            btnApproveListing.Name = "btnApproveListing";
-            btnApproveListing.Size = new Size(180, 30);
-            btnApproveListing.TabIndex = 3;
-            btnApproveListing.Text = "Approve Listing";
-            btnApproveListing.Click += btnApproveListing_Click;
-            // 
-            // btnRejectListing
-            // 
-            btnRejectListing.Location = new Point(732, 634);
-            btnRejectListing.Name = "btnRejectListing";
-            btnRejectListing.Size = new Size(180, 30);
-            btnRejectListing.TabIndex = 4;
-            btnRejectListing.Text = "Reject Listing";
-            btnRejectListing.Click += btnRejectListing_Click;
-            // 
             // btnBack
             // 
             btnBack.Location = new Point(901, 634);
@@ -125,6 +89,8 @@
             // 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridView1.BackgroundColor = SystemColors.GradientActiveCaption;
+            dataGridView1.BorderStyle = BorderStyle.Fixed3D;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(29, 61);
             dataGridView1.Name = "dataGridView1";
@@ -222,9 +188,82 @@
             label5.TabIndex = 16;
             label5.Text = "Description:";
             // 
+            // btnRejectProduct
+            // 
+            btnRejectProduct.Location = new Point(698, 633);
+            btnRejectProduct.Name = "btnRejectProduct";
+            btnRejectProduct.Size = new Size(98, 29);
+            btnRejectProduct.TabIndex = 17;
+            btnRejectProduct.Text = "Reject";
+            btnRejectProduct.UseVisualStyleBackColor = true;
+            btnRejectProduct.Click += btnRejectProduct_Click;
+            // 
+            // btnApproveProduct
+            // 
+            btnApproveProduct.Location = new Point(594, 633);
+            btnApproveProduct.Name = "btnApproveProduct";
+            btnApproveProduct.Size = new Size(98, 29);
+            btnApproveProduct.TabIndex = 18;
+            btnApproveProduct.Text = "Approve";
+            btnApproveProduct.UseVisualStyleBackColor = true;
+            btnApproveProduct.Click += btnApproveProduct_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(35, 640);
+            label6.Name = "label6";
+            label6.Size = new Size(82, 20);
+            label6.TabIndex = 20;
+            label6.Text = "Product ID:";
+            // 
+            // txtProductID
+            // 
+            txtProductID.Location = new Point(132, 633);
+            txtProductID.Name = "txtProductID";
+            txtProductID.Size = new Size(113, 27);
+            txtProductID.TabIndex = 19;
+            // 
+            // btnShowApproved
+            // 
+            btnShowApproved.Location = new Point(269, 634);
+            btnShowApproved.Name = "btnShowApproved";
+            btnShowApproved.Size = new Size(123, 29);
+            btnShowApproved.TabIndex = 21;
+            btnShowApproved.Text = "Show Approved";
+            btnShowApproved.UseVisualStyleBackColor = true;
+            btnShowApproved.Click += btnShowApproved_Click;
+            // 
+            // btnShowRejected
+            // 
+            btnShowRejected.Location = new Point(398, 634);
+            btnShowRejected.Name = "btnShowRejected";
+            btnShowRejected.Size = new Size(123, 29);
+            btnShowRejected.TabIndex = 22;
+            btnShowRejected.Text = "Show Rejected";
+            btnShowRejected.UseVisualStyleBackColor = true;
+            btnShowRejected.Click += btnShowRejected_Click;
+            // 
+            // txtRemoveProduct
+            // 
+            txtRemoveProduct.Location = new Point(797, 633);
+            txtRemoveProduct.Name = "txtRemoveProduct";
+            txtRemoveProduct.Size = new Size(98, 29);
+            txtRemoveProduct.TabIndex = 23;
+            txtRemoveProduct.Text = "Remove";
+            txtRemoveProduct.UseVisualStyleBackColor = true;
+            txtRemoveProduct.Click += txtRemoveProduct_Click;
+            // 
             // AdminProductMng
             // 
             ClientSize = new Size(1052, 672);
+            Controls.Add(txtRemoveProduct);
+            Controls.Add(btnShowRejected);
+            Controls.Add(btnShowApproved);
+            Controls.Add(label6);
+            Controls.Add(txtProductID);
+            Controls.Add(btnApproveProduct);
+            Controls.Add(btnRejectProduct);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label2);
@@ -239,8 +278,6 @@
             Controls.Add(dgvProducts);
             Controls.Add(btnCategoryAdd);
             Controls.Add(btnCategoryRemove);
-            Controls.Add(btnApproveListing);
-            Controls.Add(btnRejectListing);
             Controls.Add(btnBack);
             Name = "AdminProductMng";
             Text = "Admin - Product and Category Management";
@@ -250,9 +287,6 @@
             PerformLayout();
         }
 
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private DataGridView dataGridView1;
         private Button btnCategoryUpdate;
         private Label label3;
@@ -264,5 +298,12 @@
         private Label label2;
         private Label label4;
         private Label label5;
+        private Button btnRejectProduct;
+        private Button btnApproveProduct;
+        private Label label6;
+        private TextBox txtProductID;
+        private Button btnShowApproved;
+        private Button btnShowRejected;
+        private Button txtRemoveProduct;
     }
 }
