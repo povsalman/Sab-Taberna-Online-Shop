@@ -1,6 +1,6 @@
 namespace DB_Proj_00
 {
-    partial class SellerOrders
+    partial class SellerOrderFullfillment
     {
         private System.ComponentModel.IContainer components = null;
         private DataGridView Ord;
@@ -50,7 +50,7 @@ namespace DB_Proj_00
             dataGridViewTextBoxColumn1.DataPropertyName = "OrderID";
             dataGridViewTextBoxColumn1.HeaderText = "Order ID";
             dataGridViewTextBoxColumn1.MinimumWidth = 8;
-            dataGridViewTextBoxColumn1.Name = "OrderID";
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             dataGridViewTextBoxColumn1.Width = 200;
             // 
             // dataGridViewTextBoxColumn2
@@ -58,7 +58,7 @@ namespace DB_Proj_00
             dataGridViewTextBoxColumn2.DataPropertyName = "Name";
             dataGridViewTextBoxColumn2.HeaderText = "Customer Name";
             dataGridViewTextBoxColumn2.MinimumWidth = 8;
-            dataGridViewTextBoxColumn2.Name = "Name";
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             dataGridViewTextBoxColumn2.Width = 200;
             // 
             // dataGridViewTextBoxColumn3
@@ -66,7 +66,7 @@ namespace DB_Proj_00
             dataGridViewTextBoxColumn3.DataPropertyName = "Name";
             dataGridViewTextBoxColumn3.HeaderText = "Product";
             dataGridViewTextBoxColumn3.MinimumWidth = 8;
-            dataGridViewTextBoxColumn3.Name = "Name";
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             dataGridViewTextBoxColumn3.Width = 200;
             // 
             // dataGridViewTextBoxColumn4
@@ -81,7 +81,7 @@ namespace DB_Proj_00
             // 
             btnPrintShippingLabel.Location = new Point(20, 500);
             btnPrintShippingLabel.Name = "btnPrintShippingLabel";
-            btnPrintShippingLabel.Size = new Size(170, 30);
+            btnPrintShippingLabel.Size = new Size(170, 38);
             btnPrintShippingLabel.TabIndex = 1;
             btnPrintShippingLabel.Text = "Print Shipping Label";
             btnPrintShippingLabel.Click += btnPrintShippingLabel_Click;
@@ -90,7 +90,7 @@ namespace DB_Proj_00
             // 
             btnMarkShipped.Location = new Point(220, 500);
             btnMarkShipped.Name = "btnMarkShipped";
-            btnMarkShipped.Size = new Size(150, 30);
+            btnMarkShipped.Size = new Size(150, 48);
             btnMarkShipped.TabIndex = 2;
             btnMarkShipped.Text = "Shipped";
             btnMarkShipped.Click += btnMarkShipped_Click;
@@ -99,7 +99,7 @@ namespace DB_Proj_00
             // 
             btnMarkDelivered.Location = new Point(400, 500);
             btnMarkDelivered.Name = "btnMarkDelivered";
-            btnMarkDelivered.Size = new Size(150, 30);
+            btnMarkDelivered.Size = new Size(150, 38);
             btnMarkDelivered.TabIndex = 3;
             btnMarkDelivered.Text = " Delivered";
             btnMarkDelivered.Click += btnMarkDelivered_Click;
@@ -127,13 +127,13 @@ namespace DB_Proj_00
             // 
             button2.Location = new Point(580, 500);
             button2.Name = "button2";
-            button2.Size = new Size(150, 30);
+            button2.Size = new Size(150, 38);
             button2.TabIndex = 6;
             button2.Text = "Pending";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // Form17
+            // SellerOrderFullfillment
             // 
             ClientSize = new Size(1050, 550);
             Controls.Add(button2);
@@ -143,7 +143,7 @@ namespace DB_Proj_00
             Controls.Add(btnMarkShipped);
             Controls.Add(btnMarkDelivered);
             Controls.Add(btnBack);
-            Name = "Form17";
+            Name = "SellerOrderFullfillment";
             Text = "Order Fulfillment";
             ((System.ComponentModel.ISupportInitialize)Ord).EndInit();
             ResumeLayout(false);
