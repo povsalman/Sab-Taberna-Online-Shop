@@ -572,7 +572,7 @@ END;
 ---------------- Triggers for Customer ---------------------
 -- Customer Dashboard
 -- Trigger for button7_Click (Password Update)
-CREATE TRIGGER trg_UpdatePassword
+CREATE TRIGGER trg_CUpdatePassword
 ON ISUSER
 AFTER UPDATE
 AS

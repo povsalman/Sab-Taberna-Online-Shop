@@ -47,10 +47,7 @@ namespace DB_Proj_00
 
         private void button4_Click(object sender, EventArgs e)
         {
-            // Navigate to the Sales Reports and Analytics page
-            Form18 salesReportForm = new Form18();
-            salesReportForm.Show();
-            this.Hide();
+
         }
 
 
