@@ -28,14 +28,7 @@ namespace DB_Proj_00
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var orders = new List<Order>
-    {
-        new Order(1, "Bilal", "Seller A", "Processing", 100.50m, DateTime.Now.AddDays(-2)),
-        new Order(2, "Salman", "Seller B", "Shipped", 250.75m, DateTime.Now.AddDays(-1)),
-        new Order(3, "Arshiq", "Seller C", "Delivered", 320.20m, DateTime.Now.AddDays(-3))
-    };
-
-            AdminOrderOversight orderOversightForm = new AdminOrderOversight(orders);
+            AdminOrderOversight orderOversightForm = new AdminOrderOversight();
             orderOversightForm.Show();
             this.Hide();
         }

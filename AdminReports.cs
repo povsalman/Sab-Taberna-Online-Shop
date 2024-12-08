@@ -51,8 +51,8 @@ namespace DB_Proj_00
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            AdminDashboard adminDashboard = new AdminDashboard();
-            adminDashboard.Show();
+            AdminNewDashboard adminNewDashboard = new AdminNewDashboard();
+            adminNewDashboard.Show();
             this.Close();
         }
     }
