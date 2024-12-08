@@ -139,15 +139,11 @@ namespace DB_Proj_00
         }
 
 
-
-
-
-
         /*private void AddToCart(Product product)
         {
             string connectionString = @"Server=DESKTOP-36T2U50\SQLEXPRESS;Database=SABTaberna;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (var con = DBHandler.GetConnection())
             {
                 connection.Open();
 

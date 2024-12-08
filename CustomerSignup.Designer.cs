@@ -218,7 +218,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Name = "Form3";
+            Name = "CustomerSignup";
             Text = "Customer Sign-Up";
             ResumeLayout(false);
             PerformLayout();

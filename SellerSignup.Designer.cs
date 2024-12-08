@@ -1,6 +1,6 @@
 ﻿namespace DB_Proj_00
 {
-    partial class Form4
+    partial class SellerSignup
     {
         /// <summary>
         /// Required designer variable.

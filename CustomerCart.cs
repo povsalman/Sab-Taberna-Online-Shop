@@ -29,10 +29,10 @@ namespace DB_Proj_00
             shoppingCart.Clear();
 
             string query = @"
-        SELECT C.ProductID, P.Name, P.Price, C.Quantity, P.ImageURL
-        FROM CART C
-        INNER JOIN ISPRODUCT P ON C.ProductID = P.ProductID
-        WHERE C.UserID = @UserID";
+                SELECT C.ProductID, P.Name, P.Price, C.Quantity, P.ImageURL
+                FROM CART C
+                INNER JOIN ISPRODUCT P ON C.ProductID = P.ProductID
+                WHERE C.UserID = @UserID";
 
             using (var conn = DBHandler.GetConnection())
             {
@@ -148,11 +148,6 @@ namespace DB_Proj_00
         }
 
 
-
-
-
-
-
         /*  private void RemoveFromCart(Product product)
           {
               SessionManager.ShoppingCart.Remove(product);
@@ -162,10 +157,10 @@ namespace DB_Proj_00
 
         private void RemoveFromDatabaseCart(int productID)
         {
-            string connectionString = @"Server=DESKTOP-36T2U50\SQLEXPRESS;Database=SABTaberna;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;";
+
             string query = "DELETE FROM CART WHERE UserID = @UserID AND ProductID = @ProductID";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (var connection = DBHandler.GetConnection())
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
@@ -362,6 +357,7 @@ namespace DB_Proj_00
             productForm.Show();
             this.Hide();
         }
+
 
     }
 }

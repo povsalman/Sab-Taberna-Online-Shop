@@ -102,7 +102,7 @@ namespace DB_Proj_00
         private void btnBackSignupRole_Click(object sender, EventArgs e)
         {
             // Navigate back to the role selection form
-            Form2 form2 = new Form2();
+            SignUpRole form2 = new SignUpRole();
             form2.Show();
             this.Close();
         }

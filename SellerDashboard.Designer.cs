@@ -1,6 +1,6 @@
 ﻿namespace DB_Proj_00
 {
-    partial class Form7
+    partial class SellerDashboard
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,6 @@
         {
             panel1 = new Panel();
             button6 = new Button();
-            button5 = new Button();
             button4 = new Button();
             button3 = new Button();
             button2 = new Button();
@@ -40,6 +39,9 @@
             label1 = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            label18 = new Label();
+            label17 = new Label();
+            label16 = new Label();
             label8 = new Label();
             label7 = new Label();
             label6 = new Label();
@@ -76,7 +78,6 @@
             // 
             panel1.BackColor = Color.Gray;
             panel1.Controls.Add(button6);
-            panel1.Controls.Add(button5);
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button3);
             panel1.Controls.Add(button2);
@@ -85,14 +86,14 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(142, 450);
+            panel1.Size = new Size(142, 550);
             panel1.TabIndex = 0;
             // 
             // button6
             // 
-            button6.BackColor = Color.Gray;
+            button6.BackColor = Color.Firebrick;
             button6.ForeColor = Color.White;
-            button6.Location = new Point(0, 420);
+            button6.Location = new Point(0, 510);
             button6.Name = "button6";
             button6.Size = new Size(142, 29);
             button6.TabIndex = 6;
@@ -100,24 +101,12 @@
             button6.UseVisualStyleBackColor = false;
             button6.Click += button6_Click;
             // 
-            // button5
-            // 
-           /* button5.BackColor = Color.Gray;
-            button5.Font = new Font("Times New Roman", 9.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button5.ForeColor = Color.White;
-            button5.Location = new Point(0, 300);
-            button5.Name = "button5";
-            button5.Size = new Size(142, 29);
-            button5.TabIndex = 5;
-            button5.Text = "Inventory";
-            button5.UseVisualStyleBackColor = false;*/
-            // 
             // button4
             // 
             button4.BackColor = Color.Gray;
             button4.Font = new Font("Times New Roman", 8.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button4.ForeColor = Color.White;
-            button4.Location = new Point(0, 360);
+            button4.Location = new Point(0, 340);
             button4.Name = "button4";
             button4.Size = new Size(142, 29);
             button4.TabIndex = 4;
@@ -130,7 +119,7 @@
             button3.BackColor = Color.Gray;
             button3.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button3.ForeColor = Color.White;
-            button3.Location = new Point(0, 240);
+            button3.Location = new Point(0, 280);
             button3.Name = "button3";
             button3.Size = new Size(142, 29);
             button3.TabIndex = 3;
@@ -143,7 +132,7 @@
             button2.BackColor = Color.Gray;
             button2.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button2.ForeColor = Color.White;
-            button2.Location = new Point(0, 180);
+            button2.Location = new Point(0, 220);
             button2.Name = "button2";
             button2.Size = new Size(142, 29);
             button2.TabIndex = 2;
@@ -158,7 +147,7 @@
             button1.FlatAppearance.BorderSize = 0;
             button1.Font = new Font("Times New Roman", 8.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(0, 120);
+            button1.Location = new Point(0, 160);
             button1.Name = "button1";
             button1.Size = new Size(142, 29);
             button1.TabIndex = 0;
@@ -184,7 +173,7 @@
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(142, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(658, 450);
+            panel2.Size = new Size(708, 550);
             panel2.TabIndex = 1;
             // 
             // label1
@@ -203,14 +192,18 @@
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
-            tabControl1.Location = new Point(6, 43);
+            tabControl1.Dock = DockStyle.Bottom;
+            tabControl1.Location = new Point(0, 38);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(649, 404);
+            tabControl1.Size = new Size(708, 512);
             tabControl1.TabIndex = 1;
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(label18);
+            tabPage1.Controls.Add(label17);
+            tabPage1.Controls.Add(label16);
             tabPage1.Controls.Add(label8);
             tabPage1.Controls.Add(label7);
             tabPage1.Controls.Add(label6);
@@ -221,11 +214,38 @@
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(641, 371);
+            tabPage1.Size = new Size(700, 479);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Prof. Info.";
             tabPage1.UseVisualStyleBackColor = true;
             tabPage1.Click += tabPage1_Click;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(257, 304);
+            label18.Name = "label18";
+            label18.Size = new Size(58, 20);
+            label18.TabIndex = 9;
+            label18.Text = "label18";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(292, 220);
+            label17.Name = "label17";
+            label17.Size = new Size(58, 20);
+            label17.TabIndex = 8;
+            label17.Text = "label17";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(250, 139);
+            label16.Name = "label16";
+            label16.Size = new Size(58, 20);
+            label16.TabIndex = 7;
+            label16.Text = "label16";
             // 
             // label8
             // 
@@ -249,7 +269,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Arial", 10F, FontStyle.Bold);
-            label6.Location = new Point(150, 260);
+            label6.Location = new Point(150, 305);
             label6.Name = "label6";
             label6.Size = new Size(105, 19);
             label6.TabIndex = 4;
@@ -268,11 +288,12 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Arial", 10F, FontStyle.Bold);
-            label4.Location = new Point(150, 200);
+            label4.Location = new Point(150, 223);
             label4.Name = "label4";
             label4.Size = new Size(136, 19);
             label4.TabIndex = 2;
             label4.Text = "Account Status:";
+            label4.Click += label4_Click;
             // 
             // label3
             // 
@@ -303,7 +324,7 @@
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(641, 371);
+            tabPage2.Size = new Size(700, 479);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Chng. Pwd.";
             tabPage2.UseVisualStyleBackColor = true;
@@ -327,6 +348,7 @@
             button7.TabIndex = 4;
             button7.Text = "Save";
             button7.UseVisualStyleBackColor = false;
+            button7.Click += button7_Click;
             // 
             // textBox2
             // 
@@ -342,6 +364,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(177, 27);
             textBox1.TabIndex = 2;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label10
             // 
@@ -375,7 +398,7 @@
             tabPage3.Controls.Add(label11);
             tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(641, 371);
+            tabPage3.Size = new Size(700, 479);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Edit Prof.";
             tabPage3.UseVisualStyleBackColor = true;
@@ -389,6 +412,7 @@
             button8.TabIndex = 7;
             button8.Text = "Save";
             button8.UseVisualStyleBackColor = false;
+            button8.Click += button8_Click;
             // 
             // textBox5
             // 
@@ -412,6 +436,7 @@
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(168, 27);
             textBox3.TabIndex = 4;
+            textBox3.TextChanged += textBox3_TextChanged;
             // 
             // label14
             // 
@@ -457,7 +482,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(850, 550);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Form7";
@@ -485,7 +510,6 @@
         private Button button1;
         private Button button4;
         private Panel panel2;
-        private Button button5;
         private Label label1;
         private Button button6;
         private TabControl tabControl1;
@@ -513,11 +537,9 @@
         private Label label11;
         private Button button8;
         private Label label15;
-
-
-
-
-
+        private Label label18;
+        private Label label17;
+        private Label label16;
     }
 
 

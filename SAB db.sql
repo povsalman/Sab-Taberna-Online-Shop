@@ -273,7 +273,601 @@ ADD Country NVARCHAR(100) NULL,
 
 
 
-------
+---------
+
+
+-- Audit Table and Triggers
+CREATE TABLE AUDIT_LOG (
+    AuditID INT IDENTITY(1,1) PRIMARY KEY,
+    TableName NVARCHAR(50) NOT NULL,
+    Action NVARCHAR(20) CHECK (Action IN ('INSERT', 'UPDATE', 'DELETE')),
+    chnagedID INT, --tracks the user who made the change
+    ChangeDate DATETIME DEFAULT GETDATE(),
+);
+
+
+
+---------------- Triggers for Login ---------------------
+
+
+
+---------------- Triggers for Admin ---------------------
+-- Main Dashboard
+CREATE TRIGGER trg_UpdateUserNameContact
+ON ISUSER
+AFTER UPDATE
+AS
+BEGIN
+    IF (UPDATE(UserName) OR UPDATE(Contact))
+    BEGIN
+        INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+        SELECT 'ISUSER', 'UPDATE', INSERTED.UserID, GETDATE()
+        FROM INSERTED
+        INNER JOIN DELETED ON INSERTED.UserID = DELETED.UserID
+        WHERE ISNULL(INSERTED.UserName, '') <> ISNULL(DELETED.UserName, '') 
+           OR ISNULL(INSERTED.Contact, '') <> ISNULL(DELETED.Contact, '');
+    END
+END;
+GO
+
+CREATE TRIGGER trg_UpdatePassword
+ON ISUSER
+AFTER UPDATE
+AS
+BEGIN
+    IF (UPDATE(Password))
+    BEGIN
+        INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+        SELECT 'ISUSER', 'UPDATE', INSERTED.UserID, GETDATE()
+        FROM INSERTED
+        INNER JOIN DELETED ON INSERTED.UserID = DELETED.UserID
+        WHERE ISNULL(INSERTED.Password, '') <> ISNULL(DELETED.Password, '');
+    END
+END;
+GO
+
+
+-- User-Seller Management
+-- Trigger for btnUpdate_Click
+CREATE TRIGGER trg_UpdateUserDetails
+ON ISUSER
+AFTER UPDATE
+AS
+BEGIN
+    IF (UPDATE(UserName) OR UPDATE(Password) OR UPDATE(Gender) OR UPDATE(Contact))
+    BEGIN
+        INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+        SELECT 'ISUSER', 'UPDATE', INSERTED.UserID, GETDATE()
+        FROM INSERTED
+        INNER JOIN DELETED ON INSERTED.UserID = DELETED.UserID
+        WHERE ISNULL(INSERTED.UserName, '') <> ISNULL(DELETED.UserName, '')
+           OR ISNULL(INSERTED.Password, '') <> ISNULL(DELETED.Password, '')
+           OR ISNULL(INSERTED.Gender, '') <> ISNULL(DELETED.Gender, '')
+           OR ISNULL(INSERTED.Contact, '') <> ISNULL(DELETED.Contact, '');
+    END
+END;
+GO
+
+CREATE TRIGGER trg_UpdateSellerDetails
+ON SELLER
+AFTER UPDATE
+AS
+BEGIN
+    IF (UPDATE(StoreName) OR UPDATE(VerificationStatus) OR UPDATE(AccountStatus))
+    BEGIN
+        INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+        SELECT 'SELLER', 'UPDATE', INSERTED.UserID, GETDATE()
+        FROM INSERTED
+        INNER JOIN DELETED ON INSERTED.UserID = DELETED.UserID
+        WHERE ISNULL(INSERTED.StoreName, '') <> ISNULL(DELETED.StoreName, '')
+           OR ISNULL(INSERTED.VerificationStatus, '') <> ISNULL(DELETED.VerificationStatus, '')
+           OR ISNULL(INSERTED.AccountStatus, '') <> ISNULL(DELETED.AccountStatus, '');
+    END
+END;
+GO
+
+CREATE TRIGGER trg_UpdateCustomerDetails
+ON CUSTOMER
+AFTER UPDATE
+AS
+BEGIN
+    IF (UPDATE(Name) OR UPDATE(AccountStatus))
+    BEGIN
+        INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+        SELECT 'CUSTOMER', 'UPDATE', INSERTED.UserID, GETDATE()
+        FROM INSERTED
+        INNER JOIN DELETED ON INSERTED.UserID = DELETED.UserID
+        WHERE ISNULL(INSERTED.Name, '') <> ISNULL(DELETED.Name, '')
+           OR ISNULL(INSERTED.AccountStatus, '') <> ISNULL(DELETED.AccountStatus, '');
+    END
+END;
+GO
+
+-- Trigger for btnApprove_Click
+CREATE TRIGGER trg_ApproveSeller
+ON SELLER
+AFTER UPDATE
+AS
+BEGIN
+    IF (UPDATE(VerificationStatus))
+    BEGIN
+        INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+        SELECT 'SELLER', 'UPDATE', INSERTED.UserID, GETDATE()
+        FROM INSERTED
+        INNER JOIN DELETED ON INSERTED.UserID = DELETED.UserID
+        WHERE ISNULL(INSERTED.VerificationStatus, '') = 'Verified'
+          AND ISNULL(DELETED.VerificationStatus, '') <> 'Verified';
+    END
+END;
+GO
+
+-- Trigger for btnReject_Click
+CREATE TRIGGER trg_RejectSeller
+ON SELLER
+AFTER UPDATE
+AS
+BEGIN
+    IF (UPDATE(VerificationStatus))
+    BEGIN
+        INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+        SELECT 'SELLER', 'UPDATE', INSERTED.UserID, GETDATE()
+        FROM INSERTED
+        INNER JOIN DELETED ON INSERTED.UserID = DELETED.UserID
+        WHERE ISNULL(INSERTED.VerificationStatus, '') = 'Rejected'
+          AND ISNULL(DELETED.VerificationStatus, '') <> 'Rejected';
+    END
+END;
+GO
+
+
+
+-- Products-Category Management
+-- Category
+-- Trigger for btnCategoryAdd_Click
+CREATE TRIGGER trg_Category_Add
+ON CATEGORY
+AFTER INSERT
+AS
+BEGIN
+    INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+    SELECT 'CATEGORY', 'INSERT', CategoryID, GETDATE()
+    FROM INSERTED;
+END;
+
+-- Trigger for btnCategoryRemove_Click
+CREATE TRIGGER trg_Category_Remove
+ON CATEGORY
+AFTER DELETE
+AS
+BEGIN
+    INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+    SELECT 'CATEGORY', 'DELETE', CategoryID, GETDATE()
+    FROM DELETED;
+END;
+
+-- Trigger for btnCategoryUpdate_Click
+CREATE TRIGGER trg_Category_Update
+ON CATEGORY
+AFTER UPDATE
+AS
+BEGIN
+    INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+    SELECT 'CATEGORY', 'UPDATE', CategoryID, GETDATE()
+    FROM INSERTED;
+END;
+
+
+-- Products
+-- Trigger for btnApproveProduct_Click
+CREATE TRIGGER trg_Product_Approve
+ON ISPRODUCT
+AFTER UPDATE
+AS
+BEGIN
+    IF UPDATE(IsApproved)
+    BEGIN
+        INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+        SELECT 'ISPRODUCT', 'UPDATE', ProductID, GETDATE()
+        FROM INSERTED
+        WHERE IsApproved = 'Yes';
+    END
+END;
+
+
+-- Trigger for btnRejectProduct_Click
+CREATE TRIGGER trg_Product_Reject
+ON ISPRODUCT
+AFTER UPDATE
+AS
+BEGIN
+    IF UPDATE(IsApproved)
+    BEGIN
+        INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+        SELECT 'ISPRODUCT', 'UPDATE', ProductID, GETDATE()
+        FROM INSERTED
+        WHERE IsApproved = 'No';
+    END
+END;
+
+-- Trigger for txtRemoveProduct_Click
+CREATE TRIGGER trg_Product_Remove
+ON ISPRODUCT
+AFTER DELETE
+AS
+BEGIN
+    INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+    SELECT 'ISPRODUCT', 'DELETE', ProductID, GETDATE()
+    FROM DELETED;
+END;
+
+
+
+-- Order Oversight (No Triggers)
+
+-- Platform Settings
+-- Trigger for btnUpdatePlatform_Click
+CREATE TRIGGER trg_UpdatePlatformSettings
+ON PLATFORM_SETTINGS
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Log the update into the AUDIT_LOG table
+    INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+    SELECT 
+        'PLATFORM_SETTINGS' AS TableName,
+        'UPDATE' AS Action,
+        SettingID AS chnagedID, -- Assuming SettingID is the primary key for PLATFORM_SETTINGS
+        GETDATE() AS ChangeDate
+    FROM Inserted; -- Inserted table contains the new row data in UPDATE triggers
+END;
+
+
+-- User Reviews
+-- Trigger for btnFlagProduct_Click_1
+CREATE TRIGGER trg_FlagProduct
+ON ISPRODUCT
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Log flagging of products as inappropriate
+    INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+    SELECT 
+        'ISPRODUCT' AS TableName,
+        'UPDATE' AS Action,
+        Inserted.ProductID AS chnagedID, -- Tracks the ProductID
+        GETDATE() AS ChangeDate
+    FROM Inserted
+    INNER JOIN Deleted
+    ON Inserted.ProductID = Deleted.ProductID
+    WHERE Deleted.IsFlaggedInappropriate = 0 AND Inserted.IsFlaggedInappropriate = 1; -- Only log when a product is flagged
+END;
+
+
+-- Trigger for btnUnflagProduct_Click
+CREATE TRIGGER trg_UnflagProduct
+ON ISPRODUCT
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Log unflagging of products
+    INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+    SELECT 
+        'ISPRODUCT' AS TableName,
+        'UPDATE' AS Action,
+        Inserted.ProductID AS chnagedID, -- Tracks the ProductID
+        GETDATE() AS ChangeDate
+    FROM Inserted
+    INNER JOIN Deleted
+    ON Inserted.ProductID = Deleted.ProductID
+    WHERE Deleted.IsFlaggedInappropriate = 1 AND Inserted.IsFlaggedInappropriate = 0; -- Only log when a product is unflagged
+END;
+
+
+---------------- Triggers for Customer ---------------------
+-- Customer Dashboard
+-- Trigger for button7_Click (Password Update)
+CREATE TRIGGER trg_UpdatePassword
+ON ISUSER
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Log password updates
+    INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+    SELECT 
+        'ISUSER' AS TableName,
+        'UPDATE' AS Action,
+        Inserted.UserID AS chnagedID, -- Tracks the UserID
+        GETDATE() AS ChangeDate
+    FROM Inserted
+    INNER JOIN Deleted
+    ON Inserted.UserID = Deleted.UserID
+    WHERE Deleted.Password <> Inserted.Password; -- Only log when the password changes
+END;
+
+
+-- Trigger for button8_Click (Profile Update)
+CREATE TRIGGER trg_UpdateUserProfile
+ON ISUSER
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Log username and contact updates
+    INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+    SELECT 
+        'ISUSER' AS TableName,
+        'UPDATE' AS Action,
+        Inserted.UserID AS chnagedID, -- Tracks the UserID
+        GETDATE() AS ChangeDate
+    FROM Inserted
+    INNER JOIN Deleted
+    ON Inserted.UserID = Deleted.UserID
+    WHERE Deleted.UserName <> Inserted.UserName OR Deleted.Contact <> Inserted.Contact; -- Log changes to UserName or Contact
+END;
+
+CREATE TRIGGER trg_UpdateCustomerPayment
+ON CUSTOMER
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Log payment preference updates
+    INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+    SELECT 
+        'CUSTOMER' AS TableName,
+        'UPDATE' AS Action,
+        Inserted.UserID AS chnagedID, -- Tracks the UserID
+        GETDATE() AS ChangeDate
+    FROM Inserted
+    INNER JOIN Deleted
+    ON Inserted.UserID = Deleted.UserID
+    WHERE Deleted.PaymentPreferences <> Inserted.PaymentPreferences; -- Log changes to PaymentPreferences
+END;
+
+
+-- Products
+-- Trigger for btnAddToCart 
+CREATE TRIGGER trg_Cart_Audit
+ON CART
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Insert audit log for new cart entries
+    IF EXISTS (SELECT * FROM inserted)
+    BEGIN
+        INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+        SELECT 
+            'CART' AS TableName,
+            CASE
+                WHEN EXISTS (SELECT * FROM deleted WHERE deleted.CartID = inserted.CartID) THEN 'UPDATE'
+                ELSE 'INSERT'
+            END AS Action,
+            inserted.CartID AS ChangedID,
+            GETDATE() AS ChangeDate
+        FROM inserted
+        LEFT JOIN deleted ON inserted.CartID = deleted.CartID;
+    END
+
+    -- Insert audit log for removed cart entries (if applicable in other contexts)
+    IF EXISTS (SELECT * FROM deleted WHERE NOT EXISTS (SELECT * FROM inserted WHERE deleted.CartID = inserted.CartID))
+    BEGIN
+        INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+        SELECT 
+            'CART' AS TableName,
+            'DELETE' AS Action,
+            deleted.CartID AS ChangedID,
+            GETDATE() AS ChangeDate
+        FROM deleted;
+    END
+END;
+
+
+-- Shopping Cart
+-- Trigger for INSERT on CART
+CREATE TRIGGER trg_InsertCart
+ON CART
+AFTER INSERT
+AS
+BEGIN
+    -- Log the insert action
+    INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+    SELECT 'CART', 'INSERT', ProductID, GETDATE()
+    FROM INSERTED;
+
+    PRINT 'Insert trigger executed on CART table';
+END;
+
+-- Trigger for UPDATE on CART
+CREATE TRIGGER trg_UpdateCart
+ON CART
+AFTER UPDATE
+AS
+BEGIN
+    -- Log the update action
+    INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+    SELECT 'CART', 'UPDATE', ProductID, GETDATE()
+    FROM INSERTED;
+
+    PRINT 'Update trigger executed on CART table';
+END;
+
+
+-- Trigger for DELETE on CART
+CREATE TRIGGER trg_DeleteCart
+ON CART
+AFTER DELETE
+AS
+BEGIN
+    -- Log the delete action
+    INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+    SELECT 'CART', 'DELETE', ProductID, GETDATE()
+    FROM DELETED;
+
+    PRINT 'Delete trigger executed on CART table';
+END;
+
+
+-- Order ?? (Bilal: will change to report)
+
+
+-- Review
+-- Trigger for Inserting Reviews
+CREATE TRIGGER trg_InsertReview
+ON REVIEW
+AFTER INSERT
+AS
+BEGIN
+    INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+    SELECT 
+        'REVIEW' AS TableName, 
+        'INSERT' AS Action, 
+        INSERTED.ReviewID AS ChangedID, 
+        GETDATE() AS ChangeDate
+    FROM INSERTED;
+END;
+
+
+---------------- Triggers for Seller ---------------------
+-- Main Dashboard
+-- Trigger for Password Updates in ISUSER
+CREATE TRIGGER trg_UpdateSellerPassword
+ON ISUSER
+AFTER UPDATE
+AS
+BEGIN
+    IF EXISTS (SELECT 1 FROM INSERTED WHERE Password IS NOT NULL)
+    BEGIN
+        INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+        SELECT 
+            'ISUSER' AS TableName, 
+            'UPDATE' AS Action, 
+            INSERTED.UserID AS chnagedID, 
+            GETDATE() AS ChangeDate
+        FROM INSERTED
+        WHERE INSERTED.Password IS NOT NULL;
+    END
+END;
+
+-- Trigger for Profile Updates in ISUSER
+CREATE TRIGGER trg_UpdateSellerProfile
+ON ISUSER
+AFTER UPDATE
+AS
+BEGIN
+    IF EXISTS (SELECT 1 FROM INSERTED WHERE UserName IS NOT NULL OR Contact IS NOT NULL)
+    BEGIN
+        INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+        SELECT 
+            'ISUSER' AS TableName, 
+            'UPDATE' AS Action, 
+            INSERTED.UserID AS chnagedID, 
+            GETDATE() AS ChangeDate
+        FROM INSERTED
+        WHERE UserName IS NOT NULL OR Contact IS NOT NULL;
+    END
+END;
+
+-- Trigger for SELLER Store Updates
+CREATE TRIGGER trg_UpdateSellerStore
+ON SELLER
+AFTER UPDATE
+AS
+BEGIN
+    IF EXISTS (SELECT 1 FROM INSERTED WHERE StoreName IS NOT NULL)
+    BEGIN
+        INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+        SELECT 
+            'SELLER' AS TableName, 
+            'UPDATE' AS Action, 
+            INSERTED.UserID AS chnagedID, 
+            GETDATE() AS ChangeDate
+        FROM INSERTED
+        WHERE StoreName IS NOT NULL;
+    END
+END;
+
+
+-- Product Management
+-- Triggers for ISPRODUCT Table
+CREATE TRIGGER trg_AfterProductInsert
+ON ISPRODUCT
+AFTER INSERT
+AS
+BEGIN
+    INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+    SELECT 'ISPRODUCT', 'INSERT', ProductID, GETDATE()
+    FROM INSERTED;
+END;
+
+CREATE TRIGGER trg_AfterProductUpdate
+ON ISPRODUCT
+AFTER UPDATE
+AS
+BEGIN
+    INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+    SELECT 'ISPRODUCT', 'UPDATE', ProductID, GETDATE()
+    FROM INSERTED;
+END;
+
+CREATE TRIGGER trg_AfterProductDelete
+ON ISPRODUCT
+AFTER DELETE
+AS
+BEGIN
+    INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+    SELECT 'ISPRODUCT', 'DELETE', ProductID, GETDATE()
+    FROM DELETED;
+END;
+
+
+-- Orders Fulfilment
+-- Trigger for UPDATE on ISORDER
+CREATE TRIGGER trg_AuditLog_UpdateShippingStatus
+ON ISORDER
+AFTER UPDATE
+AS
+BEGIN
+    -- Check if the ShippingStatus column is being updated
+    IF UPDATE(ShippingStatus)
+    BEGIN
+        INSERT INTO AUDIT_LOG (TableName, Action, chnagedID, ChangeDate)
+        SELECT 
+            'ISORDER' AS TableName, 
+            'UPDATE' AS Action, 
+            inserted.OrderID AS chnagedID, 
+            GETDATE() AS ChangeDate
+        FROM inserted;
+    END
+END;
+
+
+-- 
+
+
+
+
+
+
+
+
+
+
+
+
+-----------
+
 
 -- Table: ISUSER
 INSERT INTO ISUSER (UserName, Password, Age, Gender, RegistrationDate, Contact, AccountType)
@@ -544,6 +1138,7 @@ SELECT * FROM WISHLIST;
 SELECT * FROM WISHLIST_ITEM;
 SELECT * FROM ISRETURN;
 SELECT * FROM PLATFORM_SETTINGS
+SELECT * FROM AUDIT_LOG
 
 
 --DROP TABLE IF EXISTS WISHLIST_ITEM;
