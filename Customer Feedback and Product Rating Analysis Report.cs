@@ -31,8 +31,8 @@ namespace DB_Proj_00
         private void button1_Click(object sender, EventArgs e)
         {
             string query = @"
-SELECT 
-    * From ISPRODUCT;";
+                SELECT 
+                    * From ISPRODUCT;";
 
 
             using (var conn = DBHandler.GetConnection())
@@ -56,19 +56,19 @@ SELECT
         private void button2_Click(object sender, EventArgs e)
         {
             string query = @"
-SELECT 
-    c.CustomerID,
-    c.CustomerName,
-    COUNT(o.OrderID) AS TotalOrders
-FROM 
-    CustomersTab c
-JOIN 
-    OrderTab o ON c.CustomerID = o.CustomerID
-GROUP BY 
-    c.CustomerID, 
-    c.CustomerName
-ORDER BY 
-    TotalOrders DESC;";
+            SELECT 
+                c.CustomerID,
+                c.CustomerName,
+                COUNT(o.OrderID) AS TotalOrders
+            FROM 
+                CustomersTab c
+            JOIN 
+                OrderTab o ON c.CustomerID = o.CustomerID
+            GROUP BY 
+                c.CustomerID, 
+                c.CustomerName
+            ORDER BY 
+                TotalOrders DESC;";
 
 
             using (var conn = DBHandler.GetConnection())
@@ -92,19 +92,19 @@ ORDER BY
         private void button3_Click(object sender, EventArgs e)
         {
             string query = @"
-SELECT 
-    c.CustomerID,
-    c.CustomerName,
-    COUNT(o.OrderID) AS TotalOrders
-FROM 
-    CustomersTab c
-JOIN 
-    OrderTab o ON c.CustomerID = o.CustomerID
-GROUP BY 
-    c.CustomerID, 
-    c.CustomerName
-ORDER BY 
-    TotalOrders DESC;";
+                    SELECT 
+                        c.CustomerID,
+                        c.CustomerName,
+                        COUNT(o.OrderID) AS TotalOrders
+                    FROM 
+                        CustomersTab c
+                    JOIN 
+                        OrderTab o ON c.CustomerID = o.CustomerID
+                    GROUP BY 
+                        c.CustomerID, 
+                        c.CustomerName
+                    ORDER BY 
+                        TotalOrders DESC;";
 
 
             using (var conn = DBHandler.GetConnection())

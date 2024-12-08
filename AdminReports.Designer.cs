@@ -16,89 +16,19 @@ namespace DB_Proj_00
 
         private void InitializeComponent()
         {
-            ChartArea chartArea1 = new ChartArea();
-            Series series1 = new Series();
-            Title title1 = new Title();
-            ChartArea chartArea2 = new ChartArea();
-            Series series2 = new Series();
-            Title title2 = new Title();
-            chartSalesTrends = new Chart();
-            chartUserActivity = new Chart();
-            lblTotalSales = new Label();
-            lblBestSelling = new Label();
-            lblActiveUsers = new Label();
             btnBack = new Button();
-            ((System.ComponentModel.ISupportInitialize)chartSalesTrends).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)chartUserActivity).BeginInit();
+            dataGridView1 = new DataGridView();
+            label1 = new Label();
+            btnUDReport = new Button();
+            btnPGreport = new Button();
+            btnOFReport = new Button();
+            btnRPCReport = new Button();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
-            // 
-            // chartSalesTrends
-            // 
-            chartSalesTrends.Anchor = AnchorStyles.Top;
-            chartArea1.Name = "ChartArea1";
-            chartSalesTrends.ChartAreas.Add(chartArea1);
-            chartSalesTrends.Location = new Point(112, 12);
-            chartSalesTrends.Name = "chartSalesTrends";
-            series1.ChartArea = "ChartArea1";
-            series1.Name = "Sales";
-            chartSalesTrends.Series.Add(series1);
-            chartSalesTrends.Size = new Size(600, 300);
-            chartSalesTrends.TabIndex = 0;
-            chartSalesTrends.Text = "Sales Trends";
-            title1.Name = "Title1";
-            title1.Text = "Monthly Sales Trends";
-            chartSalesTrends.Titles.Add(title1);
-            // 
-            // chartUserActivity
-            // 
-            chartUserActivity.Anchor = AnchorStyles.Top;
-            chartArea2.Name = "ChartArea2";
-            chartUserActivity.ChartAreas.Add(chartArea2);
-            chartUserActivity.Location = new Point(112, 318);
-            chartUserActivity.Name = "chartUserActivity";
-            series2.ChartArea = "ChartArea2";
-            series2.Name = "Active Users";
-            chartUserActivity.Series.Add(series2);
-            chartUserActivity.Size = new Size(600, 300);
-            chartUserActivity.TabIndex = 1;
-            chartUserActivity.Text = "User Activity";
-            title2.Name = "Title1";
-            title2.Text = "Weekly Active Users";
-            chartUserActivity.Titles.Add(title2);
-            // 
-            // lblTotalSales
-            // 
-            lblTotalSales.AutoSize = true;
-            lblTotalSales.Font = new Font("Arial", 10F, FontStyle.Bold);
-            lblTotalSales.Location = new Point(756, 31);
-            lblTotalSales.Name = "lblTotalSales";
-            lblTotalSales.Size = new Size(121, 24);
-            lblTotalSales.TabIndex = 2;
-            lblTotalSales.Text = "Total Sales:";
-            // 
-            // lblBestSelling
-            // 
-            lblBestSelling.AutoSize = true;
-            lblBestSelling.Font = new Font("Arial", 10F, FontStyle.Bold);
-            lblBestSelling.Location = new Point(727, 100);
-            lblBestSelling.Name = "lblBestSelling";
-            lblBestSelling.Size = new Size(210, 24);
-            lblBestSelling.TabIndex = 3;
-            lblBestSelling.Text = "Best Selling Product:";
-            // 
-            // lblActiveUsers
-            // 
-            lblActiveUsers.AutoSize = true;
-            lblActiveUsers.Font = new Font("Arial", 10F, FontStyle.Bold);
-            lblActiveUsers.Location = new Point(741, 164);
-            lblActiveUsers.Name = "lblActiveUsers";
-            lblActiveUsers.Size = new Size(136, 24);
-            lblActiveUsers.TabIndex = 4;
-            lblActiveUsers.Text = "Active Users:";
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(630, 600);
+            btnBack.Location = new Point(879, 608);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(100, 30);
             btnBack.TabIndex = 5;
@@ -106,29 +36,93 @@ namespace DB_Proj_00
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
             // 
-            // Form23
+            // dataGridView1
+            // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridView1.BackgroundColor = SystemColors.GradientActiveCaption;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(33, 71);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(922, 494);
+            dataGridView1.TabIndex = 6;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Arial", 16F, FontStyle.Bold);
+            label1.Location = new Point(429, 20);
+            label1.Name = "label1";
+            label1.Size = new Size(118, 32);
+            label1.TabIndex = 7;
+            label1.Text = "Reports";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnUDReport
+            // 
+            btnUDReport.Location = new Point(62, 595);
+            btnUDReport.Name = "btnUDReport";
+            btnUDReport.Size = new Size(143, 43);
+            btnUDReport.TabIndex = 8;
+            btnUDReport.Text = "User Demographic";
+            btnUDReport.UseVisualStyleBackColor = true;
+            btnUDReport.Click += btnUDReport_Click;
+            // 
+            // btnPGreport
+            // 
+            btnPGreport.Location = new Point(237, 595);
+            btnPGreport.Name = "btnPGreport";
+            btnPGreport.Size = new Size(143, 43);
+            btnPGreport.TabIndex = 9;
+            btnPGreport.Text = "Platform Growth";
+            btnPGreport.UseVisualStyleBackColor = true;
+            btnPGreport.Click += btnPGreport_Click;
+            // 
+            // btnOFReport
+            // 
+            btnOFReport.Location = new Point(418, 595);
+            btnOFReport.Name = "btnOFReport";
+            btnOFReport.Size = new Size(143, 43);
+            btnOFReport.TabIndex = 10;
+            btnOFReport.Text = "Order Fulfilment";
+            btnOFReport.UseVisualStyleBackColor = true;
+            btnOFReport.Click += btnOFReport_Click;
+            // 
+            // btnRPCReport
+            // 
+            btnRPCReport.Location = new Point(597, 595);
+            btnRPCReport.Name = "btnRPCReport";
+            btnRPCReport.Size = new Size(143, 43);
+            btnRPCReport.TabIndex = 11;
+            btnRPCReport.Text = "Revenue Prd-Cat.";
+            btnRPCReport.UseVisualStyleBackColor = true;
+            btnRPCReport.Click += btnRPCReport_Click;
+            // 
+            // AdminReports
             // 
             ClientSize = new Size(1000, 650);
+            Controls.Add(btnRPCReport);
+            Controls.Add(btnOFReport);
+            Controls.Add(btnPGreport);
+            Controls.Add(btnUDReport);
+            Controls.Add(label1);
+            Controls.Add(dataGridView1);
             Controls.Add(btnBack);
-            Controls.Add(lblActiveUsers);
-            Controls.Add(lblBestSelling);
-            Controls.Add(lblTotalSales);
-            Controls.Add(chartUserActivity);
-            Controls.Add(chartSalesTrends);
-            Name = "Form23";
+            Name = "AdminReports";
             Text = "Reports and Analytics";
-            Load += Form23_Load;
-            ((System.ComponentModel.ISupportInitialize)chartSalesTrends).EndInit();
-            ((System.ComponentModel.ISupportInitialize)chartUserActivity).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartSalesTrends;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartUserActivity;
-        private System.Windows.Forms.Label lblTotalSales;
-        private System.Windows.Forms.Label lblBestSelling;
-        private System.Windows.Forms.Label lblActiveUsers;
         private System.Windows.Forms.Button btnBack;
+        private DataGridView dataGridView1;
+        private Label label1;
+        private Button btnUDReport;
+        private Button btnPGreport;
+        private Button btnOFReport;
+        private Button btnRPCReport;
     }
 }
