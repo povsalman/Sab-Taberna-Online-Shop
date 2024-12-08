@@ -1,6 +1,6 @@
 namespace DB_Proj_00
 {
-    partial class SellerProduct
+    partial class SellerProductManagement
     {
         private System.ComponentModel.IContainer components = null;
         private DataGridView dgvProducts;
@@ -8,6 +8,15 @@ namespace DB_Proj_00
         private Button btnEditProduct;
         private Button btnDeleteProduct;
         private Button btnBack;
+        private Button button1;
+        private NumericUpDown numPrice;
+        private NumericUpDown numStockLevel;
+        private TextBox txtProductName;
+        private TextBox txtDescription;
+        private Button btnSaveNew;
+        private Button btnSaveChanges;
+        private NumericUpDown numSellerID;
+        private NumericUpDown numCategoryID;
 
         protected override void Dispose(bool disposing)
         {
@@ -21,10 +30,6 @@ namespace DB_Proj_00
         private void InitializeComponent()
         {
             dgvProducts = new DataGridView();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             btnAddProduct = new Button();
             btnEditProduct = new Button();
             btnDeleteProduct = new Button();
@@ -44,44 +49,17 @@ namespace DB_Proj_00
             ((System.ComponentModel.ISupportInitialize)numSellerID).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numCategoryID).BeginInit();
             SuspendLayout();
+
             // 
             // dgvProducts
             // 
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProducts.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4 });
             dgvProducts.Location = new Point(20, 20);
             dgvProducts.Name = "dgvProducts";
             dgvProducts.RowHeadersWidth = 62;
             dgvProducts.Size = new Size(887, 450);
             dgvProducts.TabIndex = 0;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.HeaderText = "Product Name";
-            dataGridViewTextBoxColumn1.MinimumWidth = 8;
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            dataGridViewTextBoxColumn2.HeaderText = "Price";
-            dataGridViewTextBoxColumn2.MinimumWidth = 8;
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            dataGridViewTextBoxColumn2.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewTextBoxColumn3.HeaderText = "Stock";
-            dataGridViewTextBoxColumn3.MinimumWidth = 8;
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            dataGridViewTextBoxColumn3.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            dataGridViewTextBoxColumn4.HeaderText = "Description";
-            dataGridViewTextBoxColumn4.MinimumWidth = 8;
-            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            dataGridViewTextBoxColumn4.Width = 200;
+
             // 
             // btnAddProduct
             // 
@@ -91,6 +69,7 @@ namespace DB_Proj_00
             btnAddProduct.TabIndex = 1;
             btnAddProduct.Text = "Add";
             btnAddProduct.Click += btnAddProduct_Click;
+
             // 
             // btnEditProduct
             // 
@@ -100,6 +79,7 @@ namespace DB_Proj_00
             btnEditProduct.TabIndex = 2;
             btnEditProduct.Text = "Edit";
             btnEditProduct.Click += btnEditProduct_Click;
+
             // 
             // btnDeleteProduct
             // 
@@ -109,6 +89,7 @@ namespace DB_Proj_00
             btnDeleteProduct.TabIndex = 3;
             btnDeleteProduct.Text = "Delete";
             btnDeleteProduct.Click += btnDeleteProduct_Click;
+
             // 
             // btnBack
             // 
@@ -118,6 +99,7 @@ namespace DB_Proj_00
             btnBack.TabIndex = 4;
             btnBack.Text = "Back";
             btnBack.Click += btnBack_Click;
+
             // 
             // button1
             // 
@@ -128,6 +110,7 @@ namespace DB_Proj_00
             button1.Text = "↻ Refresh";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
+
             // 
             // numPrice
             // 
@@ -136,6 +119,7 @@ namespace DB_Proj_00
             numPrice.Size = new Size(122, 27);
             numPrice.TabIndex = 6;
             numPrice.Visible = false;
+
             // 
             // numStockLevel
             // 
@@ -144,6 +128,7 @@ namespace DB_Proj_00
             numStockLevel.Size = new Size(122, 27);
             numStockLevel.TabIndex = 7;
             numStockLevel.Visible = false;
+
             // 
             // txtProductName
             // 
@@ -152,6 +137,7 @@ namespace DB_Proj_00
             txtProductName.Size = new Size(125, 27);
             txtProductName.TabIndex = 8;
             txtProductName.Visible = false;
+
             // 
             // txtDescription
             // 
@@ -160,6 +146,7 @@ namespace DB_Proj_00
             txtDescription.Size = new Size(125, 27);
             txtDescription.TabIndex = 9;
             txtDescription.Visible = false;
+
             // 
             // btnSaveNew
             // 
@@ -167,10 +154,11 @@ namespace DB_Proj_00
             btnSaveNew.Name = "btnSaveNew";
             btnSaveNew.Size = new Size(94, 29);
             btnSaveNew.TabIndex = 10;
-            btnSaveNew.Text = "btnSaveNew";
+            btnSaveNew.Text = "Save New";
             btnSaveNew.UseVisualStyleBackColor = true;
             btnSaveNew.Visible = false;
             btnSaveNew.Click += btnSaveNew_Click;
+
             // 
             // btnSaveChanges
             // 
@@ -178,9 +166,10 @@ namespace DB_Proj_00
             btnSaveChanges.Name = "btnSaveChanges";
             btnSaveChanges.Size = new Size(94, 29);
             btnSaveChanges.TabIndex = 11;
-            btnSaveChanges.Text = "btnSaveChanges";
+            btnSaveChanges.Text = "Save Changes";
             btnSaveChanges.UseVisualStyleBackColor = true;
             btnSaveChanges.Click += btnSaveChanges_Click;
+
             // 
             // numSellerID
             // 
@@ -188,6 +177,7 @@ namespace DB_Proj_00
             numSellerID.Name = "numSellerID";
             numSellerID.Size = new Size(122, 27);
             numSellerID.TabIndex = 12;
+
             // 
             // numCategoryID
             // 
@@ -195,6 +185,7 @@ namespace DB_Proj_00
             numCategoryID.Name = "numCategoryID";
             numCategoryID.Size = new Size(122, 27);
             numCategoryID.TabIndex = 13;
+
             // 
             // Form16
             // 
@@ -223,19 +214,5 @@ namespace DB_Proj_00
             ResumeLayout(false);
             PerformLayout();
         }
-
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private Button button1;
-        private NumericUpDown numPrice;
-        private NumericUpDown numStockLevel;
-        private TextBox txtProductName;
-        private TextBox txtDescription;
-        private Button btnSaveNew;
-        private Button btnSaveChanges;
-        private NumericUpDown numSellerID;
-        private NumericUpDown numCategoryID;
     }
 }
