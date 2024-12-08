@@ -146,6 +146,7 @@ namespace DB_Proj_00
                 MessageBox.Show($"Error generating report: {ex.Message}");
             }
         }
+
         private void btnPGreport_Click(object sender, EventArgs e)
         {
             string query = @"
