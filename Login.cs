@@ -1,4 +1,4 @@
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace DB_Proj_00
 {
@@ -82,7 +82,7 @@ namespace DB_Proj_00
                     break;
 
                 case "Seller":
-                    FetchAndStoreCustomerSessionData(userId);
+                    FetchAndStoreSellerSessionData(userId);
                     SellerDashboard sellerForm = new SellerDashboard();
                     sellerForm.Show();
                     break;
@@ -93,10 +93,12 @@ namespace DB_Proj_00
                     adminDashboard.Show();
                     break;
 
-                case "Logistics Provider":
-                    Form8 logisticsForm = new Form8();
+                case "Logistics":
+                    FetchAndStoreLogisticsSessionData(userId);
+                    LogisticsDashboard logisticsForm = new LogisticsDashboard(); 
                     logisticsForm.Show();
                     break;
+
 
                 default:
                     MessageBox.Show("Invalid role selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -107,9 +109,9 @@ namespace DB_Proj_00
         private void FetchAndStoreCustomerSessionData(int userId)
         {
             string query = @"
-                SELECT UserID, UserName, AccountType
-                FROM ISUSER
-                WHERE UserID = @UserID";
+    SELECT UserID, UserName, AccountType
+    FROM ISUSER
+    WHERE UserID = @UserID";
 
             SqlParameter[] parameters = { new SqlParameter("@UserID", userId) };
 
@@ -191,6 +193,108 @@ namespace DB_Proj_00
                 MessageBox.Show($"Error while fetching admin session data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void FetchAndStoreSellerSessionData(int userId)
+        {
+            string query = @"
+        SELECT u.UserID, u.UserName, s.SellerID
+        FROM ISUSER u
+        INNER JOIN SELLER s ON u.UserID = s.UserID
+        WHERE u.UserID = @UserID";
+
+            SqlParameter[] parameters = { new SqlParameter("@UserID", userId) };
+
+            try
+            {
+                using (var connection = DBHandler.GetConnection())
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddRange(parameters);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Store seller data in session
+                                SellerSessionManager.LogIn(
+                                    reader.GetInt32(reader.GetOrdinal("UserID")),
+                                    reader.GetInt32(reader.GetOrdinal("SellerID")), // Fetch SellerID
+                                    reader.GetString(reader.GetOrdinal("UserName"))
+                                );
+                            }
+                            else
+                            {
+                                MessageBox.Show("Seller not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while fetching seller session data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void FetchAndStoreLogisticsSessionData(int userId)
+        {
+            string query = @"
+        SELECT u.UserID, u.UserName 
+        FROM ISUSER u
+        INNER JOIN LOGISTICS_PROVIDER l ON u.UserID = l.UserID
+        WHERE u.UserID = @UserID";
+
+            SqlParameter[] parameters = { new SqlParameter("@UserID", userId) };
+
+            try
+            {
+                using (var connection = DBHandler.GetConnection())
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddRange(parameters);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Store logistics data in session
+                                LogisticsSessionManager.LogIn(
+                                    reader.GetInt32(reader.GetOrdinal("UserID")),
+                                    reader.GetString(reader.GetOrdinal("UserName"))
+                                );
+                            }
+                            else
+                            {
+                                MessageBox.Show("User not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while fetching logistics session data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         private int ExecuteScalar(string query, SqlParameter[] parameters)
