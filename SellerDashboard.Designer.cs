@@ -1,4 +1,4 @@
-﻿namespace DB_Proj_00
+namespace DB_Proj_00
 {
     partial class SellerDashboard
     {
@@ -39,9 +39,6 @@
             label1 = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            label18 = new Label();
-            label17 = new Label();
-            label16 = new Label();
             label8 = new Label();
             label7 = new Label();
             label6 = new Label();
@@ -85,17 +82,19 @@
             panel1.Controls.Add(pictureBox1);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(4, 4, 4, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(142, 550);
+            panel1.Size = new Size(178, 562);
             panel1.TabIndex = 0;
             // 
             // button6
             // 
-            button6.BackColor = Color.Firebrick;
+            button6.BackColor = Color.Gray;
             button6.ForeColor = Color.White;
-            button6.Location = new Point(0, 510);
+            button6.Location = new Point(0, 525);
+            button6.Margin = new Padding(4, 4, 4, 4);
             button6.Name = "button6";
-            button6.Size = new Size(142, 29);
+            button6.Size = new Size(178, 36);
             button6.TabIndex = 6;
             button6.Text = "Log Out";
             button6.UseVisualStyleBackColor = false;
@@ -106,9 +105,10 @@
             button4.BackColor = Color.Gray;
             button4.Font = new Font("Times New Roman", 8.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button4.ForeColor = Color.White;
-            button4.Location = new Point(0, 340);
+            button4.Location = new Point(0, 450);
+            button4.Margin = new Padding(4, 4, 4, 4);
             button4.Name = "button4";
-            button4.Size = new Size(142, 29);
+            button4.Size = new Size(178, 36);
             button4.TabIndex = 4;
             button4.Text = "Sales Reports";
             button4.UseVisualStyleBackColor = false;
@@ -119,9 +119,10 @@
             button3.BackColor = Color.Gray;
             button3.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button3.ForeColor = Color.White;
-            button3.Location = new Point(0, 280);
+            button3.Location = new Point(0, 300);
+            button3.Margin = new Padding(4, 4, 4, 4);
             button3.Name = "button3";
-            button3.Size = new Size(142, 29);
+            button3.Size = new Size(178, 36);
             button3.TabIndex = 3;
             button3.Text = "Order Fulfilment";
             button3.UseVisualStyleBackColor = false;
@@ -132,9 +133,10 @@
             button2.BackColor = Color.Gray;
             button2.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button2.ForeColor = Color.White;
-            button2.Location = new Point(0, 220);
+            button2.Location = new Point(0, 225);
+            button2.Margin = new Padding(4, 4, 4, 4);
             button2.Name = "button2";
-            button2.Size = new Size(142, 29);
+            button2.Size = new Size(178, 36);
             button2.TabIndex = 2;
             button2.Text = "Product Listing & Inventory";
             button2.UseVisualStyleBackColor = false;
@@ -147,9 +149,10 @@
             button1.FlatAppearance.BorderSize = 0;
             button1.Font = new Font("Times New Roman", 8.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(0, 160);
+            button1.Location = new Point(0, 150);
+            button1.Margin = new Padding(4, 4, 4, 4);
             button1.Name = "button1";
-            button1.Size = new Size(142, 29);
+            button1.Size = new Size(178, 36);
             button1.TabIndex = 0;
             button1.Text = "Account Management";
             button1.UseVisualStyleBackColor = false;
@@ -159,8 +162,9 @@
             // 
             pictureBox1.Image = Properties.Resources.Tabby;
             pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Margin = new Padding(4, 4, 4, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(142, 86);
+            pictureBox1.Size = new Size(178, 108);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -171,18 +175,20 @@
             panel2.Controls.Add(label1);
             panel2.Controls.Add(tabControl1);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(142, 0);
+            panel2.Location = new Point(178, 0);
+            panel2.Margin = new Padding(4, 4, 4, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(708, 550);
+            panel2.Size = new Size(822, 562);
             panel2.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 16F, FontStyle.Bold);
-            label1.Location = new Point(193, 9);
+            label1.Location = new Point(241, 11);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(298, 32);
+            label1.Size = new Size(348, 37);
             label1.TabIndex = 0;
             label1.Text = "Account Management";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -192,18 +198,15 @@
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
-            tabControl1.Dock = DockStyle.Bottom;
-            tabControl1.Location = new Point(0, 38);
+            tabControl1.Location = new Point(8, 54);
+            tabControl1.Margin = new Padding(4, 4, 4, 4);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(708, 512);
+            tabControl1.Size = new Size(811, 505);
             tabControl1.TabIndex = 1;
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(label18);
-            tabPage1.Controls.Add(label17);
-            tabPage1.Controls.Add(label16);
             tabPage1.Controls.Add(label8);
             tabPage1.Controls.Add(label7);
             tabPage1.Controls.Add(label6);
@@ -211,67 +214,44 @@
             tabPage1.Controls.Add(label4);
             tabPage1.Controls.Add(label3);
             tabPage1.Controls.Add(label2);
-            tabPage1.Location = new Point(4, 29);
+            tabPage1.Location = new Point(4, 34);
+            tabPage1.Margin = new Padding(4, 4, 4, 4);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(700, 479);
+            tabPage1.Padding = new Padding(4, 4, 4, 4);
+            tabPage1.Size = new Size(803, 467);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Prof. Info.";
             tabPage1.UseVisualStyleBackColor = true;
             tabPage1.Click += tabPage1_Click;
             // 
-            // label18
-            // 
-            label18.AutoSize = true;
-            label18.Location = new Point(257, 304);
-            label18.Name = "label18";
-            label18.Size = new Size(58, 20);
-            label18.TabIndex = 9;
-            label18.Text = "label18";
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Location = new Point(292, 220);
-            label17.Name = "label17";
-            label17.Size = new Size(58, 20);
-            label17.TabIndex = 8;
-            label17.Text = "label17";
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Location = new Point(250, 139);
-            label16.Name = "label16";
-            label16.Size = new Size(58, 20);
-            label16.TabIndex = 7;
-            label16.Text = "label16";
-            // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Arial", 21F, FontStyle.Bold | FontStyle.Italic);
-            label8.Location = new Point(183, 48);
+            label8.Location = new Point(229, 60);
+            label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
-            label8.Size = new Size(280, 40);
+            label8.Size = new Size(341, 48);
             label8.TabIndex = 6;
             label8.Text = "Welcome, Seller";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(264, 259);
+            label7.Location = new Point(330, 324);
+            label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
-            label7.Size = new Size(0, 20);
+            label7.Size = new Size(0, 25);
             label7.TabIndex = 5;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Arial", 10F, FontStyle.Bold);
-            label6.Location = new Point(150, 305);
+            label6.Location = new Point(188, 325);
+            label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
-            label6.Size = new Size(105, 19);
+            label6.Size = new Size(125, 24);
             label6.TabIndex = 4;
             label6.Text = "Shop Name:";
             label6.Click += label6_Click;
@@ -279,37 +259,40 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(315, 200);
+            label5.Location = new Point(394, 250);
+            label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(0, 20);
+            label5.Size = new Size(0, 25);
             label5.TabIndex = 3;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Arial", 10F, FontStyle.Bold);
-            label4.Location = new Point(150, 223);
+            label4.Location = new Point(188, 250);
+            label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(136, 19);
+            label4.Size = new Size(162, 24);
             label4.TabIndex = 2;
             label4.Text = "Account Status:";
-            label4.Click += label4_Click;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(264, 140);
+            label3.Location = new Point(330, 175);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(0, 20);
+            label3.Size = new Size(0, 25);
             label3.TabIndex = 1;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Arial", 10F, FontStyle.Bold);
-            label2.Location = new Point(150, 140);
+            label2.Location = new Point(188, 175);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(94, 19);
+            label2.Size = new Size(112, 24);
             label2.TabIndex = 0;
             label2.Text = "Username:";
             // 
@@ -321,10 +304,11 @@
             tabPage2.Controls.Add(textBox1);
             tabPage2.Controls.Add(label10);
             tabPage2.Controls.Add(label9);
-            tabPage2.Location = new Point(4, 29);
+            tabPage2.Location = new Point(4, 34);
+            tabPage2.Margin = new Padding(4, 4, 4, 4);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(700, 479);
+            tabPage2.Padding = new Padding(4, 4, 4, 4);
+            tabPage2.Size = new Size(803, 467);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Chng. Pwd.";
             tabPage2.UseVisualStyleBackColor = true;
@@ -333,46 +317,49 @@
             // 
             label15.AutoSize = true;
             label15.Font = new Font("Arial", 19F, FontStyle.Bold);
-            label15.Location = new Point(190, 30);
+            label15.Location = new Point(238, 38);
+            label15.Margin = new Padding(4, 0, 4, 0);
             label15.Name = "label15";
-            label15.Size = new Size(292, 37);
+            label15.Size = new Size(347, 45);
             label15.TabIndex = 5;
             label15.Text = "Password Change";
             // 
             // button7
             // 
             button7.BackColor = Color.WhiteSmoke;
-            button7.Location = new Point(265, 288);
+            button7.Location = new Point(331, 360);
+            button7.Margin = new Padding(4, 4, 4, 4);
             button7.Name = "button7";
-            button7.Size = new Size(94, 29);
+            button7.Size = new Size(118, 36);
             button7.TabIndex = 4;
             button7.Text = "Save";
             button7.UseVisualStyleBackColor = false;
-            button7.Click += button7_Click;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(300, 193);
+            textBox2.Location = new Point(375, 241);
+            textBox2.Margin = new Padding(4, 4, 4, 4);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(177, 27);
+            textBox2.Size = new Size(220, 31);
             textBox2.TabIndex = 3;
             textBox2.TextChanged += textBox2_TextChanged;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(300, 133);
+            textBox1.Location = new Point(375, 166);
+            textBox1.Margin = new Padding(4, 4, 4, 4);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(177, 27);
+            textBox1.Size = new Size(220, 31);
             textBox1.TabIndex = 2;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Arial", 7F, FontStyle.Bold);
-            label10.Location = new Point(150, 200);
+            label10.Location = new Point(188, 250);
+            label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
-            label10.Size = new Size(116, 15);
+            label10.Size = new Size(138, 16);
             label10.TabIndex = 1;
             label10.Text = "Confirm Password:";
             // 
@@ -380,9 +367,10 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Arial", 7F, FontStyle.Bold);
-            label9.Location = new Point(150, 140);
+            label9.Location = new Point(188, 175);
+            label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
-            label9.Size = new Size(96, 15);
+            label9.Size = new Size(113, 16);
             label9.TabIndex = 0;
             label9.Text = "New Password:";
             // 
@@ -396,9 +384,10 @@
             tabPage3.Controls.Add(label13);
             tabPage3.Controls.Add(label12);
             tabPage3.Controls.Add(label11);
-            tabPage3.Location = new Point(4, 29);
+            tabPage3.Location = new Point(4, 34);
+            tabPage3.Margin = new Padding(4, 4, 4, 4);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(700, 479);
+            tabPage3.Size = new Size(803, 467);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Edit Prof.";
             tabPage3.UseVisualStyleBackColor = true;
@@ -406,45 +395,48 @@
             // button8
             // 
             button8.BackColor = Color.WhiteSmoke;
-            button8.Location = new Point(272, 304);
+            button8.Location = new Point(340, 380);
+            button8.Margin = new Padding(4, 4, 4, 4);
             button8.Name = "button8";
-            button8.Size = new Size(94, 29);
+            button8.Size = new Size(118, 36);
             button8.TabIndex = 7;
             button8.Text = "Save";
             button8.UseVisualStyleBackColor = false;
-            button8.Click += button8_Click;
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(284, 235);
+            textBox5.Location = new Point(355, 294);
+            textBox5.Margin = new Padding(4, 4, 4, 4);
             textBox5.Name = "textBox5";
-            textBox5.Size = new Size(168, 27);
+            textBox5.Size = new Size(209, 31);
             textBox5.TabIndex = 6;
             textBox5.TextChanged += textBox5_TextChanged;
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(284, 175);
+            textBox4.Location = new Point(355, 219);
+            textBox4.Margin = new Padding(4, 4, 4, 4);
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(168, 27);
+            textBox4.Size = new Size(209, 31);
             textBox4.TabIndex = 5;
             textBox4.TextChanged += textBox4_TextChanged;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(284, 115);
+            textBox3.Location = new Point(355, 144);
+            textBox3.Margin = new Padding(4, 4, 4, 4);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(168, 27);
+            textBox3.Size = new Size(209, 31);
             textBox3.TabIndex = 4;
-            textBox3.TextChanged += textBox3_TextChanged;
             // 
             // label14
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Arial", 9F, FontStyle.Bold);
-            label14.Location = new Point(160, 240);
+            label14.Location = new Point(200, 300);
+            label14.Margin = new Padding(4, 0, 4, 0);
             label14.Name = "label14";
-            label14.Size = new Size(93, 18);
+            label14.Size = new Size(118, 21);
             label14.TabIndex = 3;
             label14.Text = "Shop Name:";
             // 
@@ -452,9 +444,10 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Arial", 9F, FontStyle.Bold);
-            label13.Location = new Point(160, 180);
+            label13.Location = new Point(200, 225);
+            label13.Margin = new Padding(4, 0, 4, 0);
             label13.Name = "label13";
-            label13.Size = new Size(70, 18);
+            label13.Size = new Size(90, 21);
             label13.TabIndex = 2;
             label13.Text = "Address:";
             // 
@@ -462,9 +455,10 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Arial", 9F, FontStyle.Bold);
-            label12.Location = new Point(160, 120);
+            label12.Location = new Point(200, 150);
+            label12.Margin = new Padding(4, 0, 4, 0);
             label12.Name = "label12";
-            label12.Size = new Size(84, 18);
+            label12.Size = new Size(107, 21);
             label12.TabIndex = 1;
             label12.Text = "Username:";
             // 
@@ -472,19 +466,21 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Arial", 19F, FontStyle.Bold);
-            label11.Location = new Point(240, 30);
+            label11.Location = new Point(300, 38);
+            label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
-            label11.Size = new Size(188, 37);
+            label11.Size = new Size(222, 45);
             label11.TabIndex = 0;
             label11.Text = "Edit Profile";
             // 
             // Form7
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(850, 550);
+            ClientSize = new Size(1000, 562);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "Form7";
             Text = "Taberna -Seller UI";
             panel1.ResumeLayout(false);
@@ -537,9 +533,11 @@
         private Label label11;
         private Button button8;
         private Label label15;
-        private Label label18;
-        private Label label17;
-        private Label label16;
+
+
+
+
+
     }
 
 
