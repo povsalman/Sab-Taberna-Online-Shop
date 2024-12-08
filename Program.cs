@@ -11,7 +11,7 @@ namespace DB_Proj_00
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new AdminNewDashboard());
+            Application.Run(new Login());
             //Application.Run(new Customer_Purchase_Behavior());
         }
     }

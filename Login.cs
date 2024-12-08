@@ -1,5 +1,3 @@
-using System;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace DB_Proj_00
@@ -11,20 +9,10 @@ namespace DB_Proj_00
             InitializeComponent();
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // Static session class to store the UserID
-        public static class Session
-        {
-            public static int UserID { get; set; }
-        }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Form2 form2 = new Form2();
+            SignUpRole form2 = new SignUpRole();
             form2.Show();
             this.Hide();
         }
@@ -34,99 +22,210 @@ namespace DB_Proj_00
             this.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
-            string userName = textBox1.Text;
-            string password = textBox2.Text;
-            string selectedRole = comboBox1.SelectedItem?.ToString();
+            string username = txtUsername.Text.Trim();
+            string password = txtPassword.Text.Trim();
+            string selectedRole = comboRole.SelectedItem as string;
 
-            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(selectedRole))
+            // Validate input fields
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrEmpty(selectedRole))
             {
-                MessageBox.Show("Please fill all fields and select a role.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please fill in all fields and select a role.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-
-            using (var conn = DBHandler.GetConnection())
+            try
             {
-                try
+                // Query to validate user credentials and role in a single step
+                string query = @"
+                    SELECT u.UserID 
+                    FROM ISUSER u
+                    WHERE u.UserName = @UserName 
+                          AND u.Password = @Password 
+                          AND u.AccountType = @AccountType";
+
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@UserName", username),
+                    new SqlParameter("@Password", password),
+                    new SqlParameter("@AccountType", selectedRole)
+                };
+
+                int userId = ExecuteScalar(query, parameters);
+
+                if (userId > 0)
+                {
+                    NavigateToDashboard(selectedRole, userId);
+                    this.Hide(); // Hide login form on successful login
+                }
+                else
+                {
+                    MessageBox.Show("Invalid username, password, or role.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Navigate to the appropriate dashboard based on role
+        private void NavigateToDashboard(string role, int userId)
+        {
+            switch (role)
+            {
+                case "Customer":
+                    FetchAndStoreCustomerSessionData(userId);
+                    CustomerDashboard customerForm = new CustomerDashboard();
+                    customerForm.Show();
+                    break;
+
+                case "Seller":
+                    Form7 sellerForm = new Form7();
+                    sellerForm.Show();
+                    break;
+
+                case "Admin":
+                    FetchAndStoreAdminSessionData(userId);
+                    AdminNewDashboard adminDashboard = new AdminNewDashboard();
+                    adminDashboard.Show();
+                    break;
+
+                case "Logistics Provider":
+                    Form8 logisticsForm = new Form8();
+                    logisticsForm.Show();
+                    break;
+
+                default:
+                    MessageBox.Show("Invalid role selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+            }
+        }
+
+        private void FetchAndStoreCustomerSessionData(int userId)
+        {
+            string query = @"
+                SELECT UserID, UserName, AccountType
+                FROM ISUSER
+                WHERE UserID = @UserID";
+
+            SqlParameter[] parameters = { new SqlParameter("@UserID", userId) };
+
+            try
+            {
+                using (var connection = DBHandler.GetConnection())
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddRange(parameters);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Store customer data in session
+                                SessionManager.UserID = reader.GetInt32(reader.GetOrdinal("UserID"));
+                                SessionManager.UserName = reader.GetString(reader.GetOrdinal("UserName"));
+                                SessionManager.Role = reader.GetString(reader.GetOrdinal("AccountType"));  // Now correctly fetching AccountType
+                            }
+                            else
+                            {
+                                MessageBox.Show("User not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while fetching customer session data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+        // Save details in AdminSessionManager 
+        private void FetchAndStoreAdminSessionData(int userId)
+        {
+            string query = @"
+                SELECT u.UserID, u.UserName, u.Contact AS Email, u.Password, 
+                       a.Role AS AdminRole
+                FROM ISUSER u
+                INNER JOIN ADMIN a ON u.UserID = a.UserID
+                WHERE u.UserID = @UserID";
+
+            SqlParameter[] parameters = { new SqlParameter("@UserID", userId) };
+
+            try
+            {
+                using (var connection = DBHandler.GetConnection())
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddRange(parameters);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Store admin data in session
+                                AdminSessionManager.UserID = reader.GetInt32(reader.GetOrdinal("UserID"));
+                                AdminSessionManager.UserName = reader.GetString(reader.GetOrdinal("UserName"));
+                                AdminSessionManager.Email = reader.GetString(reader.GetOrdinal("Email"));
+                                AdminSessionManager.Password = reader.GetString(reader.GetOrdinal("Password"));
+                                AdminSessionManager.Role = "Admin"; // AccountType
+                                AdminSessionManager.FullName = reader.GetString(reader.GetOrdinal("AdminRole")); // Role from ADMIN table
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while fetching admin session data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private int ExecuteScalar(string query, SqlParameter[] parameters)
+        {
+            int result = -1;
+
+
+            try
+            {
+                using (var conn = DBHandler.GetConnection())
                 {
                     conn.Open();
 
-                    string query = "SELECT UserID FROM ISUSER WHERE UserName = @UserName AND Password = @Password";
-                    int userId;
                     using (SqlCommand command = new SqlCommand(query, conn))
                     {
-                        command.Parameters.AddWithValue("@UserName", userName);
-                        command.Parameters.AddWithValue("@Password", password);
-
-                        object result = command.ExecuteScalar();
-                        if (result == null)
+                        if (parameters != null)
                         {
-                            MessageBox.Show("Invalid username or password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
+                            command.Parameters.AddRange(parameters);
                         }
-                        userId = Convert.ToInt32(result);
-                    }
 
-                    // Verify role in the appropriate table
-                    string roleQuery = selectedRole switch
-                    {
-                        "Customer" => "SELECT COUNT(*) FROM CUSTOMER WHERE UserID = @UserID",
-                        "Seller" => "SELECT COUNT(*) FROM SELLER WHERE UserID = @UserID",
-                        "Admin" => "SELECT COUNT(*) FROM ADMIN WHERE UserID = @UserID",
-                        _ => null
-                    };
-
-                    if (roleQuery == null)
-                    {
-                        MessageBox.Show("Invalid role selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    using (SqlCommand roleCommand = new SqlCommand(roleQuery, conn))
-                    {
-                        roleCommand.Parameters.AddWithValue("@UserID", userId);
-                        int roleExists = Convert.ToInt32(roleCommand.ExecuteScalar());
-                        if (roleExists == 0)
+                        object scalarValue = command.ExecuteScalar();
+                        if (scalarValue != null && int.TryParse(scalarValue.ToString(), out int parsedValue))
                         {
-                            MessageBox.Show($"User does not have the {selectedRole} role.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
+                            result = parsedValue;
                         }
                     }
-
-                    // Store session information
-                    SessionManager.UserID = userId;
-                    SessionManager.Role = selectedRole;
-                    SessionManager.UserName = userName;
-
-
-
-                    if (selectedRole == "Customer")
-                    {
-                        CustomerDashboard customerDashboard = new CustomerDashboard();
-                        customerDashboard.Show();
-                    }
-                    else if (selectedRole == "Seller")
-                    {
-                        Form8 sellerDashboard = new Form8();
-                        sellerDashboard.Show();
-                    }
-                    else if (selectedRole == "Admin")
-                    {
-                        AdminNewDashboard adminDashboard = new AdminNewDashboard();
-                        adminDashboard.Show();
-
-                    }
-
-                    this.Hide();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return result;
         }
+
 
     }
 }

@@ -32,11 +32,11 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            comboBox1 = new ComboBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            comboRole = new ComboBox();
+            txtUsername = new TextBox();
+            txtPassword = new TextBox();
             label4 = new Label();
-            button1 = new Button();
+            btnLogin = new Button();
             button2 = new Button();
             toolTip1 = new ToolTip(components);
             linkLabel2 = new LinkLabel();
@@ -69,32 +69,35 @@
             label3.TabIndex = 4;
             label3.Text = "Role:";
             // 
-            // comboBox1
+            // comboRole
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Customer", "Seller", "Admin", "Logistics Provider" });
-            comboBox1.Location = new Point(300, 250);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(200, 28);
-            comboBox1.TabIndex = 5;
-            toolTip1.SetToolTip(comboBox1, "Select your role from the dropdown.");
+            comboRole.FormattingEnabled = true;
+            comboRole.Items.AddRange(new object[] { "Customer", "Seller", "Admin", "Logistics" });
+            comboRole.Location = new Point(300, 250);
+            comboRole.Name = "comboRole";
+            comboRole.Size = new Size(200, 28);
+            comboRole.TabIndex = 5;
+            toolTip1.SetToolTip(comboRole, "Select your role from the dropdown.");
+            //comboRole.SelectedIndexChanged += comboRole_SelectedIndexChanged;
             // 
-            // textBox1
+            // txtUsername
             // 
-            textBox1.Location = new Point(300, 150);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(200, 27);
-            textBox1.TabIndex = 1;
-            toolTip1.SetToolTip(textBox1, "Enter your username (e.g., johndoe123).");
+            txtUsername.Location = new Point(300, 150);
+            txtUsername.Name = "txtUsername";
+            txtUsername.Size = new Size(200, 27);
+            txtUsername.TabIndex = 1;
+            toolTip1.SetToolTip(txtUsername, "Enter your username (e.g., johndoe123).");
+            //txtUsername.TextChanged += txtUsername_TextChanged;
             // 
-            // textBox2
+            // txtPassword
             // 
-            textBox2.Location = new Point(300, 200);
-            textBox2.Name = "textBox2";
-            textBox2.PasswordChar = '*';
-            textBox2.Size = new Size(200, 27);
-            textBox2.TabIndex = 3;
-            toolTip1.SetToolTip(textBox2, "Enter your secure password.");
+            txtPassword.Location = new Point(300, 200);
+            txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
+            txtPassword.Size = new Size(200, 27);
+            txtPassword.TabIndex = 3;
+            toolTip1.SetToolTip(txtPassword, "Enter your secure password.");
+            //txtPassword.TextChanged += txtPassword_TextChanged;
             // 
             // label4
             // 
@@ -106,17 +109,17 @@
             label4.TabIndex = 8;
             label4.Text = "Login";
             label4.TextAlign = ContentAlignment.MiddleCenter;
-            label4.Click += label4_Click;
+            //label4.Click += label4_Click;
             // 
-            // button1
+            // btnLogin
             // 
-            button1.Location = new Point(270, 300);
-            button1.Name = "button1";
-            button1.Size = new Size(100, 30);
-            button1.TabIndex = 6;
-            button1.Text = "Login";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnLogin.Location = new Point(270, 300);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(100, 30);
+            btnLogin.TabIndex = 6;
+            btnLogin.Text = "Login";
+            btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.Click += btnLogin_Click;
             // 
             // button2
             // 
@@ -139,22 +142,22 @@
             linkLabel2.Text = "Don't have an account? Sign up here!";
             linkLabel2.LinkClicked += linkLabel2_LinkClicked;
             // 
-            // Form1
+            // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(linkLabel2);
             Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnLogin);
             Controls.Add(label4);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(comboBox1);
+            Controls.Add(txtPassword);
+            Controls.Add(txtUsername);
+            Controls.Add(comboRole);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Name = "Form1";
+            Name = "Login";
             Text = "Login";
             ResumeLayout(false);
             PerformLayout();
@@ -165,12 +168,12 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private ComboBox comboBox1;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private ComboBox comboRole;
+        private TextBox txtUsername;
+        private TextBox txtPassword;
         private LinkLabel linkLabel1;
         private Label label4;
-        private Button button1;
+        private Button btnLogin;
         private Button button2;
         private ToolTip toolTip1;
         private LinkLabel linkLabel2;
