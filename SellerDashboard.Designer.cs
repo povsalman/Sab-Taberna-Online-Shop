@@ -1,6 +1,6 @@
 ﻿namespace DB_Proj_00
 {
-    partial class Form7
+    partial class SellerDashboard
     {
         /// <summary>
         /// Required designer variable.

@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace DB_Proj_00
 {
-    public partial class Form4 : Form
+    public partial class SellerSignup : Form
     {
-        public Form4()
+        public SellerSignup()
         {
             InitializeComponent();
         }

@@ -39,8 +39,7 @@ namespace DB_Proj_00
                 return;
             }
 
-            string connectionString = @"Server=DESKTOP-36T2U50\SQLEXPRESS;Database=SABTaberna;Trusted_Connection=True;";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (var connection = DBHandler.GetConnection())
             {
                 try
                 {
@@ -93,7 +92,7 @@ namespace DB_Proj_00
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
+            SignUpRole form2 = new SignUpRole();
 
             form2.Show();
 

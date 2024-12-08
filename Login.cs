@@ -83,7 +83,7 @@ namespace DB_Proj_00
 
                 case "Seller":
                     FetchAndStoreCustomerSessionData(userId);
-                    Form7 sellerForm = new Form7();
+                    SellerDashboard sellerForm = new SellerDashboard();
                     sellerForm.Show();
                     break;
 

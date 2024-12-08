@@ -5,9 +5,9 @@ using System.Data.SqlClient;
 
 namespace DB_Proj_00
 {
-    public partial class Form17 : Form
+    public partial class SellerOrders : Form
     {
-        public Form17()
+        public SellerOrders()
         {
             InitializeComponent();
             LoadOrders();
@@ -256,7 +256,7 @@ namespace DB_Proj_00
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Form7 sellerDashboard = new Form7();
+            SellerDashboard sellerDashboard = new SellerDashboard();
             sellerDashboard.Show();
             this.Close();
         }

@@ -11,9 +11,9 @@ using System.Data.SqlClient;
 
 namespace DB_Proj_00
 {
-    public partial class Form7 : Form
+    public partial class SellerDashboard : Form
     {
-        public Form7()
+        public SellerDashboard()
         {
             InitializeComponent();
             panel2.BringToFront();
@@ -91,7 +91,7 @@ namespace DB_Proj_00
         private void button2_Click(object sender, EventArgs e)
         {
             // Navigate to the Product Management page
-            Form16 productManagementForm = new Form16();
+            SellerProduct productManagementForm = new SellerProduct();
             productManagementForm.Show();
             this.Hide();
         }
@@ -99,7 +99,7 @@ namespace DB_Proj_00
         private void button3_Click(object sender, EventArgs e)
         {
             // Navigate to the Order Fulfillment page
-            Form17 orderFulfillmentForm = new Form17();
+            SellerOrders orderFulfillmentForm = new SellerOrders();
             orderFulfillmentForm.Show();
             this.Hide();
         }
@@ -108,7 +108,7 @@ namespace DB_Proj_00
         private void button4_Click(object sender, EventArgs e)
         {
             // Navigate to the Sales Reports and Analytics page
-            Form18 salesReportForm = new Form18();
+            SellerReports salesReportForm = new SellerReports();
             salesReportForm.Show();
             this.Hide();
         }

@@ -35,12 +35,12 @@ namespace DB_Proj_00
             switch (selectedRole)
             {
                 case "Customer":
-                    Form3 customerForm = new Form3();
+                    CustomerSignup customerForm = new CustomerSignup();
                     customerForm.Show();
                     break;
 
                 case "Seller":
-                    Form4 sellerForm = new Form4();
+                    SellerSignup sellerForm = new SellerSignup();
                     sellerForm.Show();
                     break;
 

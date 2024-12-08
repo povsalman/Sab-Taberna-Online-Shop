@@ -5,15 +5,13 @@
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelCart;
         private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.Button btnCheckout;
 
-        
+
 
         private void InitializeComponent()
         {
             flowLayoutPanelCart = new FlowLayoutPanel();
             btnBack = new Button();
-            btnCheckout = new Button();
             btnReview = new Button();
             SuspendLayout();
             // 
@@ -22,7 +20,7 @@
             flowLayoutPanelCart.AutoScroll = true;
             flowLayoutPanelCart.Location = new Point(20, 20);
             flowLayoutPanelCart.Name = "flowLayoutPanelCart";
-            flowLayoutPanelCart.Size = new Size(1360, 500);
+            flowLayoutPanelCart.Size = new Size(1348, 500);
             flowLayoutPanelCart.TabIndex = 0;
             // 
             // btnBack
@@ -34,25 +32,21 @@
             btnBack.Text = "Back";
             btnBack.Click += btnBack_Click;
             // 
-            // btnCheckout
+            // btnReview
             // 
-           
-
-            Load += Form12_Load;
-
             btnReview.Location = new Point(0, 0);
             btnReview.Name = "btnReview";
             btnReview.Size = new Size(75, 23);
             btnReview.TabIndex = 0;
             // 
-            // Form12
+            // CustomerCart
             // 
             ClientSize = new Size(1392, 600);
             Controls.Add(flowLayoutPanelCart);
             Controls.Add(btnBack);
-            Controls.Add(btnCheckout);
-            Name = "Form12";
+            Name = "CustomerCart";
             Text = "Shopping Cart";
+            Load += Form12_Load;
             ResumeLayout(false);
         }
 

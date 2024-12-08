@@ -5,11 +5,11 @@ using System.Data.SqlClient;
 
 namespace DB_Proj_00
 {
-    public partial class Form16 : Form
+    public partial class SellerProduct : Form
     {
         private int? selectedProductId = null; // To hold the product ID during editing
 
-        public Form16()
+        public SellerProduct()
         {
             InitializeComponent();
             PopulateProductGrid();
@@ -206,7 +206,7 @@ namespace DB_Proj_00
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Form7 sellerDashboard = new Form7();
+            SellerDashboard sellerDashboard = new SellerDashboard();
             sellerDashboard.Show();
             this.Close();
         }

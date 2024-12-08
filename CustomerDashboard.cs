@@ -46,9 +46,6 @@ namespace DB_Proj_00
             this.Hide();
         }
 
-
-
-
         private void button5_Click(object sender, EventArgs e)
         {
             CustomerReview reviewForm = new CustomerReview();
@@ -58,8 +55,8 @@ namespace DB_Proj_00
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Form15 reviewForm = new Form15();
-            reviewForm.Show();
+            CustomerOrder corder = new CustomerOrder();
+            corder.Show();
             this.Hide();
         }
 
