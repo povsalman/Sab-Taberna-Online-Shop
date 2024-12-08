@@ -5,11 +5,11 @@ using System.Data.SqlClient;
 
 namespace DB_Proj_00
 {
-    public partial class SellerProduct : Form
+    public partial class SellerProductManagement : Form
     {
         private int? selectedProductId = null; // To hold the product ID during editing
 
-        public SellerProduct()
+        public SellerProductManagement()
         {
             InitializeComponent();
             PopulateProductGrid();
@@ -18,40 +18,44 @@ namespace DB_Proj_00
 
         private void PopulateProductGrid()
         {
-            // Define the query to retrieve product data
-            string query = "SELECT ProductID, Name, Price, StockLevel, Description FROM ISPRODUCT";
+            if (!SellerSessionManager.IsLoggedIn)
+            {
+                MessageBox.Show("Please log in first.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            // Create a new DataTable to hold the retrieved data
+            string query = @"
+        SELECT ProductID, Name, Price, StockLevel, Description 
+        FROM ISPRODUCT
+        WHERE SellerID = @SellerID";
+
             DataTable dt = new DataTable();
 
             try
             {
-                // Open a connection to the database
                 using (var connection = DBHandler.GetConnection())
                 {
                     connection.Open();
 
-                    // Execute the query and fill the DataTable with the results
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
                     {
-                        adapter.Fill(dt);
+                        cmd.Parameters.AddWithValue("@SellerID", SellerSessionManager.SellerID); // Use SellerID
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(dt);
+                        }
                     }
                 }
 
-                // Remove existing columns in the dgv before setting the new data
-                dgvProducts.Columns.Clear();
-
-                // Set the dgv's DataSource to the populated DataTable
                 dgvProducts.DataSource = dt;
-
-                // Optionally, you can customize the column headers after binding data
-                Customizedgv();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while retrieving the data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred while retrieving products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void Customizedgv()
         {
@@ -113,7 +117,7 @@ namespace DB_Proj_00
                 numStockLevel.Visible = true;
                 txtDescription.Visible = true;
                 btnSaveChanges.Visible = true;
-                numSellerID.Visible = true; 
+                numSellerID.Visible = true;
                 numCategoryID.Visible = true;
 
                 // Pre-fill the fields with the selected product's data

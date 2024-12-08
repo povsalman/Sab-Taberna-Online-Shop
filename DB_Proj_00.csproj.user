@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="Abandoned Cart Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="AdminNewDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -31,6 +34,9 @@
     <Compile Update="Customer Purchase Behavior.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Inventory Management Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -49,10 +55,22 @@
     <Compile Update="CustomerOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="SellerProduct.cs">
+    <Compile Update="LogisticsDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="SellerOrders.cs">
+    <Compile Update="LogisticsShipping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Sales Performance Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Seller Performance Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="SellerOrderFullfillment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="SellerProductManagement.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="SellerReports.cs">
