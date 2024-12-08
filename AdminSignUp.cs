@@ -1,6 +1,7 @@
 ﻿using System;
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.Logging;
 
 namespace DB_Proj_00
 {
@@ -101,7 +102,7 @@ namespace DB_Proj_00
         private void btnBackSignupRole_Click(object sender, EventArgs e)
         {
             // Navigate back to the role selection form
-            SignUpRole form2 = new SignUpRole();
+            Form2 form2 = new Form2();
             form2.Show();
             this.Close();
         }

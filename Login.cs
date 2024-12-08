@@ -1,4 +1,4 @@
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 
 namespace DB_Proj_00
 {
@@ -76,7 +76,8 @@ namespace DB_Proj_00
             switch (role)
             {
                 case "Customer":
-                    Form10 customerForm = new Form10();
+                    FetchAndStoreCustomerSessionData(userId);
+                    CustomerDashboard customerForm = new CustomerDashboard();
                     customerForm.Show();
                     break;
 
@@ -86,7 +87,6 @@ namespace DB_Proj_00
                     break;
 
                 case "Admin":
-                    //Store admin details in AdminSessionManager
                     FetchAndStoreAdminSessionData(userId);
                     AdminNewDashboard adminDashboard = new AdminNewDashboard();
                     adminDashboard.Show();
@@ -102,6 +102,50 @@ namespace DB_Proj_00
                     break;
             }
         }
+
+        private void FetchAndStoreCustomerSessionData(int userId)
+        {
+            string query = @"
+                SELECT UserID, UserName, AccountType
+                FROM ISUSER
+                WHERE UserID = @UserID";
+
+            SqlParameter[] parameters = { new SqlParameter("@UserID", userId) };
+
+            try
+            {
+                using (var connection = DBHandler.GetConnection())
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddRange(parameters);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Store customer data in session
+                                SessionManager.UserID = reader.GetInt32(reader.GetOrdinal("UserID"));
+                                SessionManager.UserName = reader.GetString(reader.GetOrdinal("UserName"));
+                                SessionManager.Role = reader.GetString(reader.GetOrdinal("AccountType"));  // Now correctly fetching AccountType
+                            }
+                            else
+                            {
+                                MessageBox.Show("User not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while fetching customer session data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
         // Save details in AdminSessionManager 
         private void FetchAndStoreAdminSessionData(int userId)
@@ -152,15 +196,14 @@ namespace DB_Proj_00
         {
             int result = -1;
 
-            string connectionString = "Data Source=SALMAN\\SQLEXPRESS;Initial Catalog=SABTaberna;Integrated Security=True;Encrypt=False";
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (var conn = DBHandler.GetConnection())
                 {
-                    connection.Open();
+                    conn.Open();
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand(query, conn))
                     {
                         if (parameters != null)
                         {
@@ -186,4 +229,3 @@ namespace DB_Proj_00
 
     }
 }
-

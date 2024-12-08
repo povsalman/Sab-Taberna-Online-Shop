@@ -28,8 +28,8 @@
             btnBack = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBoxProduct).BeginInit();
             SuspendLayout();
-            
-            pictureBoxProduct.Image = (Image)resources.GetObject("pictureBoxProduct.Image");
+
+            pictureBoxProduct.Image = Image.FromFile(@"C:\Users\HP\Desktop\images\watch.jpg");
             pictureBoxProduct.Location = new Point(20, 20);
             pictureBoxProduct.Name = "pictureBoxProduct";
             pictureBoxProduct.Size = new Size(200, 200);
