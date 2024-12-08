@@ -23,7 +23,7 @@ namespace DB_Proj_00
         private void LoadData()
         {
             // Use AdminSessionManager to set label values
-            int currentID = AdminSessionManager.UserID;
+            int currentID = SessionManager.UserID;
             // Display logged-in Seller's info
             LoadUserInfo(currentID);
         }
@@ -61,9 +61,9 @@ namespace DB_Proj_00
                                 string shopName = reader["StoreName"].ToString();
 
                                 // Assuming you have labels named labelUserName, labelAccountStatus, and labelShopName
-                                label16.Text = "Username: " + userName;
-                                label17.Text = "Account Status: " + accountStatus;
-                                label18.Text = "Shop Name: " + (string.IsNullOrEmpty(shopName) ? "No shop" : shopName);
+                                label16.Text = userName;
+                                label17.Text = accountStatus;
+                                label18.Text = (string.IsNullOrEmpty(shopName) ? "No shop" : shopName);
                             }
                             else
                             {
@@ -221,16 +221,26 @@ namespace DB_Proj_00
                 {
                     conn.Open();
                     string query = @"
-                    UPDATE ISUSER
-                    SET UserName = @newUsername, Contact = @newContact, shopName = @newShopName
-                    WHERE UserID = @userID";
+                        UPDATE ISUSER
+                        SET 
+                            UserName = @newUsername, 
+                            Contact = @newContact
+                        WHERE UserID = @userID;
+
+                        UPDATE SELLER
+                        SET 
+                            StoreName = @newShopName
+                        WHERE UserID = @userID";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
+                        // Parameters for ISUSER table
                         cmd.Parameters.AddWithValue("@newUsername", newUsername);
                         cmd.Parameters.AddWithValue("@newContact", newContact);
-                        cmd.Parameters.AddWithValue("@newShopName", newShopName);
                         cmd.Parameters.AddWithValue("@userID", AdminSessionManager.UserID);
+
+                        // Parameters for SELLER table
+                        cmd.Parameters.AddWithValue("@newShopName", newShopName);
 
                         cmd.ExecuteNonQuery();
                     }
