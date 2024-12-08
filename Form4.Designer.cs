@@ -91,6 +91,7 @@
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(201, 27);
             textBox4.TabIndex = 28;
+            textBox4.TextChanged += textBox4_TextChanged;
             // 
             // textBox3
             // 
@@ -113,6 +114,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(201, 27);
             textBox1.TabIndex = 25;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label7
             // 
@@ -184,7 +186,7 @@
             label8.AutoSize = true;
             label8.Location = new Point(144, 380);
             label8.Name = "label8";
-            label8.Size = new Size(70, 20);
+            label8.Size = new Size(88, 20);
             label8.TabIndex = 34;
             label8.Text = "Store Name";
             // 
@@ -194,13 +196,14 @@
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(201, 27);
             textBox5.TabIndex = 35;
+            textBox5.TextChanged += textBox5_TextChanged;
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Location = new Point(144, 430);
             label9.Name = "label9";
-            label9.Size = new Size(70, 20);
+            label9.Size = new Size(105, 20);
             label9.TabIndex = 36;
             label9.Text = "Store Location";
             // 
@@ -210,6 +213,7 @@
             textBox7.Name = "textBox7";
             textBox7.Size = new Size(201, 27);
             textBox7.TabIndex = 37;
+            textBox7.TextChanged += textBox7_TextChanged;
             // 
             // Form4
             // 
