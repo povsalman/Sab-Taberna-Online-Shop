@@ -266,6 +266,11 @@ CHECK (AccountType IN ('Customer', 'Admin', 'Seller', 'Logistics'));
 ALTER TABLE ISPRODUCT
 ADD IsApproved NVARCHAR(3) DEFAULT 'No' NOT NULL;
 
+-- Adding Address to ISUSER
+ALTER TABLE ISUSER
+ADD Country NVARCHAR(100) NULL,
+    City NVARCHAR(100) NULL;
+
 
 
 ------
