@@ -1,13 +1,14 @@
+
 using System;
 using System.Data;
 using System.Windows.Forms;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace DB_Proj_00
 {
-    public partial class SellerOrders : Form
+    public partial class SellerOrderFullfillment : Form
     {
-        public SellerOrders()
+        public SellerOrderFullfillment()
         {
             InitializeComponent();
             LoadOrders();
@@ -18,8 +19,8 @@ namespace DB_Proj_00
             string query = @"
         SELECT 
             o.OrderID, 
-            c.Name, 
-            p.Name, 
+            c.Name AS CustomerName, 
+            p.Name AS ProductName, 
             o.ShippingStatus 
         FROM 
             ISORDER o
@@ -28,7 +29,9 @@ namespace DB_Proj_00
         JOIN 
             Order_Item oi ON o.OrderID = oi.OrderID
         JOIN 
-            ISProduct p ON oi.ProductID = p.ProductID";
+            ISProduct p ON oi.ProductID = p.ProductID
+        WHERE 
+            p.SellerID = @SellerID"; // Filter orders by the seller
 
             // Open database connection
             using (var connection = DBHandler.GetConnection())
@@ -38,6 +41,9 @@ namespace DB_Proj_00
                     connection.Open();
                     using (SqlCommand cmd = new SqlCommand(query, connection))
                     {
+                        // Set the SellerID parameter
+                        cmd.Parameters.AddWithValue("@SellerID", SellerSessionManager.SellerID);
+
                         SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
@@ -52,6 +58,7 @@ namespace DB_Proj_00
                 }
             }
         }
+
 
         private void FilterOrders(string status)
         {
