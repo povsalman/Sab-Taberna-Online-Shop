@@ -55,5 +55,9 @@ namespace DB_Proj_00
             this.Hide();
         }
 
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

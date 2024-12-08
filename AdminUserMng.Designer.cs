@@ -34,6 +34,7 @@
             comboGender = new ComboBox();
             txtName = new TextBox();
             label8 = new Label();
+            label9 = new Label();
             ((System.ComponentModel.ISupportInitialize)Acc).BeginInit();
             SuspendLayout();
             // 
@@ -44,10 +45,10 @@
             Acc.BackgroundColor = SystemColors.GradientActiveCaption;
             Acc.BorderStyle = BorderStyle.Fixed3D;
             Acc.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            Acc.Location = new Point(20, 20);
+            Acc.Location = new Point(20, 63);
             Acc.Name = "Acc";
             Acc.RowHeadersWidth = 62;
-            Acc.Size = new Size(957, 299);
+            Acc.Size = new Size(957, 256);
             Acc.TabIndex = 0;
             // 
             // btnApprove
@@ -248,11 +249,23 @@
             label8.TabIndex = 25;
             label8.Text = "Name:";
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.BackColor = Color.Transparent;
+            label9.Font = new Font("Arial", 16F, FontStyle.Bold);
+            label9.Location = new Point(308, 21);
+            label9.Name = "label9";
+            label9.Size = new Size(334, 32);
+            label9.TabIndex = 27;
+            label9.Text = "User-Seller Management";
+            label9.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // AdminUserMng
             // 
             BackgroundImage = Properties.Resources.Tabby_Photoroom;
-            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(998, 603);
+            Controls.Add(label9);
             Controls.Add(txtName);
             Controls.Add(label8);
             Controls.Add(comboGender);
@@ -276,7 +289,6 @@
             Controls.Add(btnApprove);
             Controls.Add(btnReject);
             Controls.Add(btnBack);
-            DoubleBuffered = true;
             Name = "AdminUserMng";
             Text = "Admin - User and Seller Management";
             ((System.ComponentModel.ISupportInitialize)Acc).EndInit();
@@ -303,5 +315,6 @@
         private ComboBox comboGender;
         private TextBox txtName;
         private Label label8;
+        private Label label9;
     }
 }

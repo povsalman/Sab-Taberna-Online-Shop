@@ -10,12 +10,12 @@ namespace DB_Proj_00
             InitializeComponent();
         }
 
-        private void btnBack_Click(object sender, EventArgs e)
+        /*private void btnBack_Click(object sender, EventArgs e)
         {
-            Form10 customerForm = new Form10();
+            Form10 customerForm = new Form10(userId);
             customerForm.Show();
             this.Close();
-        }
+        }*/
 
         private void btnPlaceOrder_Click(object sender, EventArgs e)
         {

@@ -1,4 +1,5 @@
-﻿namespace DB_Proj_00
+﻿
+namespace DB_Proj_00
 {
     partial class AdminOrderOversight
     {
@@ -17,12 +18,6 @@
         private void InitializeComponent()
         {
             dataGridViewOrders = new DataGridView();
-            OrderId = new DataGridViewTextBoxColumn();
-            CustomerName = new DataGridViewTextBoxColumn();
-            SellerName = new DataGridViewTextBoxColumn();
-            Status = new DataGridViewTextBoxColumn();
-            TotalAmount = new DataGridViewTextBoxColumn();
-            DatePlaced = new DataGridViewTextBoxColumn();
             txtSearch = new TextBox();
             btnSearch = new Button();
             cmbFilterStatus = new ComboBox();
@@ -38,55 +33,13 @@
             dataGridViewOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewOrders.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewOrders.BackgroundColor = SystemColors.GradientActiveCaption;
+            dataGridViewOrders.BorderStyle = BorderStyle.Fixed3D;
             dataGridViewOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewOrders.Columns.AddRange(new DataGridViewColumn[] { OrderId, CustomerName, SellerName, Status, TotalAmount, DatePlaced });
             dataGridViewOrders.Location = new Point(22, 68);
             dataGridViewOrders.Name = "dataGridViewOrders";
             dataGridViewOrders.RowHeadersWidth = 51;
             dataGridViewOrders.Size = new Size(967, 455);
             dataGridViewOrders.TabIndex = 0;
-            // 
-            // OrderId
-            // 
-            OrderId.HeaderText = "Order ID";
-            OrderId.MinimumWidth = 30;
-            OrderId.Name = "OrderId";
-            OrderId.Width = 95;
-            // 
-            // CustomerName
-            // 
-            CustomerName.HeaderText = "Customer";
-            CustomerName.MinimumWidth = 6;
-            CustomerName.Name = "CustomerName";
-            CustomerName.Width = 101;
-            // 
-            // SellerName
-            // 
-            SellerName.HeaderText = "Seller";
-            SellerName.MinimumWidth = 6;
-            SellerName.Name = "SellerName";
-            SellerName.Width = 75;
-            // 
-            // Status
-            // 
-            Status.HeaderText = "Status";
-            Status.MinimumWidth = 6;
-            Status.Name = "Status";
-            Status.Width = 78;
-            // 
-            // TotalAmount
-            // 
-            TotalAmount.HeaderText = "Total Amount";
-            TotalAmount.MinimumWidth = 6;
-            TotalAmount.Name = "TotalAmount";
-            TotalAmount.Width = 128;
-            // 
-            // DatePlaced
-            // 
-            DatePlaced.HeaderText = "Date Placed";
-            DatePlaced.MinimumWidth = 6;
-            DatePlaced.Name = "DatePlaced";
-            DatePlaced.Width = 118;
             // 
             // txtSearch
             // 
@@ -117,8 +70,7 @@
             // labelFilter
             // 
             labelFilter.AutoSize = true;
-            labelFilter.BackColor = Color.Orange;
-            labelFilter.ForeColor = SystemColors.ActiveCaptionText;
+            labelFilter.BackColor = Color.Transparent;
             labelFilter.Location = new Point(462, 565);
             labelFilter.Name = "labelFilter";
             labelFilter.Size = new Size(45, 20);
@@ -150,8 +102,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.Orange;
-            label1.ForeColor = SystemColors.ActiveCaptionText;
+            label1.BackColor = Color.Transparent;
             label1.Location = new Point(44, 565);
             label1.Name = "label1";
             label1.Size = new Size(69, 20);
@@ -160,8 +111,7 @@
             // 
             // AdminOrderOversight
             // 
-            BackgroundImage = Properties.Resources.Tabby;
-            BackgroundImageLayout = ImageLayout.Stretch;
+            BackgroundImage = Properties.Resources.Tabby_Photoroom;
             ClientSize = new Size(1022, 616);
             Controls.Add(label1);
             Controls.Add(label3);
@@ -183,12 +133,6 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox cmbFilterStatus;
         private System.Windows.Forms.Label labelFilter;
-        private DataGridViewTextBoxColumn OrderId;
-        private DataGridViewTextBoxColumn CustomerName;
-        private DataGridViewTextBoxColumn SellerName;
-        private DataGridViewTextBoxColumn Status;
-        private DataGridViewTextBoxColumn TotalAmount;
-        private DataGridViewTextBoxColumn DatePlaced;
         private Label label3;
         private Label label1;
     }

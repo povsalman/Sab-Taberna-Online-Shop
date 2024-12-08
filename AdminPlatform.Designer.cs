@@ -1,4 +1,5 @@
-﻿namespace DB_Proj_00
+﻿
+namespace DB_Proj_00
 {
     partial class AdminPlatform
     {
@@ -299,6 +300,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 192, 128);
+            BackgroundImage = Properties.Resources.Tabby_Photoroom;
             ClientSize = new Size(1024, 622);
             Controls.Add(txtShopBranches);
             Controls.Add(label16);

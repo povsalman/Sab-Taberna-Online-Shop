@@ -1,4 +1,4 @@
-﻿namespace DB_Proj_00
+namespace DB_Proj_00
 {
     partial class Form17
     {

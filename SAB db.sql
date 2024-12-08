@@ -266,6 +266,11 @@ CHECK (AccountType IN ('Customer', 'Admin', 'Seller', 'Logistics'));
 ALTER TABLE ISPRODUCT
 ADD IsApproved NVARCHAR(3) DEFAULT 'No' NOT NULL;
 
+-- Adding Address to ISUSER
+ALTER TABLE ISUSER
+ADD Country NVARCHAR(100) NULL,
+    City NVARCHAR(100) NULL;
+
 
 
 ------
@@ -335,17 +340,88 @@ VALUES
 -- Table: CATEGORY
 INSERT INTO CATEGORY (CategoryName, Description)
 VALUES 
+('Fashion', 'Fancy Wear'),
 ('Electronics', 'All kinds of electronic gadgets'),
-('Apparel', 'Fashionable clothing and accessories'),
-('Gadgets', 'Small electronic devices'),
-('Books', 'Wide range of books across various genres');
+('Home and Living', 'Fashionable accessories'),
+('Health and Beauty', 'State of the art products'),
+('Food and Beverages', 'Organic products');
 
--- Table: ISPRODUCT
-INSERT INTO ISPRODUCT (SellerID, CategoryID, Name, Description, Price, StockLevel, IsFlaggedInappropriate, ImageURL)
-VALUES 
-(1, 1, 'Laptop', 'High-end gaming laptop', 1500.00, 10, 0, 'laptop.jpg'),
-(2, 2, 'T-shirt', 'Cotton t-shirt with a cool print', 20.00, 50, 0, 'tshirt.jpg'),
-(3, 3, 'Smartwatch', 'Smartwatch with fitness tracking', 200.00, 25, 0, 'smartwatch.jpg');
+
+---- Table: ISPRODUCT
+--INSERT INTO ISPRODUCT (SellerID, CategoryID, Name, Description, Price, StockLevel, IsFlaggedInappropriate, ImageURL)
+--VALUES 
+--(1, 1, 'Laptop', 'High-end gaming laptop', 1500.00, 10, 0, 'laptop.jpg'),
+--(2, 2, 'T-shirt', 'Cotton t-shirt with a cool print', 20.00, 50, 0, 'tshirt.jpg'),
+--(3, 3, 'Smartwatch', 'Smartwatch with fitness tracking', 200.00, 25, 0, 'smartwatch.jpg');
+
+
+
+-- New Bilal
+-- Insert Products
+INSERT INTO ISPRODUCT (Name, Price, Description, StockLevel, SellerID, CategoryID, ImageURL, IsFlaggedInappropriate)
+VALUES
+-- Fashion Products
+('Shirt', 19.99, 'Cotton Shirt', 50, 1, 1, 'C:\\Users\\HP\\Desktop\\images\\shirt.png', 0),
+('Jeans', 39.99, 'Denim Jeans', 30, 1, 1, 'C:\\Users\\HP\\Desktop\\images\\jeans.png', 0),
+('Jacket', 59.99, 'Winter Jacket', 20, 1, 1, 'C:\\Users\\HP\\Desktop\\images\\jacket.png', 0),
+('Dress', 29.99, 'Evening Dress', 15, 1, 1, 'C:\\Users\\HP\\Desktop\\images\\dress.png', 0),
+('T-shirt', 15.99, 'Casual T-shirt', 40, 1, 1, 'C:\\Users\\HP\\Desktop\\images\\t-shirt.png', 0),
+('Shoes', 49.99, 'Running Shoes', 25, 1, 1, 'C:\\Users\\HP\\Desktop\\images\\shoes.png', 0),
+('Cap', 9.99, 'Baseball Cap', 60, 1, 1, 'C:\\Users\\HP\\Desktop\\images\\cap.png', 0),
+('Socks', 4.99, 'Ankle Socks', 70, 1, 1, 'C:\\Users\\HP\\Desktop\\images\\socks.png', 0),
+('Scarf', 14.99, 'Woolen Scarf', 30, 1, 1, 'C:\\Users\\HP\\Desktop\\images\\scarf.png', 0),
+('Belt', 19.99, 'Leather Belt', 35, 1, 1, 'C:\\Users\\HP\\Desktop\\images\\belt.png', 0),
+
+-- Electronics Products
+('Smartphone', 699.99, 'Latest Smartphone', 10, 2, 2, 'C:\\Users\\HP\\Desktop\\images\\smartphone.png', 0),
+('Laptop', 899.99, 'High Performance Laptop', 8, 2, 2, 'C:\\Users\\HP\\Desktop\\images\\laptop.png', 0),
+('Headphones', 59.99, 'Noise Cancelling Headphones', 20, 2, 2, 'C:\\Users\\HP\\Desktop\\images\\headphones.png', 0),
+('Smartwatch', 199.99, 'Fitness Smartwatch', 15, 2, 2, 'C:\\Users\\HP\\Desktop\\images\\smartwatch.png', 0),
+('Camera', 499.99, 'DSLR Camera', 5, 2, 2, 'C:\\Users\\HP\\Desktop\\images\\camera.png', 0),
+('Tablet', 299.99, '10-inch Tablet', 12, 2, 2, 'C:\\Users\\HP\\Desktop\\images\\tablet.png', 0),
+('Charger', 24.99, 'Fast Charger', 50, 2, 2, 'C:\\Users\\HP\\Desktop\\images\\charger.png', 0),
+('Mouse', 19.99, 'Wireless Mouse', 40, 2, 2, 'C:\\Users\\HP\\Desktop\\images\\mouse.png', 0),
+('Keyboard', 49.99, 'Mechanical Keyboard', 30, 2, 2, 'C:\\Users\\HP\\Desktop\\images\\keyboard.png', 0),
+('Speaker', 79.99, 'Bluetooth Speaker', 25, 2, 2, 'C:\\Users\\HP\\Desktop\\images\\speaker.png', 0),
+
+-- Home and Living Products
+('Sofa', 499.99, '3-Seater Sofa', 10, 3, 3, 'C:\\Users\\HP\\Desktop\\images\\sofa.png', 0),
+('Dining Table', 399.99, 'Wooden Dining Table', 8, 3, 3, 'C:\\Users\\HP\\Desktop\\images\\dining_table.png', 0),
+('Bed', 699.99, 'Queen Size Bed', 5, 3, 3, 'C:\\Users\\HP\\Desktop\\images\\bed.png', 0),
+('Curtains', 29.99, 'Window Curtains', 20, 3, 3, 'C:\\Users\\HP\\Desktop\\images\\curtains.png', 0),
+('Lamp', 49.99, 'Table Lamp', 15, 3, 3, 'C:\\Users\\HP\\Desktop\\images\\lamp.png', 0),
+('Rug', 99.99, 'Area Rug', 12, 3, 3, 'C:\\Users\\HP\\Desktop\\images\\rug.png', 0),
+('Shelf', 59.99, 'Wall Shelf', 18, 3, 3, 'C:\\Users\\HP\\Desktop\\images\\shelf.png', 0),
+('Chair', 39.99, 'Office Chair', 20, 3, 3, 'C:\\Users\\HP\\Desktop\\images\\chair.png', 0),
+('Mirror', 79.99, 'Wall Mirror', 10, 3, 3, 'C:\\Users\\HP\\Desktop\\images\\mirror.png', 0),
+('Clock', 19.99, 'Wall Clock', 25, 3, 3, 'C:\\Users\\HP\\Desktop\\images\\clock.png', 0),
+
+-- Health and Beauty Products
+('Shampoo', 9.99, 'Herbal Shampoo', 50, 1, 4, 'C:\\Users\\HP\\Desktop\\images\\shampoo.png', 0),
+('Conditioner', 9.99, 'Silky Conditioner', 40, 1, 4, 'C:\\Users\\HP\\Desktop\\images\\conditioner.png', 0),
+('Cream', 19.99, 'Moisturizing Cream', 30, 1, 4, 'C:\\Users\\HP\\Desktop\\images\\cream.png', 0),
+('Lipstick', 14.99, 'Matte Lipstick', 20, 1, 4, 'C:\\Users\\HP\\Desktop\\images\\lipstick.png', 0),
+('Perfume', 49.99, 'Floral Perfume', 15, 1, 4, 'C:\\Users\\HP\\Desktop\\images\\perfume.png', 0),
+('Sunscreen', 15.99, 'SPF 50 Sunscreen', 30, 1, 4, 'C:\\Users\\HP\\Desktop\\images\\sunscreen.png', 0),
+('Makeup Kit', 59.99, 'Complete Makeup Kit', 10, 1, 4, 'C:\\Users\\HP\\Desktop\\images\\makeup_kit.png', 0),
+('Deodorant', 9.99, 'Roll-On Deodorant', 40, 1, 4, 'C:\\Users\\HP\\Desktop\\images\\deodorant.png', 0),
+('Hair Dryer', 39.99, 'Professional Hair Dryer', 15, 1, 4, 'C:\\Users\\HP\\Desktop\\images\\hair_dryer.png', 0),
+('Straightener', 29.99, 'Hair Straightener', 12, 1, 4, 'C:\\Users\\HP\\Desktop\\images\\straightener.png', 0),
+
+-- Food and Beverages Products
+('Chocolates', 4.99, 'Milk Chocolates', 60, 2, 5, 'C:\\Users\\HP\\Desktop\\images\\chocolates.png', 0),
+('Cookies', 3.99, 'Butter Cookies', 50, 2, 5, 'C:\\Users\\HP\\Desktop\\images\\cookies.png', 0),
+('Chips', 2.99, 'Potato Chips', 70, 2, 5, 'C:\\Users\\HP\\Desktop\\images\\chips.png', 0),
+('Juice', 1.99, 'Orange Juice', 80, 2, 5, 'C:\\Users\\HP\\Desktop\\images\\juice.png', 0),
+('Coffee', 9.99, 'Premium Coffee', 40, 2, 5, 'C:\\Users\\HP\\Desktop\\images\\coffee.png', 0),
+('Tea', 4.99, 'Herbal Tea', 50, 2, 5, 'C:\\Users\\HP\\Desktop\\images\\tea.png', 0),
+('Cereal', 6.99, 'Breakfast Cereal', 30, 2, 5, 'C:\\Users\\HP\\Desktop\\images\\cereal.png', 0),
+('Candy', 1.99, 'Fruit Candy', 90, 2, 5, 'C:\\Users\\HP\\Desktop\\images\\candy.png', 0),
+('Ice Cream', 4.99, 'Vanilla Ice Cream', 25, 2, 5, 'C:\\Users\\HP\\Desktop\\images\\ice_cream.png', 0),
+('Snacks', 3.99, 'Assorted Snacks', 60, 2, 5, 'C:\\Users\\HP\\Desktop\\images\\snacks.png', 0);
+
+
+
 
 -- Table: ISORDER
 INSERT INTO ISORDER (CustomerID, OrderDate, ShippingStatus, TotalAmount, ShippingAddress, PaymentStatus)
@@ -377,8 +453,8 @@ VALUES
 --(2, 2, 3), -- Customer 2 has 3 T-shirts in their cart
 --(3, 3, 1); -- Customer 3 has 1 Smartwatch in their cart
 
--- NEW BILAL
 
+-- NEW BILAL
 -- Insert records into the CART table
 INSERT INTO CART (UserID, ProductID, Quantity)
 VALUES
@@ -458,7 +534,6 @@ SELECT * FROM SELLER;
 SELECT * FROM CATEGORY;
 SELECT * FROM ISPRODUCT;
 SELECT * FROM CART;
-SELECT * FROM CART_ITEM;
 SELECT * FROM ISORDER;
 SELECT * FROM ORDER_ITEM;
 SELECT * FROM PAYMENT;
@@ -480,7 +555,6 @@ SELECT * FROM PLATFORM_SETTINGS
 --DROP TABLE IF EXISTS PAYMENT;
 --DROP TABLE IF EXISTS ORDER_ITEM;
 --DROP TABLE IF EXISTS ISORDER;
---DROP TABLE IF EXISTS CART_ITEM;
 --DROP TABLE IF EXISTS CART;
 --DROP TABLE IF EXISTS ISPRODUCT;
 --DROP TABLE IF EXISTS CATEGORY;
@@ -489,3 +563,4 @@ SELECT * FROM PLATFORM_SETTINGS
 --DROP TABLE IF EXISTS ADMIN;
 --DROP TABLE IF EXISTS LOGIN_HISTORY;
 --DROP TABLE IF EXISTS ISUSER;
+--DROP TABLE IF EXISTS PLATFORM_SETTINGS;
