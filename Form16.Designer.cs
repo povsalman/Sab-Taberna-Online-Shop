@@ -52,7 +52,7 @@ namespace DB_Proj_00
             dgvProducts.Location = new Point(20, 20);
             dgvProducts.Name = "dgvProducts";
             dgvProducts.RowHeadersWidth = 62;
-            dgvProducts.Size = new Size(900, 450);
+            dgvProducts.Size = new Size(887, 450);
             dgvProducts.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn1

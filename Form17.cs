@@ -1,7 +1,7 @@
 using System;
 using System.Data;
 using System.Windows.Forms;
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 
 namespace DB_Proj_00
 {
@@ -112,7 +112,7 @@ namespace DB_Proj_00
                 DataGridViewRow selectedRow = Ord.SelectedRows[0];
 
                 // Get order details from the selected row
-                int orderId = Convert.ToInt32(selectedRow.Cells["Order ID"].Value);
+                int orderId = Convert.ToInt32(selectedRow.Cells["OrderID"].Value);
                 string customerName = selectedRow.Cells["Name"].Value.ToString();
                 string product = selectedRow.Cells["Name"].Value.ToString();
 

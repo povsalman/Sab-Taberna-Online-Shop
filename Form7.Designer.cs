@@ -30,7 +30,6 @@
         {
             panel1 = new Panel();
             button6 = new Button();
-            button5 = new Button();
             button4 = new Button();
             button3 = new Button();
             button2 = new Button();
@@ -79,7 +78,6 @@
             // 
             panel1.BackColor = Color.Gray;
             panel1.Controls.Add(button6);
-            panel1.Controls.Add(button5);
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button3);
             panel1.Controls.Add(button2);
@@ -102,18 +100,6 @@
             button6.Text = "Log Out";
             button6.UseVisualStyleBackColor = false;
             button6.Click += button6_Click;
-            // 
-            // button5
-            // 
-           /* button5.BackColor = Color.Gray;
-            button5.Font = new Font("Times New Roman", 9.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button5.ForeColor = Color.White;
-            button5.Location = new Point(0, 300);
-            button5.Name = "button5";
-            button5.Size = new Size(142, 29);
-            button5.TabIndex = 5;
-            button5.Text = "Inventory";
-            button5.UseVisualStyleBackColor = false;*/
             // 
             // button4
             // 
@@ -248,7 +234,7 @@
             label17.AutoSize = true;
             label17.Location = new Point(292, 220);
             label17.Name = "label17";
-            label17.Size = new Size(70, 20);
+            label17.Size = new Size(58, 20);
             label17.TabIndex = 8;
             label17.Text = "label17";
             // 
@@ -524,7 +510,6 @@
         private Button button1;
         private Button button4;
         private Panel panel2;
-        private Button button5;
         private Label label1;
         private Button button6;
         private TabControl tabControl1;

@@ -58,7 +58,7 @@ namespace DB_Proj_00
             dataGridViewTextBoxColumn2.DataPropertyName = "Name";
             dataGridViewTextBoxColumn2.HeaderText = "Customer Name";
             dataGridViewTextBoxColumn2.MinimumWidth = 8;
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.Name = "Name";
             dataGridViewTextBoxColumn2.Width = 200;
             // 
             // dataGridViewTextBoxColumn3
@@ -66,7 +66,7 @@ namespace DB_Proj_00
             dataGridViewTextBoxColumn3.DataPropertyName = "Name";
             dataGridViewTextBoxColumn3.HeaderText = "Product";
             dataGridViewTextBoxColumn3.MinimumWidth = 8;
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.Name = "Name";
             dataGridViewTextBoxColumn3.Width = 200;
             // 
             // dataGridViewTextBoxColumn4
