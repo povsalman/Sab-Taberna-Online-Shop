@@ -1,15 +1,16 @@
-﻿namespace DB_Proj_00
+namespace DB_Proj_00
 {
     partial class CustomerOrder
     {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
         private System.ComponentModel.IContainer components = null;
-        private TextBox t;
-        
-        private Label lblOrderStatus;
-        private Button btnPlaceOrder;
-        private Button btnBack;
-        private ComboBox Shipppingopt;
 
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -19,71 +20,118 @@
             base.Dispose(disposing);
         }
 
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
         private void InitializeComponent()
         {
-            t = new TextBox();
-            Shipppingopt = new ComboBox();
-            lblOrderStatus = new Label();
-            btnPlaceOrder = new Button();
-            btnBack = new Button();
+            button1 = new Button();
+            button2 = new Button();
+            button3 = new Button();
+            button4 = new Button();
+            button5 = new Button();
+            button6 = new Button();
+            button7 = new Button();
             SuspendLayout();
             // 
-            // t
+            // button1
             // 
-            t.Location = new Point(289, 35);
-            t.Name = "t";
-            t.PlaceholderText = "Enter your address";
-            t.Size = new Size(300, 27);
-            t.TabIndex = 0;
+            button1.Location = new Point(152, 54);
+            button1.Name = "button1";
+            button1.Size = new Size(112, 34);
+            button1.TabIndex = 0;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
-            // Shipppingopt
+            // button2
             // 
-            Shipppingopt.DropDownStyle = ComboBoxStyle.DropDownList;
-            Shipppingopt.Items.AddRange(new object[] { "Standard", "Express", "Overnight" });
-            Shipppingopt.Location = new Point(311, 112);
-            Shipppingopt.Name = "Shipppingopt";
-            Shipppingopt.Size = new Size(200, 28);
-            Shipppingopt.TabIndex = 1;
+            button2.Location = new Point(152, 128);
+            button2.Name = "button2";
+            button2.Size = new Size(112, 34);
+            button2.TabIndex = 1;
+            button2.Text = "button2";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click_1;
             // 
-            // lblOrderStatus
+            // button3
             // 
-            lblOrderStatus.Font = new Font("Arial", 10F, FontStyle.Italic);
-            lblOrderStatus.Location = new Point(289, 185);
-            lblOrderStatus.Name = "lblOrderStatus";
-            lblOrderStatus.Size = new Size(300, 50);
-            lblOrderStatus.TabIndex = 2;
-            lblOrderStatus.Text = "Order Status: ";
+            button3.Location = new Point(152, 221);
+            button3.Name = "button3";
+            button3.Size = new Size(112, 34);
+            button3.TabIndex = 2;
+            button3.Text = "button3";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
-            // btnPlaceOrder
+            // button4
             // 
-            btnPlaceOrder.Location = new Point(354, 252);
-            btnPlaceOrder.Name = "btnPlaceOrder";
-            btnPlaceOrder.Size = new Size(100, 30);
-            btnPlaceOrder.TabIndex = 3;
-            btnPlaceOrder.Text = "Place Order";
-            btnPlaceOrder.Click += btnPlaceOrder_Click;
+            button4.Location = new Point(152, 327);
+            button4.Name = "button4";
+            button4.Size = new Size(112, 34);
+            button4.TabIndex = 3;
+            button4.Text = "button4";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
-            // btnBack
+            // button5
             // 
-            btnBack.Location = new Point(354, 320);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(100, 30);
-            btnBack.TabIndex = 4;
-            btnBack.Text = "Back";
-            btnBack.Click += btnBack_Click;
+            button5.Location = new Point(152, 425);
+            button5.Name = "button5";
+            button5.Size = new Size(112, 34);
+            button5.TabIndex = 4;
+            button5.Text = "button5";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
-            // CustomerOrder
+            // button6
             // 
-            ClientSize = new Size(886, 390);
-            Controls.Add(t);
-            Controls.Add(Shipppingopt);
-            Controls.Add(lblOrderStatus);
-            Controls.Add(btnPlaceOrder);
-            Controls.Add(btnBack);
-            Name = "CustomerOrder";
-            Text = "Order Placement and Tracking";
+            button6.Location = new Point(766, 489);
+            button6.Name = "button6";
+            button6.Size = new Size(112, 34);
+            button6.TabIndex = 5;
+            button6.Text = "back";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
+            // 
+            // button7
+            // 
+            button7.Location = new Point(152, 523);
+            button7.Name = "button7";
+            button7.Size = new Size(112, 34);
+            button7.TabIndex = 6;
+            button7.Text = "button7";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
+            // BilalReports
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1192, 643);
+            Controls.Add(button7);
+            Controls.Add(button6);
+            Controls.Add(button5);
+            Controls.Add(button4);
+            Controls.Add(button3);
+            Controls.Add(button2);
+            Controls.Add(button1);
+            Name = "BilalReports";
+            Text = "BilalReports";
             ResumeLayout(false);
-            PerformLayout();
         }
+
+        #endregion
+
+        private Button button1;
+        private Button button2;
+        private Button button3;
+        private Button button4;
+        private Button button5;
+        private Button button6;
+        private Button button7;
     }
 }
