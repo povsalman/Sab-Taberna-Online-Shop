@@ -1,6 +1,6 @@
 using System;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 
 namespace DB_Proj_00
 {
@@ -9,11 +9,6 @@ namespace DB_Proj_00
         public Login()
         {
             InitializeComponent();
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -51,17 +46,16 @@ namespace DB_Proj_00
                 return;
             }
 
-            string connectionString = @"Server=DESKTOP-36T2U50\SQLEXPRESS;Database=SABTaberna;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (var conn = DBHandler.GetConnection())
             {
                 try
                 {
-                    connection.Open();
+                    conn.Open();
 
                     string query = "SELECT UserID FROM ISUSER WHERE UserName = @UserName AND Password = @Password";
                     int userId;
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand(query, conn))
                     {
                         command.Parameters.AddWithValue("@UserName", userName);
                         command.Parameters.AddWithValue("@Password", password);
@@ -90,7 +84,7 @@ namespace DB_Proj_00
                         return;
                     }
 
-                    using (SqlCommand roleCommand = new SqlCommand(roleQuery, connection))
+                    using (SqlCommand roleCommand = new SqlCommand(roleQuery, conn))
                     {
                         roleCommand.Parameters.AddWithValue("@UserID", userId);
                         int roleExists = Convert.ToInt32(roleCommand.ExecuteScalar());
@@ -107,7 +101,7 @@ namespace DB_Proj_00
                     SessionManager.UserName = userName;
 
 
-                    
+
                     if (selectedRole == "Customer")
                     {
                         CustomerDashboard customerDashboard = new CustomerDashboard();
@@ -115,14 +109,14 @@ namespace DB_Proj_00
                     }
                     else if (selectedRole == "Seller")
                     {
-                        Form8 sellerDashboard = new Form8(); 
+                        Form8 sellerDashboard = new Form8();
                         sellerDashboard.Show();
                     }
                     else if (selectedRole == "Admin")
                     {
                         AdminNewDashboard adminDashboard = new AdminNewDashboard();
                         adminDashboard.Show();
-                       
+
                     }
 
                     this.Hide();

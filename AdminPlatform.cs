@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;

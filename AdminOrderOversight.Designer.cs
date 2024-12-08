@@ -39,6 +39,7 @@ namespace DB_Proj_00
             dataGridViewOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewOrders.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewOrders.BackgroundColor = SystemColors.GradientActiveCaption;
+            dataGridViewOrders.BorderStyle = BorderStyle.Fixed3D;
             dataGridViewOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewOrders.Columns.AddRange(new DataGridViewColumn[] { OrderId, CustomerName, SellerName, Status, TotalAmount, DatePlaced });
             dataGridViewOrders.Location = new Point(22, 68);
@@ -118,6 +119,7 @@ namespace DB_Proj_00
             // labelFilter
             // 
             labelFilter.AutoSize = true;
+            labelFilter.BackColor = Color.Transparent;
             labelFilter.Location = new Point(462, 565);
             labelFilter.Name = "labelFilter";
             labelFilter.Size = new Size(45, 20);
@@ -137,6 +139,7 @@ namespace DB_Proj_00
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 16F, FontStyle.Bold);
             label3.Location = new Point(394, 20);
             label3.Name = "label3";
@@ -148,6 +151,7 @@ namespace DB_Proj_00
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Location = new Point(44, 565);
             label1.Name = "label1";
             label1.Size = new Size(69, 20);
@@ -156,6 +160,7 @@ namespace DB_Proj_00
             // 
             // AdminOrderOversight
             // 
+            BackgroundImage = Properties.Resources.Tabby_Photoroom;
             ClientSize = new Size(1022, 616);
             Controls.Add(label1);
             Controls.Add(label3);

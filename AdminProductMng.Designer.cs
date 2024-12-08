@@ -111,6 +111,7 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
             label3.Font = new Font("Arial", 16F, FontStyle.Bold);
             label3.Location = new Point(29, 298);
             label3.Name = "label3";
@@ -122,6 +123,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial", 16F, FontStyle.Bold);
             label1.Location = new Point(29, 26);
             label1.Name = "label1";
@@ -164,6 +166,7 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
             label2.Location = new Point(634, 68);
             label2.Name = "label2";
             label2.Size = new Size(91, 20);
@@ -173,6 +176,7 @@
             // label4
             // 
             label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
             label4.Location = new Point(609, 116);
             label4.Name = "label4";
             label4.Size = new Size(116, 20);
@@ -182,6 +186,7 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
             label5.Location = new Point(634, 171);
             label5.Name = "label5";
             label5.Size = new Size(88, 20);
@@ -211,6 +216,7 @@
             // label6
             // 
             label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
             label6.Location = new Point(35, 640);
             label6.Name = "label6";
             label6.Size = new Size(82, 20);
@@ -256,6 +262,7 @@
             // 
             // AdminProductMng
             // 
+            BackgroundImage = Properties.Resources.Tabby_Photoroom;
             ClientSize = new Size(1052, 672);
             Controls.Add(txtRemoveProduct);
             Controls.Add(btnShowRejected);

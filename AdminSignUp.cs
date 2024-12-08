@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.Logging;
 
