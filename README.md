@@ -1,4 +1,5 @@
-# DB_Proj_00
+# Sab-Taberna Online Shop
 
-This project was made with blood and tears.
-Please ignore subtle errors. 
+• Created using C#, Windows Forms and SSMS SQL Server.
+• 4 different interfaces for Admin, Customer, Seller and Logistics Provider
+• Robust searching, filtering and product listing strategies.
